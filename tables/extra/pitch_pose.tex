@@ -1,0 +1,66 @@
+\renewcommand{\arraystretch}{1.2}
+\providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+\begin{table}[h]
+\centering
+\caption{Point-map (N.C., $\uparrow$) and pose (AUC@30, $\uparrow$) accuracy, upright vs.\ rotated about the pitch axis, on NRGBD, 7-Scenes, and Tanks\&Temples.}
+\label{tab:pitch_metrics}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l *{3}{cc cc}}
+\toprule
+ & \multicolumn{4}{c}{\textbf{NRGBD}}
+ & \multicolumn{4}{c}{\textbf{7-Scenes}}
+ & \multicolumn{4}{c}{\textbf{Tanks\&Temples}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC@30 $\uparrow$}
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC@30 $\uparrow$}
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC@30 $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\cmidrule(lr){6-7} \cmidrule(lr){8-9}
+\cmidrule(lr){10-11} \cmidrule(lr){12-13}
+
+\textbf{Method}
+& Up. & Rot. & Up. & Rot.
+& Up. & Rot. & Up. & Rot.
+& Up. & Rot. & Up. & Rot. \\
+\midrule
+
+VGGT
+& \dd{0.798}{0.031} & \dd{0.796}{0.005} & \dd{98.36}{1.44} & \dd{98.17}{0.38}
+& \dd{0.661}{0.038} & \dd{0.662}{0.003} & \dd{85.60}{6.73} & \dd{84.68}{1.23}
+& \dd{0.678}{0.054} & \dd{0.671}{0.022} & \dd{91.62}{14.60} & \dd{91.20}{0.79} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$
+& \dd{0.827}{0.049} & \dd{0.824}{0.007} & \dd{99.22}{0.57} & \dd{98.84}{0.43}
+& \dd{0.670}{0.050} & \dd{0.670}{0.003} & \dd{88.07}{5.80} & \dd{87.05}{1.20}
+& \dd{0.684}{0.083} & \dd{0.664}{0.016} & \dd{92.88}{14.29} & \dd{92.79}{0.36} \\
+\addlinespace[3pt]
+
+$\pi^3$
+& \dd{0.807}{0.077} & \dd{0.805}{0.007} & \dd{96.32}{2.74} & \dd{95.86}{0.56}
+& \dd{0.682}{0.050} & \dd{0.683}{0.003} & \dd{85.13}{8.09} & \dd{84.59}{1.36}
+& \dd{0.701}{0.056} & \dd{0.666}{0.030} & \dd{94.46}{8.71} & \dd{94.20}{0.86} \\
+\addlinespace[3pt]
+
+MapA.
+& \dd{0.741}{0.052} & \dd{0.720}{0.012} & \dd{93.86}{3.79} & \dd{93.25}{0.84}
+& \dd{0.631}{0.059} & \dd{0.633}{0.010} & \dd{76.22}{15.42} & \dd{75.69}{1.82}
+& \dd{0.614}{0.065} & \dd{0.592}{0.030} & \dd{92.48}{3.04} & \dd{91.70}{1.29} \\
+\addlinespace[3pt]
+
+DA3
+& \dd{0.815}{0.043} & \dd{0.810}{0.009} & \dd{99.77}{0.37} & \dd{99.74}{0.11}
+& \dd{0.678}{0.041} & \dd{0.678}{0.004} & \dd{88.14}{5.95} & \dd{87.44}{1.48}
+& \dd{0.694}{0.057} & \dd{0.683}{0.024} & \dd{98.45}{1.16} & \dd{97.87}{1.83} \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}

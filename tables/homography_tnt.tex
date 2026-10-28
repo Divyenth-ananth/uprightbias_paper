@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\scriptsize
+% \captionsetup{justification=raggedright}
+\caption{Homography correction evaluation on Tanks \& Temples.}
+\label{tab:tnt_eval}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{Acc.} $\downarrow$ & \textbf{Comp.} $\downarrow$ & \textbf{N.C.} $\uparrow$ & \textbf{RAcc30} $\uparrow$ & \textbf{TAcc30} $\uparrow$ & \textbf{ATE} $\downarrow$ \\
+\midrule
+VGGT          & 0.2528 & 1.6534 & 0.5749 & 12.7317 & 35.9634 & 0.9801 \\
+VGGT-$\Omega$ & 0.2421 & \textbf{1.2909} & 0.5884 & \textbf{14.6992} & \textbf{40.2276} & \textbf{0.4548} \\
+$\pi^3$       & 0.2632 & 1.4227 & \textbf{0.5968} & 13.4959 & 34.2846 & 1.0313 \\
+MapA          & \textbf{0.2002} & 1.8840 & 0.5814 & 12.9959 & 33.2195 & 1.2726 \\
+DA3           & 0.3302 & 1.4218 & 0.5967 & 12.9593 & 32.3984 & 1.2220 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,173 @@
+% \begin{table*}[ht]
+% \centering
+% \caption{Point map estimation on 7-Scenes, NRGBD, and the ETH3D with ROVER. Results are averaged across the full rotation-fraction sweep per scene. Results are averaged over all $m$}
+% \label{tab:pointmap_combined}
+% \small
+% \renewcommand{\arraystretch}{1.2}
+% \setlength{\tabcolsep}{2pt}
+
+% \resizebox{\linewidth}{!}{
+% \begin{tabular}{l *{3}{cc} *{3}{cc} *{3}{cc}}
+% \toprule
+% & \multicolumn{6}{c}{\textbf{7-Scenes}} & \multicolumn{6}{c}{\textbf{NRGBD}} & \multicolumn{6}{c}{\textbf{ETH3D}} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+% & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+% & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+% & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+% \textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+% \midrule
+
+% VGGT 
+% & \makecell{0.06 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.13 \\ {\tiny $\pm$ 0.11}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.61 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.65} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.05 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.09 \\ {\tiny $\pm$ 0.10}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.72 \\ {\tiny $\pm$ 0.06}} & \makecell{\textbf{0.79} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.20 \\ {\tiny $\pm$ 0.07}} & \makecell{\textbf{0.18} \\ {\tiny $\pm$ 0.06}} 
+% & \makecell{0.11 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.77 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.79} \\ {\tiny $\pm$ 0.03}} \\
+% \addlinespace[3pt]
+
+% VGGT-$\Omega$ 
+% & \makecell{0.03 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.03 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.67 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.02 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.79 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.81} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.07 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.06} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{\textbf{0.05} \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.05} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{\textbf{0.85} \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.85} \\ {\tiny $\pm$ 0.03}} \\
+% \addlinespace[3pt]
+
+% $\pi^3$ 
+% & \makecell{0.07 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.13 \\ {\tiny $\pm$ 0.10}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.62 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.05 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.09 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.73 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.80} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.09 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.07 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.06} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.84 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.85} \\ {\tiny $\pm$ 0.02}} \\
+% \addlinespace[3pt]
+
+% MapA.
+% & \makecell{0.10 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.19 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.12} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.59 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.63} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.13 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.16 \\ {\tiny $\pm$ 0.13}} & \makecell{\textbf{0.07} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.67 \\ {\tiny $\pm$ 0.06}} & \makecell{\textbf{0.73} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.16 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.15} \\ {\tiny $\pm$ 0.03}} 
+% & \makecell{0.39 \\ {\tiny $\pm$ 0.36}} & \makecell{\textbf{0.36} \\ {\tiny $\pm$ 0.29}} 
+% & \makecell{0.75 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.76} \\ {\tiny $\pm$ 0.02}} \\
+% \addlinespace[3pt]
+
+% DA3
+% & \makecell{0.07 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.10 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.05} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{0.64 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.06 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{0.10 \\ {\tiny $\pm$ 0.15}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.73 \\ {\tiny $\pm$ 0.07}} & \makecell{\textbf{0.81} \\ {\tiny $\pm$ 0.02}} 
+% & \makecell{\textbf{0.11} \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.11} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{0.12 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.10} \\ {\tiny $\pm$ 0.01}} 
+% & \makecell{\textbf{0.82} \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.82} \\ {\tiny $\pm$ 0.01}} \\
+
+% \bottomrule
+% \end{tabular}
+
+
+% }
+% \vspace{-2mm}
+% \end{table*}
+
+\begin{table*}[ht]
+\centering
+\caption{\textbf{Point map estimation} on 7-Scenes, NRGB-D, and RotMV with ROVER. Results are averaged across the full rotation-fraction sweep per scene.}
+\label{tab:pointmap_combined}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{2pt}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l *{3}{cc} *{3}{cc} *{3}{cc}}
+\toprule
+& \multicolumn{6}{c}{\textbf{7-Scenes}} & \multicolumn{6}{c}{\textbf{NRGB-D}} & \multicolumn{6}{c}{\textbf{RotMV}} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+& \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+& \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+& \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+\textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT 
+& \makecell{0.06 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.13 \\ {\tiny $\pm$ 0.11}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.61 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.65} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.05 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.09 \\ {\tiny $\pm$ 0.10}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.72 \\ {\tiny $\pm$ 0.06}} & \makecell{\textbf{0.79} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.02 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.04 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.02}} 
+& \makecell{0.68 \\ {\tiny $\pm$ 0.09}} & \makecell{\textbf{0.74} \\ {\tiny $\pm$ 0.05}} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ 
+& \makecell{0.03 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.03 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.67 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.02 \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.79 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.81} \\ {\tiny $\pm$ 0.02}} 
+& \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.71 \\ {\tiny $\pm$ 0.06}} & \makecell{\textbf{0.72} \\ {\tiny $\pm$ 0.04}} \\
+\addlinespace[3pt]
+
+$\pi^3$ 
+& \makecell{0.07 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.03} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.13 \\ {\tiny $\pm$ 0.10}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.02}} 
+& \makecell{0.62 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.05 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.09 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.73 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.80} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.04 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.05 \\ {\tiny $\pm$ 0.05}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.70 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.76} \\ {\tiny $\pm$ 0.05}} \\
+\addlinespace[3pt]
+
+MapA.
+& \makecell{0.10 \\ {\tiny $\pm$ 0.02}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.19 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.12} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.59 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.63} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.13 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.08} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.16 \\ {\tiny $\pm$ 0.13}} & \makecell{\textbf{0.07} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.67 \\ {\tiny $\pm$ 0.06}} & \makecell{\textbf{0.73} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.61 \\ {\tiny $\pm$ 0.25}} & \makecell{\textbf{0.46} \\ {\tiny $\pm$ 0.17}} 
+& \makecell{1.33 \\ {\tiny $\pm$ 0.89}} & \makecell{\textbf{0.95} \\ {\tiny $\pm$ 0.51}} 
+& \makecell{0.67 \\ {\tiny $\pm$ 0.11}} & \makecell{\textbf{0.75} \\ {\tiny $\pm$ 0.09}} \\
+\addlinespace[3pt]
+
+DA3
+& \makecell{0.07 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.04} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.10 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.05} \\ {\tiny $\pm$ 0.02}} 
+& \makecell{0.64 \\ {\tiny $\pm$ 0.03}} & \makecell{\textbf{0.67} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.06 \\ {\tiny $\pm$ 0.04}} & \makecell{\textbf{0.02} \\ {\tiny $\pm$ 0.01}} 
+& \makecell{0.10 \\ {\tiny $\pm$ 0.15}} & \makecell{\textbf{0.01} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{0.73 \\ {\tiny $\pm$ 0.07}} & \makecell{\textbf{0.81} \\ {\tiny $\pm$ 0.02}} 
+& \makecell{0.61 \\ {\tiny $\pm$ 0.31}} & \makecell{\textbf{0.25} \\ {\tiny $\pm$ 0.18}} 
+& \makecell{0.83 \\ {\tiny $\pm$ 0.81}} & \makecell{\textbf{0.34} \\ {\tiny $\pm$ 0.40}} 
+& \makecell{0.69 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{0.76} \\ {\tiny $\pm$ 0.04}} \\
+
+\bottomrule
+\end{tabular}
+
+
+}
+\vspace{-2mm}
+\end{table*}

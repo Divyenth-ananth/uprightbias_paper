@@ -1,0 +1,40 @@
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Rotation-correction front-ends on VGGT-$\Omega$, mean $\pm$ std over all rotation levels and scenes. $\Delta\theta$ is the mean per-image residual rotation error ($\downarrow$); for Baseline (no correction) it is the deviation of the applied rotation from upright.}
+\label{tab:supplementary_method_comparison}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{l ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{7-Scenes}} & \multicolumn{3}{c}{\textbf{Tanks\&Temples}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+\textbf{Method}
+& $\Delta\theta$ $\downarrow$ & N.C. $\uparrow$ & AUC$_{30}$ $\uparrow$
+& $\Delta\theta$ $\downarrow$ & N.C. $\uparrow$ & AUC$_{30}$ $\uparrow$ \\
+\midrule
+Baseline
+& \valrow{58.1}{60.5} & \valrow{0.667}{0.013} & \valrow{78.13}{7.77}
+& \valrow{58.3}{60.6} & \valrow{0.707}{0.028} & \valrow{81.31}{7.81} \\
+\quad + DINOv1 & \valrow{90.7}{59.9} & \valrow{0.651}{0.015} & \valrow{68.89}{5.49}  & \valrow{126.0}{50.2} & \valrow{0.658}{0.024} & \valrow{59.17}{6.07} \\
+
+
+\quad + Homography
+& \valrow{72.5}{57.3} & \valrow{0.580}{0.037} & \valrow{8.64}{12.56}
+& \valrow{74.2}{59.4} & \valrow{0.590}{0.047} & \valrow{7.81}{10.61} \\
+\quad + RotNet
+& \valrow{32.5}{40.0} & \valrow{0.622}{0.027} & \valrow{73.15}{6.56}
+& \valrow{43.3}{43.8} & \valrow{0.636}{0.056} & \valrow{77.80}{7.08} \\
+\quad + G.C.
+& \valrow{58.6}{62.5} & \valrow{0.597}{0.037} & \valrow{73.85}{10.52}
+& \valrow{57.7}{65.0} & \valrow{0.626}{0.058} & \valrow{79.36}{9.88} \\
+\quad + RotNet + G.C.
+& \valrow{31.9}{41.9} & \valrow{0.623}{0.026} & \valrow{73.33}{5.83}
+& \valrow{38.3}{47.2} & \valrow{0.663}{0.047} & \valrow{81.40}{7.93} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \bvalrow{14.8}{21.7} & \bvalrow{0.668}{0.007} & \bvalrow{83.63}{3.19}
+& \bvalrow{15.6}{27.5} & \bvalrow{0.719}{0.021} & \bvalrow{86.92}{4.13} \\
+\bottomrule
+\end{tabular}
+\end{table}

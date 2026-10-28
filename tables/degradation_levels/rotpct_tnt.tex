@@ -1,0 +1,23 @@
+\begin{table*}[ht]
+\centering
+\caption{Point-map (Acc-mean, $\downarrow$) and pose (ATE, $\downarrow$) accuracy vs.\ percentage of images rotated (rest kept upright) on Tanks\&Temples.}
+\label{tab:rotpct_tnt}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc cc}
+\toprule
+\multirow{3}{*}{\% Rotated} & \multicolumn{10}{c}{Point-map Acc-mean} & \multicolumn{10}{c}{Pose ATE} \\
+\cmidrule(lr){2-11} \cmidrule(lr){12-21}
+ & \multicolumn{2}{c}{VGGT} & \multicolumn{2}{c}{VGGT-$\Omega$} & \multicolumn{2}{c}{$\pi^3$} & \multicolumn{2}{c}{MapAnything} & \multicolumn{2}{c}{DepthAnything3} & \multicolumn{2}{c}{VGGT} & \multicolumn{2}{c}{VGGT-$\Omega$} & \multicolumn{2}{c}{$\pi^3$} & \multicolumn{2}{c}{MapAnything} & \multicolumn{2}{c}{DepthAnything3} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19} \cmidrule(lr){20-21}
+ & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+0\% & \textbf{0.22} & 0.22 & \textbf{0.14} & 0.14 & \textbf{0.15} & 0.15 & 0.25 & \textbf{0.24} & 0.24 & \textbf{0.23} & \textbf{0.39} & 0.40 & \textbf{0.16} & 0.16 & 0.56 & \textbf{0.55} & \textbf{0.31} & 0.52 & \textbf{0.03} & 0.42 \\
+25\% & 0.25 & \textbf{0.22} & 0.15 & \textbf{0.14} & 0.20 & \textbf{0.17} & 0.26 & \textbf{0.25} & 0.29 & \textbf{0.24} & 0.70 & \textbf{0.55} & \textbf{0.16} & 0.17 & 0.84 & \textbf{0.56} & 0.89 & \textbf{0.62} & 0.79 & \textbf{0.35} \\
+50\% & 0.30 & \textbf{0.24} & 0.17 & \textbf{0.15} & 0.27 & \textbf{0.19} & 0.32 & \textbf{0.29} & 0.36 & \textbf{0.25} & 0.94 & \textbf{0.59} & \textbf{0.16} & 0.18 & 0.97 & \textbf{0.60} & 1.23 & \textbf{0.69} & 1.01 & \textbf{0.42} \\
+75\% & 0.35 & \textbf{0.25} & 0.20 & \textbf{0.16} & 0.32 & \textbf{0.20} & 0.36 & \textbf{0.31} & 0.46 & \textbf{0.30} & 1.08 & \textbf{0.60} & 0.21 & \textbf{0.15} & 1.03 & \textbf{0.61} & 1.36 & \textbf{0.78} & 1.15 & \textbf{0.42} \\
+100\% & 0.40 & \textbf{0.28} & 0.24 & \textbf{0.17} & 0.39 & \textbf{0.23} & 0.44 & \textbf{0.34} & 0.53 & \textbf{0.31} & 1.15 & \textbf{0.67} & 0.29 & \textbf{0.17} & 1.10 & \textbf{0.62} & 1.48 & \textbf{0.94} & 1.26 & \textbf{0.63} \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}

@@ -1,0 +1,17 @@
+\vspace{-3mm}
+\begin{abstract}
+We uncover a largely overlooked vulnerability in feed forward reconstruction models: sensitivity to image orientation.
+Across state-of-the-art architectures rotational perturbations of input images cause severe degradation in both camera pose estimation and point-map quality.
+We term this failure mode UprightBias and trace its origin to a near-universal upright orientation of training corpora, which causes models to implicitly assume canonically upright inputs at inference time.
+We find that patch-level embedding variance from a DINOv2 encoder provides a reliable zero-shot signal for identifying the canonical upright orientation.
+Leveraging this insight, we introduce \textbf{ROVER} (\textbf{RO}tation estimation via \textbf{V}ariance-based \textbf{E}mbedding \textbf{R}ectification), a training-free framework that estimates and rectifies image orientation at inference, leaving all downstream model weights unchanged.
+For evaluation, we introduce a Controlled Rotation Synthesis protocol that generates rotated views from upright images. 
+We also curate \textbf{RotMV} (\textbf{Rot}ational \textbf{M}ulti-\textbf{V}iew), which, to the best of our knowledge, is the first benchmark of paired upright and real-world rotated multi-view sequences captured from fixed viewpoints.
+Experiments across the datasets demonstrate that ROVER consistently shows improvements, reducing pose estimation errors upto 80\% and point-map estimation errors by over 58\% on average.
+%%% Important note about the metrics average of 59% completeness (metric) on 3 datasets 7 scenes NRGBD and RotMV 
+%%% 
+% We then investigate whether it can be resolved without modifying or retraining existing models.
+% We discover that patch-level embeddings of a frozen DINOv2 encoder exhibit maximal spatial variance at the canonical upright orientation of an image making embedding variance a zero-shot proxy for image uprightness.
+% For evaluation, we introduce a Controlled Rotation Synthesis protocol and curate \textbf{RotMV}(\textbf{Rot}ational \textbf{M}ulti-\textbf{V}iew), the first benchmark of paired upright and real-world rotated multi-view sequences captured from fixed viewpoints.
+% Experiments across seven datasets demonstrate that ROVER consistently restores camera pose accuracy and point-map quality under arbitrary rotations, outperforming all evaluated baselines.
+\end{abstract}

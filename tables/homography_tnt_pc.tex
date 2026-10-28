@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Point map estimation on Tanks\&Temples: Baseline, Homography, and Ours. Mean values only.}
+\label{tab:point_map_tnt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l ccc ccc ccc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{3}{c}{Acc. $\downarrow$} & \multicolumn{3}{c}{Comp. $\downarrow$} & \multicolumn{3}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+ & Ours & Baseline & Homography & Ours & Baseline & Homography & Ours & Baseline & Homography \\
+\midrule
+VGGT & \textbf{0.2474} & 0.3216 & 0.2528 & \textbf{0.5388} & 0.5937 & 1.6534 & \textbf{0.6477} & 0.6287 & 0.5749 \\
+VGGT-$\Omega$ & \textbf{0.1575} & 0.1896 & 0.2421 & \textbf{0.1262} & 0.1434 & 1.2909 & \textbf{0.7188} & 0.7067 & 0.5884 \\
+$\pi^3$ & \textbf{0.1986} & 0.2906 & 0.2632 & \textbf{0.3473} & 0.4148 & 1.4227 & \textbf{0.6893} & 0.6520 & 0.5968 \\
+MapAnything & 0.2971 & 0.3401 & \textbf{0.2002} & \textbf{0.7762} & 0.8081 & 1.8840 & \textbf{0.6219} & 0.5951 & 0.5814 \\
+DepthAnything3 & \textbf{0.2755} & 0.4069 & 0.3302 & \textbf{0.3351} & 0.5344 & 1.4218 & \textbf{0.6744} & 0.6410 & 0.5967 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

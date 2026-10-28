@@ -1,0 +1,78 @@
+\begin{table}[h]
+\centering
+\caption{Point-map (N.C., $\uparrow$) and pose (AUC$_{30}$, $\uparrow$) accuracy for upright inputs and inputs rotated about the yaw axis, on NRGBD, 7-Scenes, and Tanks\&Temples.}
+\label{tab:yaw_metrics}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l *{3}{cccc}}
+\toprule
+ & \multicolumn{4}{c}{\textbf{NRGBD}}
+ & \multicolumn{4}{c}{\textbf{7-Scenes}}
+ & \multicolumn{4}{c}{\textbf{Tanks\&Temples}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$}
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$}
+ & \multicolumn{2}{c}{N.C. $\uparrow$}
+ & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\cmidrule(lr){6-7} \cmidrule(lr){8-9}
+\cmidrule(lr){10-11} \cmidrule(lr){12-13}
+
+\textbf{Method}
+& Upright & Rotated & Upright & Rotated
+& Upright & Rotated & Upright & Rotated
+& Upright & Rotated & Upright & Rotated \\
+\midrule
+
+VGGT
+& \dd{0.795}{0.030} & \dd{0.788}{0.010}
+& \dd{98.65}{0.86} & \dd{97.59}{0.82}
+& \dd{0.659}{0.033} & \dd{0.665}{0.006}
+& \dd{85.80}{9.53} & \dd{84.44}{2.25}
+& \dd{0.685}{0.042} & \dd{0.659}{0.032}
+& \dd{94.18}{9.62} & \dd{93.33}{1.63} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$
+& \dd{0.825}{0.048} & \dd{0.825}{0.008}
+& \dd{99.10}{0.72} & \dd{98.46}{0.63}
+& \dd{0.672}{0.040} & \dd{0.679}{0.006}
+& \dd{89.35}{5.07} & \dd{87.78}{1.58}
+& \dd{0.669}{0.080} & \dd{0.657}{0.023}
+& \dd{93.27}{13.12} & \dd{93.52}{0.99} \\
+\addlinespace[3pt]
+
+$\pi^3$
+& \dd{0.817}{0.066} & \dd{0.808}{0.011}
+& \dd{96.17}{2.97} & \dd{95.42}{0.82}
+& \dd{0.674}{0.041} & \dd{0.685}{0.008}
+& \dd{87.54}{6.31} & \dd{85.94}{1.74}
+& \dd{0.721}{0.059} & \dd{0.667}{0.040}
+& \dd{97.76}{0.63} & \dd{97.17}{1.30} \\
+\addlinespace[3pt]
+
+MapA.
+& \dd{0.739}{0.057} & \dd{0.716}{0.017}
+& \dd{93.11}{5.13} & \dd{91.59}{1.54}
+& \dd{0.623}{0.046} & \dd{0.636}{0.013}
+& \dd{76.26}{12.07} & \dd{73.28}{3.17}
+& \dd{0.627}{0.052} & \dd{0.592}{0.033}
+& \dd{94.53}{0.98} & \dd{92.57}{1.79} \\
+\addlinespace[3pt]
+
+DA3
+& \dd{0.819}{0.037} & \dd{0.808}{0.014}
+& \dd{99.75}{0.38} & \dd{99.53}{0.25}
+& \dd{0.676}{0.032} & \dd{0.684}{0.007}
+& \dd{88.10}{7.73} & \dd{88.55}{1.48}
+& \dd{0.674}{0.051} & \dd{0.661}{0.030}
+& \dd{98.58}{2.11} & \dd{98.74}{1.36} \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}

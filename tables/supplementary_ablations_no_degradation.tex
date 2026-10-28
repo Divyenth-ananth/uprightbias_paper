@@ -1,0 +1,151 @@
+\begin{table}[h]
+\centering
+\caption{Feed forward reconstruction when all images upright: N.C. and AUC@30, mean $\pm$ std across scenes, on Tanks \& Temples, NRGBD and DTU.}
+\label{tab:upright_p100_nc_auc30_combined}
+\small
+\renewcommand{\arraystretch}{1.15}
+
+% \begin{tabular}{c l cc cc}
+% \toprule
+% \multirow{2}{*}{Dataset} & \multirow{2}{*}{Method}
+% & \multicolumn{2}{c}{N.C. $\uparrow$}
+% & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+% \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+% & & Ours & Baseline & Ours & Baseline \\
+% \midrule
+
+% \multicolumn{1}{c|}{
+%     \multirow{5}{*}{\rotatebox[origin=c]{90}{\scriptsize Tanks\&Temples}}
+% }
+% & VGGT
+% & 0.66 $\pm$ 0.08 & 0.66 $\pm$ 0.08
+% & 76.13 $\pm$ 35.27 & 76.41 $\pm$ 35.50 \\
+
+% \multicolumn{1}{c|}{}
+% & VGGT-$\Omega$
+% & 0.72 $\pm$ 0.07 & 0.72 $\pm$ 0.07
+% & 90.43 $\pm$ 16.70 & 91.10 $\pm$ 16.06 \\
+
+% \multicolumn{1}{c|}{}
+% & $\pi^3$
+% & 0.71 $\pm$ 0.13 & 0.71 $\pm$ 0.12
+% & 78.28 $\pm$ 30.13 & 79.56 $\pm$ 28.37 \\
+
+% \multicolumn{1}{c|}{}
+% & MapA
+% & 0.60 $\pm$ 0.14 & 0.63 $\pm$ 0.15
+% & 73.36 $\pm$ 32.26 & 78.27 $\pm$ 22.66 \\
+
+% \multicolumn{1}{c|}{}
+% & DA3
+% & 0.70 $\pm$ 0.07 & 0.70 $\pm$ 0.07
+% & 94.57 $\pm$ 7.51 & 94.36 $\pm$ 8.18 \\
+
+% \midrule
+
+% \multicolumn{1}{c|}{
+%     \multirow{5}{*}{\rotatebox[origin=c]{90}{\scriptsize NRGBD}}
+% }
+% & VGGT
+% & 0.80 $\pm$ 0.03 & 0.80 $\pm$ 0.03
+% & 98.60 $\pm$ 1.23 & 98.62 $\pm$ 1.20 \\
+
+% \multicolumn{1}{c|}{}
+% & VGGT-$\Omega$
+% & 0.83 $\pm$ 0.04 & 0.83 $\pm$ 0.04
+% & 99.28 $\pm$ 0.52 & 99.27 $\pm$ 0.56 \\
+
+% \multicolumn{1}{c|}{}
+% & $\pi^3$
+% & 0.81 $\pm$ 0.06 & 0.81 $\pm$ 0.06
+% & 96.41 $\pm$ 1.93 & 96.41 $\pm$ 1.93 \\
+
+% \multicolumn{1}{c|}{}
+% & MapA
+% & 0.75 $\pm$ 0.05 & 0.75 $\pm$ 0.05
+% & 93.94 $\pm$ 4.30 & 93.92 $\pm$ 4.30 \\
+
+% \multicolumn{1}{c|}{}
+% & DA3
+% & 0.82 $\pm$ 0.03 & 0.82 $\pm$ 0.04
+% & 99.85 $\pm$ 0.13 & 99.87 $\pm$ 0.19 \\
+
+% \bottomrule
+% \end{tabular}
+
+\begin{tabular}{@{}cl cc cc@{}}
+\toprule
+ & \multirow{2}{*}{Method}
+& \multicolumn{2}{c}{N.C. $\uparrow$}
+& \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+& & Ours & Baseline & Ours & Baseline \\
+\midrule
+
+% Tanks\&Temples (Default / White background)
+& VGGT
+& 0.66 $\pm$ 0.08 & 0.66 $\pm$ 0.08
+& 76.13 $\pm$ 35.27 & 76.41 $\pm$ 35.50 \\
+& VGGT-$\Omega$
+& 0.72 $\pm$ 0.07 & 0.72 $\pm$ 0.07
+& 90.43 $\pm$ 16.70 & 91.10 $\pm$ 16.06 \\
+& $\pi^3$
+& 0.71 $\pm$ 0.13 & 0.71 $\pm$ 0.12
+& 78.28 $\pm$ 30.13 & 79.56 $\pm$ 28.37 \\
+& MapA
+& 0.60 $\pm$ 0.14 & 0.63 $\pm$ 0.15
+& 73.36 $\pm$ 32.26 & 78.27 $\pm$ 22.66 \\
+\multirow{-5}{*}{\rotatebox[origin=c]{90}{Tanks\&Temples}}
+& DA3
+& 0.70 $\pm$ 0.07 & 0.70 $\pm$ 0.07
+& 94.57 $\pm$ 7.51 & 94.36 $\pm$ 8.18 \\
+\addlinespace[3pt]
+
+% NRGBD (Shaded background)
+\rowcolor{datasetbg}
+& VGGT
+& 0.80 $\pm$ 0.03 & 0.80 $\pm$ 0.03
+& 98.60 $\pm$ 1.23 & 98.62 $\pm$ 1.20 \\
+\rowcolor{datasetbg}
+& VGGT-$\Omega$
+& 0.83 $\pm$ 0.04 & 0.83 $\pm$ 0.04
+& 99.28 $\pm$ 0.52 & 99.27 $\pm$ 0.56 \\
+\rowcolor{datasetbg}
+& $\pi^3$
+& 0.81 $\pm$ 0.06 & 0.81 $\pm$ 0.06
+& 96.41 $\pm$ 1.93 & 96.41 $\pm$ 1.93 \\
+\rowcolor{datasetbg}
+& MapA
+& 0.75 $\pm$ 0.05 & 0.75 $\pm$ 0.05
+& 93.94 $\pm$ 4.30 & 93.92 $\pm$ 4.30 \\
+\rowcolor{datasetbg}
+\multirow{-5}{*}{\rotatebox[origin=c]{90}{NRGBD}}
+& DA3
+& 0.82 $\pm$ 0.03 & 0.82 $\pm$ 0.04
+& 99.85 $\pm$ 0.13 & 99.87 $\pm$ 0.19 \\
+\addlinespace[3pt]
+
+% DTU (Default / White background)
+& VGGT
+& 0.64 $\pm$ 0.02 & 0.65 $\pm$ 0.02
+& 97.36 $\pm$ 5.80 & 99.69 $\pm$ 0.43 \\
+& VGGT-$\Omega$
+& 0.63 $\pm$ 0.02 & 0.65 $\pm$ 0.02
+& 97.60 $\pm$ 1.21 & 99.69 $\pm$ 0.43 \\
+& $\pi^3$
+& 0.63 $\pm$ 0.01 & 0.64 $\pm$ 0.01
+& 95.52 $\pm$ 1.66 & 96.01 $\pm$ 1.44 \\
+& MapA
+& 0.61 $\pm$ 0.04 & 0.62 $\pm$ 0.04
+& 68.45 $\pm$ 13.21 & 72.74 $\pm$ 12.38 \\
+\multirow{-5}{*}{\rotatebox[origin=c]{90}{DTU}}
+& DA3
+& 0.63 $\pm$ 0.03 & 0.64 $\pm$ 0.03
+& 94.99 $\pm$ 9.10 & 98.92 $\pm$ 0.94 \\
+\bottomrule
+\end{tabular}
+
+
+
+
+\end{table}

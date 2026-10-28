@@ -1,0 +1,170 @@
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\begin{algorithm}[!htb]
+\caption{Rendering-Based Rotated Image Generation}
+\label{alg:rotation_generation}
+\begin{algorithmic}[1]
+    \REQUIRE Multi-view images $\{\mathbf{I}_i\}$, poses $\{\mathbf{P}_i\}$, quality threshold $\tau$
+    \ENSURE Rotated images $\{\mathbf{I}_i^{\theta_i}\}$
+    \STATE Fit 3DGS representation $\mathcal{G}$ on $\{\mathbf{I}_i, \mathbf{P}_i\}$
+           % \COMMENT{Assess reconstruction quality}
+    \FOR{each view $i$}
+        \STATE Sample $\theta_i \sim \mathcal{U}(0^\circ, 360^\circ)$
+        \STATE Compute $\mathbf{P}_i^{\theta_i}$
+        \STATE $\mathbf{I}_i^{\theta_i} \leftarrow \mathrm{Render}(\hat{\mathcal{G}},\, \mathbf{P}_i^{\theta_i})$
+        \STATE $q \leftarrow \mathrm{VisualQuality\text{-}R1}(\mathbf{I}_i^{\theta_i})$
+        \IF{$q \leq \tau$}
+            \STATE $\mathbf{I}_i^{\theta_i} \leftarrow \mathrm{Difix3D\_Denoise}(\mathbf{I}_i^{\theta_i})$  \IF{$\mathrm{VisualQuality\text{-}R1}(\mathbf{I}_i^{\theta_i}) \leq \tau$}
+                \STATE Exclude view $i$ from evaluation
+            \ENDIF
+        \ENDIF
+    \ENDFOR
+    \FOR{each image $\mathbf{I} \in \{\mathbf{I}_i^{\theta_i}\}$}
+        \STATE Manually verify $\mathbf{I}$ and remove it from the set if visible artifacts are observed
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[!htb]
+\caption{ROVER: Variance-based Canonical Orientation Estimation}
+\label{alg:var_alg}
+\begin{algorithmic}[1]
+    \REQUIRE Image $\mathbf{I}$, frozen DINOv2 encoder $\phi$, 
+             coarse step $\Delta_c = 15^\circ$, fine window 
+             $\Delta_f = 7^\circ$
+    \ENSURE Canonicalized image $\mathbf{I}^{\mathrm{can}}$ 
+            with estimated roll $\hat{\theta}$
+
+    \STATE \textit{// Coarse stage}
+    \STATE $\Theta_\text{coarse} \leftarrow 
+           \{k \cdot \Delta_c \mid k = 1, \ldots, 
+           \lfloor 360^\circ / \Delta_c \rfloor\}$
+    \FOR{each $\theta \in \Theta_\text{coarse}$}
+        \STATE $V(\theta) \leftarrow \textsc{EmbedVar}^{\ref{alg:embedvar}}
+               (\mathbf{I}, \theta, \phi)$
+    \ENDFOR
+    \STATE $\theta_c \leftarrow 
+           \arg\max_{\theta \in \Theta_\text{coarse}} V(\theta)$
+
+    \STATE \textit{// Fine stage}
+    \STATE $\Theta_\text{fine} \leftarrow 
+           \{\theta_c + \delta \mid \delta \in 
+           [-\Delta_f, \Delta_f],\, \delta \in \mathbb{Z}\}$
+    \FOR{each $\theta \in \Theta_\text{fine}$}
+        \STATE $V(\theta) \leftarrow \textsc{EmbedVar}^{\ref{alg:embedvar}}
+               (\mathbf{I}, \theta, \phi)$
+    \ENDFOR
+    \STATE $\hat{\theta} \leftarrow 
+           \arg\max_{\theta \in \Theta_\text{fine}} V(\theta)$
+
+    \STATE \textit{// Canonicalization}
+    \STATE $\mathbf{I}^{\mathrm{can}} \leftarrow 
+           \mathrm{Rotate}(\mathbf{I},\, -\hat{\theta})$
+    \RETURN $\mathbf{I}^{\mathrm{can}},\, \hat{\theta}$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[!htb]
+\caption{\textsc{EmbedVar}: Patch Embedding Variance Computation}
+\label{alg:embedvar}
+\begin{algorithmic}[1]
+    \REQUIRE Image $\mathbf{I}$, candidate orientation $\theta$, 
+             frozen DINOv2 encoder $\phi$
+    \ENSURE Patch embedding variance $V(\theta)$
+    \STATE $\mathbf{Z}_\theta \leftarrow 
+           \phi(\mathrm{Rotate}(\mathbf{I}, \theta))$
+           \COMMENT{$M$ patch embeddings $\in \mathbb{R}^D$}
+    \STATE $\bar{\mathbf{z}}^\theta \leftarrow 
+           \frac{1}{M}\sum_{j=1}^{M} \mathbf{z}_j^\theta$
+           \COMMENT{Mean patch embedding}
+    \RETURN $\frac{1}{M}\sum_{j=1}^{M}
+            \|\mathbf{z}_j^\theta - 
+            \bar{\mathbf{z}}^\theta\|_2^2$
+\end{algorithmic}
+\end{algorithm}
+
+
+% \begin{algorithm}[H]
+% \caption{Variance-based angle detection}
+% \label{alg:var_alg}
+% \begin{algorithmic}[1]
+%     \REQUIRE Image $\mathbf{I}$, candidate orientation set $\Theta$, frozen DINOv2 encoder $\phi$
+%     \ENSURE Rotated image $\mathbf{I}^{\theta^\star}$ with predicted roll $\theta^\star$
+%     \FOR{each candidate orientation $\theta \in \Theta$}
+%         \STATE $\mathbf{I}^{\theta} \leftarrow \mathrm{Rotate}(\mathbf{I},\, \theta)$
+%         \STATE $\mathbf{Z}_{\theta} \leftarrow \phi(\mathbf{I}^{\theta})
+%                = \{\mathbf{z}_1^\theta, \ldots, \mathbf{z}_M^\theta\}$
+%                \COMMENT{Patch embeddings, $\mathbf{z}_j^\theta \in \mathbb{R}^D$}
+%         \STATE $\bar{\mathbf{z}}^\theta \leftarrow
+%                \frac{1}{M}\sum_{j=1}^{M} \mathbf{z}_j^\theta$
+%                \COMMENT{Embedding centroid}
+%         \STATE $V(\theta) \leftarrow
+%                \frac{1}{M}\sum_{j=1}^{M}
+%                \bigl\|\mathbf{z}_j^\theta - \bar{\mathbf{z}}^\theta\bigr\|_2^2$
+%                \COMMENT{Patch-embedding variance}
+%     \ENDFOR
+%     \STATE $\theta^\star \leftarrow \arg\max_{\theta \in \Theta} V(\theta)$
+%     \RETURN $\mathbf{I}^{\theta^\star},\, \theta^\star$
+% \end{algorithmic}
+% \end{algorithm}
+
+
+% \begin{algorithm}[H]
+% \caption{ROVER: Variance-based Canonical Orientation Estimation}
+% \label{alg:var_alg}
+% \begin{algorithmic}[1]
+%     \REQUIRE Image $\mathbf{I}$, frozen DINOv2 encoder $\phi$, 
+%              coarse step $\Delta_c = 15^\circ$, fine window 
+%              $\Delta_f = 7^\circ$
+%     \ENSURE Canonicalized image $\mathbf{I}^{\mathrm{can}}$ 
+%             with estimated roll $\hat{\theta}$
+
+%     \STATE \textit{// Coarse stage}
+%     \STATE $\Theta_\text{coarse} \leftarrow 
+%            \{k \cdot \Delta_c \mid k = 1, \ldots, 
+%            \lfloor 360^\circ / \Delta_c \rfloor\}$
+%     \FOR{each $\theta \in \Theta_\text{coarse}$}
+%         \STATE $V(\theta) \leftarrow \textsc{EmbedVar}
+%                (\mathbf{I}, \theta, \phi)$
+%     \ENDFOR
+%     \STATE $\theta_c \leftarrow 
+%            \arg\max_{\theta \in \Theta_\text{coarse}} V(\theta)$
+
+%     \STATE \textit{// Fine stage}
+%     \STATE $\Theta_\text{fine} \leftarrow 
+%            \{\theta_c + \delta \mid \delta \in 
+%            [-\Delta_f, \Delta_f],\, \delta \in \mathbb{Z}\}$
+%     \FOR{each $\theta \in \Theta_\text{fine}$}
+%         \STATE $V(\theta) \leftarrow \textsc{EmbedVar}
+%                (\mathbf{I}, \theta, \phi)$
+%     \ENDFOR
+%     \STATE $\hat{\theta} \leftarrow 
+%            \arg\max_{\theta \in \Theta_\text{fine}} V(\theta)$
+
+%     \STATE \textit{// Canonicalization}
+%     \STATE $\mathbf{I}^{\mathrm{can}} \leftarrow 
+%            \mathrm{Rotate}(\mathbf{I},\, -\hat{\theta})$
+%     \RETURN $\mathbf{I}^{\mathrm{can}},\, \hat{\theta}$
+% \end{algorithmic}
+% \end{algorithm}
+
+
+% \begin{algorithm}[H]
+% \caption{\textsc{EmbedVar}: Patch Embedding Variance Computation}
+% \label{alg:embedvar}
+% \begin{algorithmic}[1]
+%     \REQUIRE Image $\mathbf{I}$, candidate orientation $\theta$, 
+%              frozen DINOv2 encoder $\phi$
+%     \ENSURE Patch embedding variance $V(\theta)$
+%     \STATE $\mathbf{Z}_\theta \leftarrow 
+%            \phi(\mathrm{Rotate}(\mathbf{I}, \theta))$
+%            \COMMENT{$M$ patch embeddings $\in \mathbb{R}^D$}
+%     \STATE $\bar{\mathbf{z}}^\theta \leftarrow 
+%            \frac{1}{M}\sum_{j=1}^{M} \mathbf{z}_j^\theta$
+%            \COMMENT{Mean patch embedding}
+%     \RETURN $\frac{1}{M}\sum_{j=1}^{M}
+%             \|\mathbf{z}_j^\theta - 
+%             \bar{\mathbf{z}}^\theta\|_2^2$
+% \end{algorithmic}
+% \end{algorithm}

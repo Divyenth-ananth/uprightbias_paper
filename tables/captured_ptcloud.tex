@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Point map estimation on the Captured dataset. Mean values only.}
+\label{tab:pointmap_captured_fullversion}
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{l cc cc cc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+\midrule
+VGGT            & \textbf{0.0099} & 0.0222 & \textbf{0.0196} & 0.0385 & \textbf{0.7404} & 0.6774 \\
+VGGT-$\Omega$   & \textbf{0.0081} & 0.0095 & \textbf{0.0161} & 0.0174 & \textbf{0.7215} & 0.7118 \\
+$\pi^3$         & \textbf{0.0138} & 0.0353 & \textbf{0.0220} & 0.0489 & \textbf{0.7562} & 0.6968 \\
+MapA     & \textbf{0.4633} & 0.6109 & \textbf{0.9446} & 1.3320 & \textbf{0.7519} & 0.6727 \\
+DA3  & \textbf{0.2507} & 0.6144 & \textbf{0.3378} & 0.8268 & \textbf{0.7619} & 0.6940 \\
+\bottomrule
+\end{tabular}
+\end{table}

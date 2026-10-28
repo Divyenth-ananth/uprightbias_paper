@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Point map estimation on ETH3D (w.o. office)}
+\label{tab:pointmap_eth3d}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+\midrule
+VGGT & \textbf{0.1957} & 0.2154 & \textbf{0.0908} & 0.1144 & \textbf{0.7855} & 0.7659 \\
+VGGT-$\Omega$ & \textbf{0.0703} & 0.0805 & \textbf{0.0494} & 0.0617 & \textbf{0.8469} & 0.8395 \\
+$\pi^3$ & \textbf{0.0832} & 0.1027 & \textbf{0.0624} & 0.0795 & \textbf{0.8507} & 0.8338 \\
+MapA & \textbf{0.1541} & 0.1700 & \textbf{0.4202} & 0.4581 & \textbf{0.7563} & 0.7467 \\
+DA3 & \textbf{0.1084} & 0.1168 & \textbf{0.1014} & 0.1237 & \textbf{0.8203} & 0.8134 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

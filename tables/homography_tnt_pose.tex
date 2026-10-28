@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Camera pose estimation on Tanks\&Temples: Baseline, Homography, and Ours.}
+\label{tab:camera_pose_tnt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l ccc ccc ccc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{3}{c}{$\text{RAcc}_{30} \uparrow$} & \multicolumn{3}{c}{$\text{TAcc}_{30} \uparrow$} & \multicolumn{3}{c}{$\text{ATE} \downarrow$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+ & Ours & Baseline & Homography & Ours & Baseline & Homography & Ours & Baseline & Homography \\
+\midrule
+VGGT & \textbf{86.03} & 70.42 & 12.73 & \textbf{84.13} & 73.79 & 35.96 & \textbf{0.5992} & 0.9515 & 0.9801 \\
+VGGT-$\Omega$ & \textbf{99.61} & 98.78 & 14.70 & \textbf{93.87} & 93.05 & 40.23 & \textbf{0.1672} & 0.2027 & 0.4548 \\
+$\pi^3$ & \textbf{87.25} & 70.35 & 13.50 & \textbf{83.85} & 72.39 & 34.28 & \textbf{0.5948} & 0.9751 & 1.0313 \\
+MapAnything & \textbf{83.50} & 59.96 & 13.00 & \textbf{80.61} & 63.74 & 33.22 & \textbf{0.7521} & 1.2225 & 1.2726 \\
+DepthAnything3 & \textbf{87.28} & 63.83 & 12.96 & \textbf{86.46} & 68.70 & 32.40 & \textbf{0.4536} & 1.0265 & 1.2220 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

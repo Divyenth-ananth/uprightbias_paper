@@ -1,0 +1,48 @@
+\section{Related Work}
+
+\textbf{Robustness and Bias in Vision Models:}
+Although modern deep learning models encode overrepresented training patterns as implicit priors, these task-extrinsic biases often remain hidden under standard benchmarks until those assumptions are violated.
+Extensive work has demonstrated this across visual recognition, including biases toward texture over shape, shortcut correlations, photographer preferences, object position, and background context~\citep{geirhos2018imagenet, geirhos2020shortcut, torralba2011unbiased, xiao2020noise, liu2026optigeoefficientmonoculargeometry}.
+These findings have motivated robustness benchmarks beyond clean in-distribution accuracy~\citep{hendrycks2019benchmarking} and approaches based on architectural inductive biases or inference-time adaptation~\citep{cohen2016group, weiler2019general, sun2020test, wang2020tent}.
+Despite this extensive literature, robustness has been studied primarily in recognition tasks such as classification, segmentation, and detection. 
+In single-image geometry, prior studies have identified specific camera pose and spatial distribution biases in depth estimation ~\citep{vandijk2019neuralnetworksdepthsingle, zhao2021cameraposemattersimproving}, while recent work highlights broader viewpoint instabilities in vision foundation models~\citep{michalkiewicz2024viewscreatedequalanalyzing}. Similarly, \cite{jiang2025youviewpointinvariant} investigates viewpoint invariance in policy learning.
+However, whether similar priors arise in feed-forward geometric foundation models remains largely unexplored.
+
+\textbf{Image Orientation and Uprightness Estimation:}
+The resulting sensitivity to image orientation naturally raises the question of whether canonical upright orientation can be estimated reliably at inference time.
+Existing approaches include geometric methods based on line classification~\citep{ctrlc, lee2021ctrl}, feature matching \citep{nordstrom2026whohandlesorientationcvpr, nordstrom2026lomawhohandlesorientationeccv} and learning-based methods such as UprightNet~\citep{xian2019uprightnet}, which predicts 2-DoF camera orientation from indoor surface normals, and GeoCalib~\citep{veicht2024geocalib}, which jointly estimates camera intrinsics and gravity direction through differentiable geometric optimization.
+Inference-time canonicalization offers an alternative for robustness under distribution shifts. 
+FOCAL~\citep{singhal2025testtimeimageCanonicalization} searches for a canonical input transformation using test time optimization of likelihoods with foundation-model, while G3TUP!~\citep{kani2026g3t} fine-tunes VGGT to produce upright point clouds. 
+
+In contrast, we identify upright bias as a previously unrecognized failure mode shared across modern feed-forward reconstruction models and introduce ROVER, a Plug-and-Play inference-time canonicalization framework that estimates orientation using DINOv2, requiring neither scene-specific geometric structure nor model retraining and generalizing across indoor and outdoor scenes.
+
+% {\color{blue}
+% \begin{enumerate}
+
+%     \item \textbf{How Do Neural Networks See Depth in Single Images?}~\citep{vandijk2019neuralnetworksdepthsingle} --- 
+%     \textit{Tom van Dijk, Guido C. H. E. de Croon} --- \textbf{ICCV 2019}.  
+%     The paper finds that MonoDepth relies strongly on an object's \textbf{vertical image position} rather than apparent size for depth estimation. Because this cue depends on camera pose, changes in pitch can lead to systematic depth errors.
+
+%     \item \textbf{Camera Pose Matters: Improving Depth Prediction by Mitigating Pose Distribution Bias}~\citep{zhao2021cameraposemattersimproving} --- 
+%     \textit{Yunhan Zhao, Shu Kong, Charless Fowlkes} --- \textbf{CVPR 2021}.  
+%     The authors identify a \textbf{camera-pose distribution bias} in monocular depth estimation, where models become unreliable on uncommon or unseen viewpoints. They mitigate this using perspective-aware augmentation and explicit camera-pose conditioning.
+
+%     % \item \textbf{Breaking the Horizontal Prior: From Long-Tailed Orientation Bias to Roll-Robust Monocular Depth Estimation}~\citep{tang2026breakinghorizontalpriorlongtailed} --- 
+%     % \textit{Kaihua Tang et al.} --- \textbf{2026}.  
+%     % This work identifies a \textbf{Horizontal Prior} caused by the dominance of upright images in monocular depth training data, leading to degradation under camera roll. The authors propose an Invariant Depth Constraint to learn more rotation-stable representations.
+
+%     \item \textbf{AerialMegaDepth: Learning Aerial-Ground Reconstruction and View Synthesis}~\citep{vuong2025aerialmegadepthlearningaerialgroundreconstruction} --- 
+%     \textit{Khiem Vuong, Anurag Ghosh, Deva Ramanan, Srinivasa Narasimhan, Shubham Tulsiani} --- \textbf{CVPR 2025}.  
+%     The paper shows that learned 3D reconstruction struggles under \textbf{extreme aerial-ground viewpoint changes}, partly due to insufficient viewpoint diversity in training data. Fine-tuning on a dedicated aerial-ground corpus substantially improves camera estimation and registration.
+
+
+%     \item \textbf{Not All Views are Created Equal: Analyzing Viewpoint Instabilities in Vision Foundation Models}~\citep{michalkiewicz2024viewscreatedequalanalyzing} --- 
+%     \textit{Mateusz Michalkiewicz et al.} --- \textbf{ICCV 2025}.  
+%     The paper analyzes \textbf{viewpoint instability} in foundation models and shows that representation quality can vary significantly with viewing angle. These instabilities also affect downstream 3D reasoning and reconstruction tasks.
+
+%     \item \textbf{OptiGeo: Efficient Monocular Geometry for Embodied Perception in Optically Challenging Scenes}~\citep{liu2026optigeoefficientmonoculargeometry} --- 
+%     \textit{Muxin Liu et al.} --- \textbf{2026}.  
+%     OptiGeo shows that failures on transparent and reflective surfaces can arise from \textbf{biased real-depth supervision}, where sensor errors are inherited by learned geometry models. It mitigates this by replacing unreliable supervision with clean-geometry teacher and residual-trimmed alignment.
+
+% \end{enumerate}
+% }

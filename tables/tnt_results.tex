@@ -1,0 +1,63 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Comparison of the original foundation models (Base) and the corresponding models enhanced with our method (Ours) for Tanks and Temples Dataset.}
+\label{tab:tnt_results}
+\resizebox{\linewidth}{!}{\begin{tabular}{lcc|cc|cc|cc|cc}
+\toprule
+& \multicolumn{2}{c|}{\textbf{ATE} $\downarrow$}
+& \multicolumn{2}{c|}{\textbf{RPE$_{\text{rot}}$} $\downarrow$}
+& \multicolumn{2}{c|}{\textbf{AUC$_{30}$} $\uparrow$}
+& \multicolumn{2}{c|}{\textbf{Acc} $\downarrow$}
+& \multicolumn{2}{c}{\textbf{NC} $\uparrow$} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+\cmidrule(lr){8-9}
+\cmidrule(lr){10-11}
+\textbf{Model}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours} \\
+\midrule
+VGGT
+& 0.952 & \textbf{0.599}
+& 41.98$^\circ$ & \textbf{22.74$^\circ$}
+& 54.6 & \textbf{72.6}
+& 0.322 & \textbf{0.247}
+& 0.629 & \textbf{0.648} \\
+
+VGGT-$\Omega$
+& 0.203 & \textbf{0.167}
+& 4.59$^\circ$ & \textbf{2.53$^\circ$}
+& 81.3 & \textbf{87.0}
+& 0.190 & \textbf{0.158}
+& 0.707 & \textbf{0.719} \\
+
+$\pi^3$
+& 0.975 & \textbf{0.595}
+& 33.53$^\circ$ & \textbf{11.32$^\circ$}
+& 53.9 & \textbf{74.6}
+& 0.291 & \textbf{0.199}
+& 0.652 & \textbf{0.689} \\
+
+DA3
+& 1.026 & \textbf{0.454}
+& 47.13$^\circ$ & \textbf{16.10$^\circ$}
+& 45.4 & \textbf{75.8}
+& 0.407 & \textbf{0.276}
+& 0.641 & \textbf{0.674} \\
+
+MapAnything
+& 1.217 & \textbf{0.752}
+& 48.55$^\circ$ & \textbf{18.43$^\circ$}
+& 36.3 & \textbf{62.5}
+& 0.341 & \textbf{0.297}
+& 0.596 & \textbf{0.622} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

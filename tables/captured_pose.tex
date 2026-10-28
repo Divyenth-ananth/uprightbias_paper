@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Camera pose estimation on 7-Scenes, NRGBD, and the Captured dataset.}
+\label{tab:pose_combined}
+\setlength{\tabcolsep}{4pt}
+\scriptsize
+\resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc}
+\toprule
+\multirow{3}{*}{Method} & \multicolumn{6}{c}{7-Scenes} & \multicolumn{6}{c}{NRGBD} & \multicolumn{6}{c}{Captured} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+ & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{ATE $\downarrow$}
+ & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{ATE $\downarrow$}
+ & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{ATE $\downarrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+ & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. & Ours & Base. \\
+\midrule
+VGGT          & \textbf{98.63} & 77.49 & \textbf{94.50} & 74.92 & \textbf{0.0880} & 0.2912 & \textbf{100.00} & 90.49 & \textbf{99.89} & 90.90 & \textbf{0.0165} & 0.1848 & \textbf{96.85} & 88.46 & \textbf{97.99} & 90.94 & \textbf{0.0368} & 0.1113 \\
+VGGT-$\Omega$ & \textbf{99.91} & 99.20 & \textbf{98.27} & 96.17 & \textbf{0.0491} & 0.0694 & \textbf{100.00} & \textbf{100.00} & \textbf{99.96} & 99.39 & \textbf{0.0149} & 0.0356 & \textbf{98.86} & 98.68 & \textbf{99.83} & 99.57 & \textbf{0.0153} & 0.0220 \\
+$\pi^3$       & \textbf{98.07} & 78.60 & \textbf{96.75} & 76.68 & \textbf{0.0716} & 0.2702 & \textbf{99.90} & 91.28 & \textbf{99.82} & 90.49 & \textbf{0.0231} & 0.1752 & \textbf{98.94} & 92.92 & \textbf{99.82} & 93.95 & \textbf{0.0158} & 0.0857 \\
+MapA          & \textbf{98.10} & 74.29 & \textbf{87.00} & 63.91 & \textbf{0.1488} & 0.3510 & \textbf{99.90} & 75.81 & \textbf{98.49} & 71.12 & \textbf{0.0587} & 0.4944 & \textbf{98.43} & 68.55 & \textbf{98.00} & 73.57 & \textbf{0.0307} & 0.2197 \\
+DA3           & \textbf{98.22} & 82.47 & \textbf{93.44} & 79.14 & \textbf{0.0816} & 0.2175 & \textbf{99.86} & 89.51 & \textbf{99.79} & 88.56 & \textbf{0.0142} & 0.2065 & \textbf{97.31} & 80.48 & \textbf{97.94} & 85.23 & \textbf{0.0283} & 0.1277 \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}

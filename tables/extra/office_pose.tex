@@ -1,0 +1,19 @@
+\begin{table}[tbp]
+\centering
+\setlength{\tabcolsep}{3pt}
+\caption{Pose estimation results on the ETH3D \emph{office} scene.}
+\label{tab:office_pose}
+\begin{tabular}{lcccccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{2}{c}{ATE $\downarrow$} & \multicolumn{2}{c}{Tacc@30 $\uparrow$} & \multicolumn{2}{c}{Racc@30 $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+DA3           & \textbf{0.049} & 0.265 & \textbf{98.39} & 63.72 & \textbf{100.00} & 81.57 \\
+MapA          & \textbf{0.236} & 0.313 & \textbf{25.89} & 19.41 & \textbf{92.68}  & 66.75 \\
+$\pi^3$       & \textbf{0.208} & 0.326 & \textbf{54.63} & 33.56 & \textbf{92.68}  & 56.40 \\
+VGGT          & \textbf{0.157} & 0.241 & \textbf{77.38} & 57.05 & \textbf{92.68}  & 69.49 \\
+VGGT-$\Omega$ & \textbf{0.040} & 0.095 & \textbf{96.18} & 86.54 & \textbf{100.00} & 87.50 \\
+\bottomrule
+\end{tabular}
+\end{table}

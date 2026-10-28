@@ -1,0 +1,54 @@
+\begin{table}[t]
+\centering
+\caption{Training datasets used by each feed-forward geometric model and their upright alignment status. \checkmark~=~fully upright; $\sim$~=~partially upright The overwhelming majority of training data across all models is upright by construction}
+\label{tab:training_data}
+\small
+\resizebox{\linewidth}{!}{
+\begin{tabular}{llccccccc}
+\toprule
+\textbf{Dataset} & 
+\textbf{Capture Modality} & 
+\textbf{Upright} & 
+\textbf{VGGT} & 
+\textbf{VGGT-$\Omega$} & 
+\textbf{DA3} & 
+\textbf{MapA.} & 
+\textbf{$\pi^3$} \\
+\midrule
+CO3D               & Handheld object-centric video      & \checkmark & \checkmark & \checkmark & \checkmark &            & \checkmark \\
+ScanNet / ScanNet++  & Handheld RGB-D indoor scan         & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+MegaDepth            & Internet landmark photography      & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+DL3DV-10K            & Scene-level video                  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &            \\
+ARKitScenes          & iPad indoor capture                & \checkmark &            & \checkmark & \checkmark &            & \checkmark \\
+Mapillary            & Street-level vehicle camera        & \checkmark & \checkmark & \checkmark &            & \checkmark &            \\
+HyperSim             & Synthetic indoor rendering         & \checkmark & \checkmark & \checkmark & \checkmark &            & \checkmark \\
+Habitat / Replica    & Simulated indoor environments      & \checkmark & \checkmark & \checkmark & \checkmark &            & \checkmark \\
+Virtual KITTI        & Driving simulation                 & \checkmark & \checkmark & \checkmark & \checkmark &            &            \\
+BlendedMVS           & SfM outdoor/indoor photos          & \checkmark & \checkmark &            & \checkmark & \checkmark & \checkmark \\
+WildRGB-D            & In-the-wild RGBD video             & \checkmark & \checkmark & \checkmark & \checkmark &            & \checkmark \\
+PointOdyssey         & Synthetic ground-level motion      & \checkmark & \checkmark & \checkmark & \checkmark &            &            \\
+Taskonomy            & Indoor scene photography           & \checkmark &            & \checkmark & \checkmark &            & \checkmark \\
+Waymo Open               & Autonomous driving cameras         & \checkmark &            & \checkmark & \checkmark &            &            \\
+MegaSynth            & Synthetic scene rendering          & \checkmark &            & \checkmark & \checkmark &            &            \\
+MVS-Synth            & Synthetic multi-view stereo        & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &            \\
+UnrealStereo4K       & Synthetic indoor/outdoor           & \checkmark &            & \checkmark & \checkmark & \checkmark &            \\
+MatrixCity           & Synthetic city aerial/ground       & \checkmark &            &            & \checkmark &            & \checkmark \\
+Aria Series          & Egocentric wearable capture        & \checkmark & \checkmark & \checkmark &            & \checkmark &            \\
+Dynamic Replica      & Synthetic dynamic indoor           & \checkmark &            & \checkmark &            & \checkmark &            \\
+Spring               & Synthetic outdoor driving          & \checkmark &            &            &            & \checkmark &            \\
+Structured3D         & Synthetic indoor rendering         & \checkmark &            &            & \checkmark &            &            \\
+Cityscapes           & Driving forward-facing camera      & \checkmark &            &            & \checkmark &            &            \\
+GTA-SfM              & Game engine driving scenes         & \checkmark &            &            &            &            & \checkmark \\
+\midrule
+Kubric               & Synthetic random viewpoints        & $\sim$     & \checkmark &            &            &            &            \\
+TartanAir            & Drone and aerial simulation        & $\sim$     &            & \checkmark & \checkmark &            & \checkmark \\
+Mid-Air              & Drone aerial footage               & $\sim$     &            & \checkmark &            &            & \checkmark \\
+\midrule
+\multicolumn{2}{l}{\textbf{Fully upright datasets used}} 
+& & \textbf{13} & \textbf{18} & \textbf{19} & \textbf{10} & \textbf{11} \\
+\multicolumn{2}{l}{\textbf{Partially upright datasets used}} 
+& & \textbf{1} & \textbf{2} & \textbf{1} & \textbf{0} & \textbf{2} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

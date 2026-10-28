@@ -1,0 +1,89 @@
+\definecolor{highlight}{gray}{0.9}
+
+% Helper commands for Table 5: stacked mean (line 1) and tiny std dev (line 2)
+\newcommand{\avalstd}[2]{\shortstack[l]{#1 \\ {\tiny\hspace*{0.4em}$\pm$#2}}}
+\newcommand{\bvalstd}[2]{\shortstack[l]{\textbf{#1} \\ {\tiny\hspace*{0.4em}\textbf{$\pm$#2}}}}
+
+% Helper commands for Table 6: single-row mean with tiny std dev on the same line
+\newcommand{\valrow}[2]{#1{\tiny $\pm$#2}}
+\newcommand{\bvalrow}[2]{\textbf{#1}{\tiny\textbf{$\pm$#2}}}
+
+\begin{table*}[t]
+\vspace{-2mm}
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+% Left Minipage (Table 5) set to 40% textwidth
+
+% Right Minipage (Table 6) set to 57% textwidth
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\caption{Ablation of orientation correction strategies using VGGT-$\Omega$ on NRGB-D}
+\label{tab:ablation_pose_pointmap}
+\setlength{\tabcolsep}{4pt}
+
+\begin{tabular}{l ccc}
+\toprule
+\textbf{Method} & $\Delta\theta$ $\downarrow$ & N.C. $\uparrow$ & AUC$_{30}$ $\uparrow$ \\
+\midrule
+
+\raisebox{0.7ex}{Baseline}
+& \avalstd{57.70}{60.20}
+& \avalstd{0.79}{0.02}
+& \avalstd{93.01}{3.94} \\
+
+\raisebox{0.7ex}{\quad + DINOv1} & \avalstd{95.90}{49.2} & \avalstd{0.730}{0.028} & \avalstd{77.52}{7.09} \\
+
+\raisebox{0.7ex}{\quad + Homography}
+& \avalstd{77.20}{58.70}
+& \avalstd{0.58}{0.05}
+& \avalstd{8.25}{13.20} \\
+
+\raisebox{0.7ex}{\quad + RotNet}
+& \avalstd{39.10}{45.50}
+& \avalstd{0.66}{0.06}
+& \avalstd{93.70}{3.83} \\
+
+\raisebox{0.7ex}{\quad + G.C.}
+& \avalstd{56.30}{66.40}
+& \avalstd{0.63}{0.07}
+& \avalstd{92.83}{5.05} \\
+
+\raisebox{0.7ex}{\quad + RotNet + G.C.}
+& \avalstd{35.80}{50.40}
+& \avalstd{0.68}{0.06}
+& \avalstd{94.43}{3.97} \\
+
+\rowcolor{highlight}
+\raisebox{0.7ex}{\quad + ROVER}
+& \bvalstd{10.30}{15.20}
+& \bvalstd{0.81}{0.02}
+& \bvalstd{98.03}{1.02} \\
+
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\caption{Performance on upright inputs (0\% rotation) on NRGB-D. ROVER introduces no degradation when all upright images are used}
+\label{tab:ablation_rotation_0}
+\setlength{\tabcolsep}{6pt}
+
+
+\begin{tabular}{l cc cc}
+\toprule
+& \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Method} & Base & Ours & Base & Ours \\
+\midrule
+\raisebox{0.7ex}{VGGT} & \bvalstd{0.80}{0.03} & \bvalstd{0.80}{0.03} & \bvalstd{98.62}{1.20} & \avalstd{98.60}{1.23} \\
+\raisebox{0.7ex}{VGGT-$\Omega$} & \bvalstd{0.83}{0.04} & \bvalstd{0.83}{0.04} & \avalstd{99.27}{0.56} & \bvalstd{99.28}{0.52} \\
+\raisebox{0.7ex}{$\pi^3$} & \bvalstd{0.81}{0.06} & \bvalstd{0.81}{0.06} & \bvalstd{96.41}{1.93} & \bvalstd{96.41}{1.93} \\
+\raisebox{0.7ex}{MapA.} & \bvalstd{0.75}{0.05} & \bvalstd{0.75}{0.05} & \avalstd{93.92}{4.30} & \bvalstd{93.94}{4.30} \\
+\raisebox{0.7ex}{DA3} & \bvalstd{0.82}{0.04} & \bvalstd{0.82}{0.03} & \bvalstd{99.87}{0.19} & \avalstd{99.85}{0.13} \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+% \vspace{-3mm}
+\end{table*}

@@ -1,0 +1,140 @@
+
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2027_conference,times}
+\usepackage{placeins}
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+
+\usepackage{bbm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tikz}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{url}
+\usepackage{titletoc}
+
+\usepackage{cleveref}
+\usepackage{newfloat}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\usepackage{xspace}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{cuted}      % <— for strip teaser layout
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{booktabs,amsmath,xcolor}
+\usepackage{amssymb}    % for \checkmark
+\usepackage{colortbl}   % for colored table rows (optional)
+\usepackage{amsmath}
+\usepackage{makecell}
+%
+\usepackage{multirow}
+\newcommand{\yes}{\textcolor{green!60!black}{\checkmark}}
+\newcommand{\mypartial}{\textcolor{orange}{$\sim$}}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{subcaption}
+\definecolor{highlight}{gray}{0.93}
+
+
+
+\title{Mind the Orientation: Overcoming UprightBias in Feed-Forward Geometric Models}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+% \author{Badrinath Singhal, Sirjan Hansda, A.S. Anudeep, Sreehari Iyer, Divyenth Ananth, Ankit Dhiman \& Venkatesh Babu \thanks{ Use footnote for providing further information
+% about author (webpage, alternative address)---\emph{not} for acknowledging
+% funding agencies.  Funding acknowledgements go at the end of the paper.} \\
+% Department of Computer Science\\
+% Cranberry-Lemon University\\
+% Pittsburgh, PA 15213, USA \\
+% \texttt{\{hippo,brain,jen\}@cs.cranberry-lemon.edu} \\
+% \And
+% Ji Q. Ren \& Yevgeny LeNet \\
+% Department of Computational Neuroscience \\
+% University of the Witwatersrand \\
+% Joburg, South Africa \\
+% \texttt{\{robot,net\}@wits.ac.za} \\
+% \AND
+% Coauthor \\
+% Affiliation \\
+% Address \\
+% \texttt{email}
+% }
+\author{
+\textbf{Badrinath Singhal$^{1}$, Sirjan Hansda$^{1}$, A.S. Anudeep$^{1}$, Sreehari Iyer$^{1}$,}\\
+\textbf{Divyenth Ananth$^{2}$, Ankit Dhiman$^{1}$, Venkatesh Babu$^{1}$}\\[0.5em]
+$^{1}$ Indian Institute of Science, Bangalore, India\\
+$^{2}$ Indian Institute of Technology Tirupati, India
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+%Review comments
+\newcommand{\AD}[1]{\textbf{\color{magenta}[Ankit: #1]}}
+
+% \iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+\begin{document}
+
+
+\maketitle
+
+% \begin{center}
+%     \centering
+%     \captionsetup{type=figure}
+%     \includegraphics[width=0.95\textwidth]{Figures/teaser.pdf}
+%     \captionof{figure}{TBD}
+%     \label{fig:teaser}
+% \end{center}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=0.85\linewidth]{Figures/Teaser/Teaser.pdf}
+    \caption{\textbf{Robust 3D reconstruction under image rotations with ROVER.} Feeds of arbitrarily rotated images (top) cause standard feed-forward 3D models (e.g., VGGT-$\Omega$) to suffer from geometry collapse due to an implicit upright bias (left). Our training-free, plug-and-play module, ROVER, leverages feature properties in frozen DINOv2 to predict and canonicalize image orientation at inference time (bottom), recovering accurate 3D geometry and coherent camera poses (right).
+    }
+    \vspace{1em}
+    \label{fig:teaser}
+\end{figure}
+
+
+\input{Sections/0_abstract}
+\input{Sections/1_intro}
+\input{Sections/2_relwork}
+\input{Sections/3_analysis}
+\input{Sections/5_experiments}
+\input{Sections/6_results}
+
+
+\newpage
+\subsection*{AI use statement}
+
+In this work, we used generative AI tools for coding assistance while evaluating the feed-forward reconstruction models studied in this paper. We did not use generative AI tools to design or provide feedback on our research methodology or experiments, to support qualitative or thematic data analysis, or to interpret results. None of the following applied to this work: using generative AI to create synthetic datasets, to develop theoretical models or conceptual frameworks, to formulate mathematical claims or supply key steps toward proving them, to help write proofs, to propose or refine hypotheses, to assist with translation, or to clean or reformat datasets.
+Additionally, we used generative AI tools to help polish writing throughout the paper, restructure the table and refine the writing, and identify inconsistencies in terminology, notation, and cross-references across the manuscript. We have reviewed AI-assisted work before using it. We take responsibility for the final content of this work, including text, claims, or artifacts produced with the aid of generative AI.
+
+
+% \newpage
+\bibliography{iclr2027_conference}
+\bibliographystyle{iclr2027_conference}
+
+\appendix
+\input{Sections/appendix}
+
+
+\end{document}

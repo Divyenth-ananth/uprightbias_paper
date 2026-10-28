@@ -1,0 +1,143 @@
+% \begin{table}[H]
+% \centering
+
+% % Local result-cell definitions
+% \def\result#1#2{%
+%   \makecell{#1\\[-2pt]{\scriptsize $\pm$#2}}%
+% }
+% \def\bestresult#1#2{%
+%   \makecell{\bfseries #1\\[-2pt]{\scriptsize $\mathbf{\pm #2}$}}%
+% }
+
+% \caption{
+% DTU test-scene pose metrics for the $\pi^3$ backbone.
+% Results are reported as mean $\pm$ standard deviation over 50 rotation
+% sets per scene. PT denotes pretrained, PT+VC applies DINOv2 variance
+% correction, and FT denotes finetuning (v2). Best results are bold.
+% }
+% \label{tab:pose_pi3_variants_dtu}
+
+% \setlength{\tabcolsep}{7pt}
+% \renewcommand{\arraystretch}{1.12}
+% \small
+
+% \begin{tabular}{l ccc ccc}
+% \toprule
+% \multirow{2}{*}{Scene}
+% & \multicolumn{3}{c}{ATE $\downarrow$}
+% & \multicolumn{3}{c}{AUC@30 $\uparrow$} \\
+% \cmidrule(lr){2-4}
+% \cmidrule(lr){5-7}
+% & PT & PT+VC(Ours) & FT
+% & PT & PT+VC(Ours) & FT \\
+% \midrule
+
+% scan1
+% & \result{9.161}{3.658}
+% & \bestresult{6.805}{2.481}
+% & \result{10.550}{3.293}
+% & \result{94.832}{2.343}
+% & \bestresult{96.351}{1.534}
+% & \result{94.073}{1.927}
+% \\
+
+% scan10
+% & \result{72.433}{77.302}
+% & \result{64.940}{61.045}
+% & \bestresult{34.919}{4.356}
+% & \result{77.543}{18.736}
+% & \bestresult{78.684}{13.282}
+% & \result{61.702}{3.774}
+% \\
+
+% scan118
+% & \result{79.647}{88.556}
+% & \result{37.851}{65.303}
+% & \bestresult{17.696}{3.658}
+% & \result{81.022}{17.060}
+% & \bestresult{90.468}{5.708}
+% & \result{86.688}{3.347}
+% \\
+
+% scan77
+% & \result{49.597}{41.676}
+% & \bestresult{39.541}{43.088}
+% & \result{206.479}{64.354}
+% & \result{77.976}{12.527}
+% & \bestresult{84.647}{6.890}
+% & \result{26.733}{9.703}
+% \\
+
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{table}[tbp]
+\centering
+
+% Local result-cell definitions
+\def\result#1#2{%
+  \makecell{#1\\[-2pt]{\scriptsize $\pm$#2}}%
+}
+\def\bestresult#1#2{%
+  \makecell{\bfseries #1\\[-2pt]{\scriptsize $\mathbf{\pm #2}$}}%
+}
+
+\caption{
+DTU test-scene pose metrics for the $\pi^3$ backbone finetuning with rebalanced dataset.
+Results are reported as mean $\pm$ standard deviation over 50 rotation
+sets per scene. We compare the pretrained model with the finetuned (v2)
+model.
+}
+\label{tab:pose_pi3_variants_dtu}
+
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.12}
+\small
+
+\begin{tabular}{l cc cc}
+\toprule
+\multirow{2}{*}{Scene}
+& \multicolumn{2}{c}{ATE $\downarrow$}
+& \multicolumn{2}{c}{$\text{AUC}_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+& Pretrained & Finetuned
+& Pretrained & Finetuned \\
+\midrule
+
+scan1
+& \bestresult{9.161}{3.658}
+& \result{10.550}{3.293}
+& \bestresult{94.832}{2.343}
+& \result{94.073}{1.927}
+\\
+
+scan10
+& \result{72.433}{77.302}
+& \bestresult{34.919}{4.356}
+& \bestresult{77.543}{18.736}
+& \result{61.702}{3.774}
+\\
+
+scan118
+& \result{79.647}{88.556}
+& \bestresult{17.696}{3.658}
+& \result{81.022}{17.060}
+& \bestresult{86.688}{3.347}
+\\
+
+scan77
+& \bestresult{49.597}{41.676}
+& \result{206.479}{64.354}
+& \bestresult{77.976}{12.527}
+& \result{26.733}{9.703}
+\\
+
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,121 @@
+% \begin{table*}[ht]
+% \centering
+% \caption{Point map estimation on 7-Scenes, NRGBD, and the Captured dataset (mean values $\pm$ std-dev).}
+% \label{tab:pointmap_combined}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc}
+% \toprule
+% \multirow{3}{*}{Method} & \multicolumn{6}{c}{7-Scenes} & \multicolumn{6}{c}{NRGBD} & \multicolumn{6}{c}{Captured} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+%  & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+%  & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$}
+%  & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+%  & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+% \midrule
+% VGGT & \textbf{0.032 $\pm$ 0.012} & 0.063 $\pm$ 0.028 & \textbf{0.041 $\pm$ 0.013} & 0.128 $\pm$ 0.114 & \textbf{0.654 $\pm$ 0.011} & 0.614 $\pm$ 0.039 & \textbf{0.017 $\pm$ 0.002} & 0.049 $\pm$ 0.032 & \textbf{0.012 $\pm$ 0.001} & 0.091 $\pm$ 0.104 & \textbf{0.795 $\pm$ 0.009} & 0.721 $\pm$ 0.058 & \textbf{0.010 $\pm$ 0.004} & 0.022 $\pm$ 0.013 & \textbf{0.020 $\pm$ 0.016} & 0.039 $\pm$ 0.043 & \textbf{0.740 $\pm$ 0.051} & 0.677 $\pm$ 0.087 \\
+% VGGT-$\Omega$ & \textbf{0.023 $\pm$ 0.004} & 0.028 $\pm$ 0.011 & \textbf{0.033 $\pm$ 0.006} & 0.033 $\pm$ 0.013 & \textbf{0.668 $\pm$ 0.007} & 0.667 $\pm$ 0.013 & \textbf{0.012 $\pm$ 0.009} & 0.016 $\pm$ 0.009 & \textbf{0.007 $\pm$ 0.005} & 0.008 $\pm$ 0.003 & \textbf{0.805 $\pm$ 0.019} & 0.786 $\pm$ 0.023 & \textbf{0.008 $\pm$ 0.003} & 0.009 $\pm$ 0.004 & \textbf{0.016 $\pm$ 0.010} & 0.017 $\pm$ 0.012 & \textbf{0.722 $\pm$ 0.044} & 0.712 $\pm$ 0.062 \\
+% $\pi^3$ & \textbf{0.030 $\pm$ 0.012} & 0.066 $\pm$ 0.022 & \textbf{0.038 $\pm$ 0.017} & 0.129 $\pm$ 0.097 & \textbf{0.671 $\pm$ 0.015} & 0.625 $\pm$ 0.032 & \textbf{0.019 $\pm$ 0.010} & 0.046 $\pm$ 0.023 & \textbf{0.014 $\pm$ 0.007} & 0.089 $\pm$ 0.081 & \textbf{0.799 $\pm$ 0.015} & 0.734 $\pm$ 0.045 & \textbf{0.014 $\pm$ 0.005} & 0.035 $\pm$ 0.027 & \textbf{0.022 $\pm$ 0.013} & 0.049 $\pm$ 0.046 & \textbf{0.756 $\pm$ 0.048} & 0.697 $\pm$ 0.077 \\
+% MapA & \textbf{0.078 $\pm$ 0.007} & 0.099 $\pm$ 0.020 & \textbf{0.116 $\pm$ 0.014} & 0.186 $\pm$ 0.082 & \textbf{0.627 $\pm$ 0.012} & 0.594 $\pm$ 0.027 & \textbf{0.083 $\pm$ 0.008} & 0.126 $\pm$ 0.033 & \textbf{0.068 $\pm$ 0.009} & 0.163 $\pm$ 0.125 & \textbf{0.730 $\pm$ 0.012} & 0.665 $\pm$ 0.056 & \textbf{0.463 $\pm$ 0.170} & 0.611 $\pm$ 0.253 & \textbf{0.945 $\pm$ 0.506} & 1.332 $\pm$ 0.885 & \textbf{0.752 $\pm$ 0.088} & 0.673 $\pm$ 0.106 \\
+% DA3 & \textbf{0.037 $\pm$ 0.011} & 0.065 $\pm$ 0.027 & \textbf{0.047 $\pm$ 0.021} & 0.104 $\pm$ 0.078 & \textbf{0.667 $\pm$ 0.013} & 0.636 $\pm$ 0.031 & \textbf{0.016 $\pm$ 0.008} & 0.064 $\pm$ 0.041 & \textbf{0.011 $\pm$ 0.004} & 0.098 $\pm$ 0.149 & \textbf{0.807 $\pm$ 0.016} & 0.726 $\pm$ 0.072 & \textbf{0.251 $\pm$ 0.182} & 0.614 $\pm$ 0.311 & \textbf{0.338 $\pm$ 0.396} & 0.827 $\pm$ 0.813 & \textbf{0.762 $\pm$ 0.043} & 0.694 $\pm$ 0.082 \\
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{table*}[ht]
+% \centering
+% \caption{Point map estimation on 7-Scenes, NRGBD, and the Captured dataset (mean values $\pm$ std-dev).}
+% \label{tab:pointmap_combined}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc}
+% \toprule
+% \multirow{3}{*}{Method} & \multicolumn{6}{c}{7-Scenes} & \multicolumn{6}{c}{NRGBD} & \multicolumn{6}{c}{Captured} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+%  & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+%  & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+% \midrule
+% VGGT & \textbf{0.03 $\pm$ 0.01} & 0.06 $\pm$ 0.03 & \textbf{0.04 $\pm$ 0.01} & 0.13 $\pm$ 0.11 & \textbf{0.65 $\pm$ 0.01} & 0.61 $\pm$ 0.04 & \textbf{0.02 $\pm$ 0.00} & 0.05 $\pm$ 0.03 & \textbf{0.01 $\pm$ 0.00} & 0.09 $\pm$ 0.10 & \textbf{0.79 $\pm$ 0.01} & 0.72 $\pm$ 0.06 & \textbf{0.01 $\pm$ 0.00} & 0.02 $\pm$ 0.01 & \textbf{0.02 $\pm$ 0.02} & 0.04 $\pm$ 0.04 & \textbf{0.74 $\pm$ 0.05} & 0.68 $\pm$ 0.09 \\
+% VGGT-$\Omega$ & \textbf{0.02 $\pm$ 0.00} & 0.03 $\pm$ 0.01 & \textbf{0.03 $\pm$ 0.01} & 0.03 $\pm$ 0.01 & \textbf{0.67 $\pm$ 0.01} & 0.67 $\pm$ 0.01 & \textbf{0.01 $\pm$ 0.01} & 0.02 $\pm$ 0.01 & \textbf{0.01 $\pm$ 0.00} & 0.01 $\pm$ 0.00 & \textbf{0.81 $\pm$ 0.02} & 0.79 $\pm$ 0.02 & \textbf{0.01 $\pm$ 0.00} & 0.01 $\pm$ 0.00 & \textbf{0.02 $\pm$ 0.01} & 0.02 $\pm$ 0.01 & \textbf{0.72 $\pm$ 0.04} & 0.71 $\pm$ 0.06 \\
+% $\pi^3$ & \textbf{0.03 $\pm$ 0.01} & 0.07 $\pm$ 0.02 & \textbf{0.04 $\pm$ 0.02} & 0.13 $\pm$ 0.10 & \textbf{0.67 $\pm$ 0.01} & 0.62 $\pm$ 0.03 & \textbf{0.02 $\pm$ 0.01} & 0.05 $\pm$ 0.02 & \textbf{0.01 $\pm$ 0.01} & 0.09 $\pm$ 0.08 & \textbf{0.80 $\pm$ 0.01} & 0.73 $\pm$ 0.04 & \textbf{0.01 $\pm$ 0.01} & 0.04 $\pm$ 0.03 & \textbf{0.02 $\pm$ 0.01} & 0.05 $\pm$ 0.05 & \textbf{0.76 $\pm$ 0.05} & 0.70 $\pm$ 0.08 \\
+% MapAnything & \textbf{0.08 $\pm$ 0.01} & 0.10 $\pm$ 0.02 & \textbf{0.12 $\pm$ 0.01} & 0.19 $\pm$ 0.08 & \textbf{0.63 $\pm$ 0.01} & 0.59 $\pm$ 0.03 & \textbf{0.08 $\pm$ 0.01} & 0.13 $\pm$ 0.03 & \textbf{0.07 $\pm$ 0.01} & 0.16 $\pm$ 0.13 & \textbf{0.73 $\pm$ 0.01} & 0.67 $\pm$ 0.06 & \textbf{0.46 $\pm$ 0.17} & 0.61 $\pm$ 0.25 & \textbf{0.94 $\pm$ 0.51} & 1.33 $\pm$ 0.89 & \textbf{0.75 $\pm$ 0.09} & 0.67 $\pm$ 0.11 \\
+% DepthAnything3 & \textbf{0.04 $\pm$ 0.01} & 0.07 $\pm$ 0.03 & \textbf{0.05 $\pm$ 0.02} & 0.10 $\pm$ 0.08 & \textbf{0.67 $\pm$ 0.01} & 0.64 $\pm$ 0.03 & \textbf{0.02 $\pm$ 0.01} & 0.06 $\pm$ 0.04 & \textbf{0.01 $\pm$ 0.00} & 0.10 $\pm$ 0.15 & \textbf{0.81 $\pm$ 0.02} & 0.73 $\pm$ 0.07 & \textbf{0.25 $\pm$ 0.18} & 0.61 $\pm$ 0.31 & \textbf{0.34 $\pm$ 0.40} & 0.83 $\pm$ 0.81 & \textbf{0.76 $\pm$ 0.04} & 0.69 $\pm$ 0.08 \\
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{xcolor}
+% \usepackage{colortbl}
+% \definecolor{highlight}{gray}{0.92}
+
+% \begin{table*}[ht]
+% \centering
+% \caption{Point map estimation on 7-Scenes, NRGBD, and Tanks \& Temples.}
+% \label{tab:pointmap_combined}
+% \small
+% \renewcommand{\arraystretch}{1.25}
+% \setlength{\tabcolsep}{3pt}
+
+% \begin{tabular}{l ccc ccc ccc}
+% \toprule
+% & \multicolumn{3}{c}{\textbf{7-Scenes}} & \multicolumn{3}{c}{\textbf{NRGBD}} & \multicolumn{3}{c}{\textbf{Tanks \& Temples}} \\
+% \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+% \textbf{Method} & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ \\
+% \midrule
+
+% VGGT & 0.06 {\tiny $\pm$ 0.03} & 0.13 {\tiny $\pm$ 0.11} & 0.61 {\tiny $\pm$ 0.04} & 0.05 {\tiny $\pm$ 0.03} & 0.09 {\tiny $\pm$ 0.10} & 0.72 {\tiny $\pm$ 0.06} & 0.08 {\tiny $\pm$ 0.03} & 0.14 {\tiny $\pm$ 0.08} & 0.60 {\tiny $\pm$ 0.04} \\
+% \rowcolor{highlight}
+% \hspace{0.5em}+ ROVER & \textbf{0.03} {\tiny $\pm$ 0.01} & \textbf{0.04} {\tiny $\pm$ 0.01} & \textbf{0.65} {\tiny $\pm$ 0.01} & \textbf{0.02} {\tiny $\pm$ 0.00} & \textbf{0.01} {\tiny $\pm$ 0.00} & \textbf{0.79} {\tiny $\pm$ 0.01} & \textbf{0.05} {\tiny $\pm$ 0.02} & \textbf{0.06} {\tiny $\pm$ 0.04} & \textbf{0.66} {\tiny $\pm$ 0.02} \\
+% \addlinespace[3pt]
+
+% VGGT-$\Omega$ & 0.03 {\tiny $\pm$ 0.01} & 0.03 {\tiny $\pm$ 0.01} & 0.67 {\tiny $\pm$ 0.01} & 0.02 {\tiny $\pm$ 0.01} & 0.01 {\tiny $\pm$ 0.00} & 0.79 {\tiny $\pm$ 0.02} & 0.06 {\tiny $\pm$ 0.02} & 0.08 {\tiny $\pm$ 0.05} & 0.64 {\tiny $\pm$ 0.02} \\
+% \rowcolor{highlight}
+% \hspace{0.5em}+ ROVER & \textbf{0.02} {\tiny $\pm$ 0.00} & \textbf{0.03} {\tiny $\pm$ 0.01} & \textbf{0.67} {\tiny $\pm$ 0.01} & \textbf{0.01} {\tiny $\pm$ 0.01} & \textbf{0.01} {\tiny $\pm$ 0.00} & \textbf{0.81} {\tiny $\pm$ 0.02} & \textbf{0.04} {\tiny $\pm$ 0.02} & \textbf{0.06} {\tiny $\pm$ 0.04} & \textbf{0.68} {\tiny $\pm$ 0.02} \\
+
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+\begin{table*}[ht]
+\centering
+\caption{Point map estimation on 7-Scenes, NRGBD, and Tanks \& Temples.}
+\label{tab:pointmap_combined}
+\small
+\renewcommand{\arraystretch}{1}
+\setlength{\tabcolsep}{3pt}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l ccc ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{7-Scenes}} & \multicolumn{3}{c}{\textbf{NRGBD}} & \multicolumn{3}{c}{\textbf{Tanks \& Temples}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+\textbf{Method} & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ & Acc. $\downarrow$ & Comp. $\downarrow$ & N.C. $\uparrow$ \\
+\midrule
+
+VGGT & 0.06 {\tiny $\pm$ 0.03} & 0.13 {\tiny $\pm$ 0.11} & 0.61 {\tiny $\pm$ 0.04} & 0.05 {\tiny $\pm$ 0.03} & 0.09 {\tiny $\pm$ 0.10} & 0.72 {\tiny $\pm$ 0.06} & 0.08 {\tiny $\pm$ 0.03} & 0.14 {\tiny $\pm$ 0.08} & 0.60 {\tiny $\pm$ 0.04} \\
+\rowcolor{highlight}
+\quad + ROVER & \textbf{0.03 {\tiny $\pm$ 0.01}} & \textbf{0.04 {\tiny $\pm$ 0.01}} & \textbf{0.65 {\tiny $\pm$ 0.01}} & \textbf{0.02 {\tiny $\pm$ 0.00}} & \textbf{0.01 {\tiny $\pm$ 0.00}} & \textbf{0.79 {\tiny $\pm$ 0.01}} & \textbf{0.05 {\tiny $\pm$ 0.02}} & \textbf{0.06 {\tiny $\pm$ 0.04}} & \textbf{0.66 {\tiny $\pm$ 0.02}} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ & 0.03 {\tiny $\pm$ 0.01} & 0.03 {\tiny $\pm$ 0.01} & 0.67 {\tiny $\pm$ 0.01} & 0.02 {\tiny $\pm$ 0.01} & 0.01 {\tiny $\pm$ 0.00} & 0.79 {\tiny $\pm$ 0.02} & 0.06 {\tiny $\pm$ 0.02} & 0.08 {\tiny $\pm$ 0.05} & 0.64 {\tiny $\pm$ 0.02} \\
+\rowcolor{highlight}
+\quad + ROVER & \textbf{0.02 {\tiny $\pm$ 0.00}} & \textbf{0.03 {\tiny $\pm$ 0.01}} & \textbf{0.67 {\tiny $\pm$ 0.01}} & \textbf{0.01 {\tiny $\pm$ 0.01}} & \textbf{0.01 {\tiny $\pm$ 0.00}} & \textbf{0.81 {\tiny $\pm$ 0.02}} & \textbf{0.04 {\tiny $\pm$ 0.02}} & \textbf{0.06 {\tiny $\pm$ 0.04}} & \textbf{0.68 {\tiny $\pm$ 0.02}} \\
+\addlinespace[3pt]
+
+$\pi^3$ & 0.07 {\tiny $\pm$ 0.02} & 0.13 {\tiny $\pm$ 0.10} & 0.62 {\tiny $\pm$ 0.03} & 0.05 {\tiny $\pm$ 0.02} & 0.09 {\tiny $\pm$ 0.08} & 0.73 {\tiny $\pm$ 0.04} & 0.09 {\tiny $\pm$ 0.03} & 0.15 {\tiny $\pm$ 0.09} & 0.59 {\tiny $\pm$ 0.03} \\
+\rowcolor{highlight}
+\quad + ROVER & \textbf{0.03 {\tiny $\pm$ 0.01}} & \textbf{0.04 {\tiny $\pm$ 0.02}} & \textbf{0.67 {\tiny $\pm$ 0.01}} & \textbf{0.02 {\tiny $\pm$ 0.01}} & \textbf{0.01 {\tiny $\pm$ 0.01}} & \textbf{0.80 {\tiny $\pm$ 0.01}} & \textbf{0.05 {\tiny $\pm$ 0.02}} & \textbf{0.07 {\tiny $\pm$ 0.04}} & \textbf{0.65 {\tiny $\pm$ 0.02}} \\
+
+\bottomrule
+\end{tabular}
+}
+\end{table*}

@@ -1,0 +1,837 @@
+% ============================================================
+% APPENDIX
+% ============================================================
+
+\clearpage
+\appendix
+
+\begin{center}
+    {\large\bfseries APPENDIX}
+\end{center}
+
+% Start appendix-only TOC
+\startcontents[appendix]
+\printcontents[appendix]{}{1}{
+    \setcounter{tocdepth}{2}
+}
+
+\pagenumbering{arabic}
+\renewcommand{\thepage}{\Alph{section}-\arabic{page}}
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thefigure}{\Alph{figure}}
+\renewcommand{\thetable}{\Alph{table}}
+
+\setcounter{section}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{page}{1}
+
+\newpage
+\section{Additional results}
+\label{sec:additional_results_suppl}
+\subsection{Point Cloud and Pose Degradation with Increasing Fraction of Rotated Images}
+\label{sec:fraction_degradation}
+To complement the results presented in \Cref{tab:rotation_degradation_main}, we report the corresponding degradation results for the remaining datasets (Tanks \& Temples, Mip-NeRF 360, DTU and RotMV) in \Cref{tab:supplementary_rotation_degradation}. These additional results consistently shows how point cloud reconstruction and pose estimation performance change as the fraction of rotated input images increases, extending the analysis across all evaluated datasets.
+
+\input{tables/degradation_levels/supplementary_percentage_rotate}
+
+\subsection{Performance on Additional Datasets}
+\label{sec:remaining_results_suppl}
+
+We include results on the remaining datasets for comparison with ROVER and baselines, specifically MipNerf-360\citep{barron2022mipnerf360}, Tanks and Temples \cite{Knapitsch2017tanksandtemples}, DTU \cite{jensen2014largeDTU} and ETH3D ~\citep{Schops_2019_CVPRETH3D1, schoeps2017cvprETH3D2}. ~\Cref{tab:pointmap_rover_format_suppl} and ~\Cref{tab:pointmap_eth3d_dtu_suppl} presents point-map estimation results, whereas ~\Cref{tab:pose_rover_format_suppl} and ~\Cref{tab:pose_eth3d_dtu_suppl} present the corresponding camera pose estimation results. We observe ROVER helps improve the reconstruction by consistently re-canonicalizing the input images before using the feed forward reconstruction model. In ~\Cref{tab:pointmap_eth3d_dtu_suppl} and ~\Cref{tab:pose_eth3d_dtu_suppl}, we observe ETH3D gains are consistent across all models and metrics with VGGT-$\Omega$ and $\pi^3$ showing consistent gains ($95.07$ to $95.26$ and $81.89$ to $83.80$) in AUC$_{30}$, while VGGT shows increase in TAcc$_{30}$ ($87.57$ to $89.80$). Overall, our approach consistently recovers camera pose estimation quality under arbitrary in-plane rotations, with gains scaling with the severity of baseline degradation.
+\input{tables/tnt_mipnerf_ptcloud_merged}
+\input{tables/tnt_mipnerf_pose_merged}
+\input{tables/eth3d_dtu_ptcloud}
+\input{tables/eth3d_dtu_pose}
+% ------------------------------------------------------------
+\subsection{Results on RotMV}
+\label{sec:rover_on_rotmv}
+RotMV provides a complementary evaluation to our controlled rotation synthesis benchmarks: rather than rendering rotations in camera space, it consists of real-world multi-view sequences captured at arbitrary orientations, without black-padding or rendering artifacts. This makes it a more challenging and authentic test of whether our method generalizes beyond controlled synthetic perturbations.
+
+~\Cref{tab:pointmap_combined} and ~\Cref{tab:pose_combined_restructured} in the main paper report point-map and camera pose estimation results respectively on RotMV. ROVER consistently improves over all base models across both tasks, confirming that the DINOv2 variance signal transfers reliably to real-world rotated captures. Notably, the gains on RotMV are consistent with those observed on synthetic benchmarks, suggesting that its orientation estimates are robust to the additional photometric variation and capture noise present in real-world sequences.
+These results validate that our approach addresses UprightBias effectively without any retraining. The RotMV dataset is described in \Cref{sec:rotmv_dataset}.
+
+\subsection{Results on Upright Images}
+\label{sec:allupright_suppl}
+
+\input{tables/supplementary_ablations_no_degradation}
+To complement the upright-input ablation reported in \Cref{tab:ablation_rotation_0}, we extend the evaluation to Tanks \& Temples, NRGB-D and DTU in ~\Cref{tab:upright_p100_nc_auc30_combined}. ROVER imposes minimal to no degradation in point cloud quality and pose estimation when all input images are already upright. Across most model-dataset combinations, ROVER closely matches the baseline for both N.C. and AUC$_{30}$, with differences generally negligible. Pose estimation exhibits a similar trend, with ROVER occasionally even marginally outperforming the baseline. Overall, these results indicate that applying ROVER to already-upright inputs largely preserves the performance of the underlying reconstruction models.
+
+\subsection{Comparison with Other Orientation-Correction Methods}
+
+To complement the ablation in \Cref{tab:ablation_pose_pointmap}, we also include ablation results comparing our approach's orientation detection and correction accuracy against other common orientation-correction methods in~\Cref{tab:supplementary_method_comparison} for the 7-Scenes and Tanks\&Temples datasets. ROVER achieves the lowest residual rotation error on both 7-Scenes and Tanks\&Temples, while also obtaining the best N.C. and AUC$_{30}$. This shows that more accurate orientation correction translates directly to stronger downstream geometry and pose estimation. Homography-based orientation error correlates strongly with the number of inlier SIFT correspondences between each view and the fixed reference (first) image used to estimate its relative rotation; several view pairs in our multi-view scenes yield too few reliable correspondences, producing an unstable homography and a poor rotation estimate.
+\input{tables/supplementary_method_comparison}
+
+\subsection{Effect of ROVER on Trajectory Degradation under Rotated Images}
+
+As the fraction of rotated images increases, the degradation observed in VGGT-$\Omega$ is also reflected in the estimated camera trajectory as seen in ~\Cref{fig:baseline_performance} and also in ~\Cref{sec:fraction_degradation} . We therefore evaluate the relative pose error (RPE) translation drift and absolute trajectory error (ATE) under the same progressively increasing rotation setting for VGGT-$\Omega$ both with and without ROVER on the 7-scenes dataset. As shown in Fig.~\Cref{fig:rover_trajectory}, VGGT-$\Omega$ exhibits increasing trajectory error with more rotated images, whereas applying ROVER substantially suppresses this degradation and maintains trajectory estimates closer to COLMAP.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{supplementary_figures/model_comparison.pdf}
+    \caption{RPE translation and ATE trajectory error with increasing fraction of rotated input images, comparing ROVER with VGGT-$\Omega$, base model VGGT-$\Omega$ and COLMAP}
+    \label{fig:rover_trajectory}
+\end{figure}
+\subsection{Latency and Computational Overhead of ROVER}
+\input{tables/supplementary_rover_latency}
+
+Additionally we compute latency introduced by the ROVER in ~\Cref{tab:rover_latency} for $16$ images. For all of the models, the introduced latency remains less than $50\%$ of the base model latency, with the observed overhead ranging from $7.4\%$ to $33.0\%$. The ROVER correction itself incurs a nearly constant latency of approximately $0.43$ seconds across all models, irrespective of the underlying model. The relative overhead decreases for models with higher base latency, with Map-Anything incurring only $7.4\%$ overhead, demonstrating the low computational cost of ROVER.
+
+
+\section{Algorithm}
+\label{sec:algorithm}
+% ------------------------------------------------------------
+
+% \Badri{All tables should be cited, All sections should be written properly. All tables should be cited in ascending order, meaning if table A is shown before table B and then table A should also be cited before table B }
+
+% \Badri{Fig \Cref{fig:denoise-examples}, the red boxes should be on both colum, also the heading for each row is should be wrriten properly, current all font is small, font style is different. This is very lazy work}
+
+% \Badri{ Fig \Cref{fig:pointcloud_comparison} currently only shows results for vggt, please include results for other models (specially for vggt-omega). They either can be same scene but different models (like in main paper) or can be different scenes as well}
+
+\input{tables/algorithm}
+
+Algorithm~\Cref{alg:rotation_generation} provides the pseudocode for controlled rotation synthesis. We first fit a 3DGS representation to each multi-view captured image set. We then sample an angle $\theta \sim \mathcal{U}(0^\circ, 360^\circ)$, render the corresponding rolled image, and score its reconstruction quality $q$ with VisualQuality-R1 \citep{wu2026visualquality}. Captures falling below the predefined threshold $\tau$ are denoised with Difix3D single-step denoiser to remove artifacts, after which the remaining scenes are rendered directly. The renderings are scored again with reconstruction quality $q$ with VisualQuality-R1 to remove images with obvious artifacts. A final manual pass removes images with any residual artifacts.
+Orientation is then recovered through (Algorithm~\Cref{alg:var_alg}). For every candidate orientation $\theta\in\Theta$ in a predefined discrete set $\Theta=\{0^\circ,\delta,\ldots,360^\circ-\delta\}$, the input image is rotated by $\theta$ and passed through the frozen DINOv2 encoder $\phi$ to obtain the corresponding patch embeddings,
+$\mathbf{Z}_{\theta}=\phi(\mathbf{I}^{\theta})=\{\mathbf{z}_1^\theta,\mathbf{z}_2^\theta,\ldots,\mathbf{z}_M^\theta\}$,
+where $\mathbf{I}^{\theta}$ denotes the image rotated by $\theta$, and $\mathbf{z}_j^\theta\in\mathbb{R}^D$ denotes the embedding corresponding to the $j$-th image patch. Each candidate orientation is scored by the variance of its patch embeddings about their centroid,
+$V(\theta)=\frac{1}{M}\sum_{j=1}^{M}\left\|\mathbf{z}_j^\theta-\bar{\mathbf{z}}^\theta\right\|_2^2$,
+where $\bar{\mathbf{z}}^\theta=\frac{1}{M}\sum_{j=1}^{M}\mathbf{z}_j^\theta$ is the centroid of the patch embeddings. Since the backbone is pre-trained predominantly on upright imagery, patch features are most strongly differentiated at the canonical orientation and collapse toward the centroid as the rotation departs from it. The orientation estimation operator is therefore defined as
+$
+E(\mathbf{I})=\arg\max_{\theta\in\Theta}V(\theta),
+$
+and the maximizing candidate gives the predicted roll. We use DINOv2 embeddings to determine the canonical orientation in our approach. Previous works \citep{cuttano2026insid3} points out that DINOv3 features can exhibit spurious correspondences between image pairs regardless of their semantic similarity. In particular, feature similarities between semantically unrelated images exhibit systematic activations aligned with absolute spatial coordinates, indicating a strong positional bias. This positional bias in DINOv3 hinders its ability to accurately identify canonical rotation angle using our variance-maximization approach which makes DINOv2 as an encoder $\phi$.
+
+\section{Orientation Variance Plots}
+\label{sec:ROVER_empirical_plots}
+
+We include plot of variance of token embeddings w.r.t. the image orientation in \cref{fig:variance_vs_angle_all_datasets} for datasets 7-Scenes, NRGB-D, Tanks and Temples and RotMV. To analyze the orientation dependence of DINOv2 representations, we synthetically rotate each canonical image over \(0^\circ\!-\!360^\circ\) in \(15^\circ\) increments and compute the same patch-token spatial variance used by our method, excluding padded regions introduced by rotation. To isolate orientation-dependent changes from image-specific differences in absolute variance, each image’s variance curve is independently min–max normalized across candidate rotations before aggregation. 
+
+\Cref{fig:variance_vs_angle_all_datasets} shows the mean normalized variance across all images, with \(\pm 1\) standard deviation. We use upright images here to calculate variance. We show that for all datasets, the variance of token embeddings consistently achieves its maximum value at canonical orientation ($0^\circ$ in this case, as we used upright images), while non-canonical rotations produce substantially lower values with weaker secondary peaks near multiples of \(90^\circ\). This supports the use of DINOv2 patch-embedding variance as a reliable signal for identifying canonical upright orientation. 
+
+
+\begin{figure*}[!ht]
+    \centering
+    \includegraphics[width=0.98\textwidth]{supplementary_figures/variance_plots/all_datasets_grid_2x2.pdf}
+    \caption{
+        Variance as a function of rotation angle across the RotMV, NRGB-D, 7-Scenes, and Tanks and Temples datasets. We observe that ROVER consistently helps estimate the upright orientation of the images 
+    }
+    \label{fig:variance_vs_angle_all_datasets}
+\end{figure*}
+We also plot the variance for images rotated by $225^\circ$ in \cref{fig:variance_vs_angle_225_deg} for Tanks and Temples, NRGB-D and 7-Scenes. Each rotated image is further rotated by candidate angles over $[0^\circ, 360^\circ)$ in $15^\circ$ increments, and the variance is maximized by the candidate that restores the upright orientation ($135^\circ$). We plot the mean normalized variance against the estimated rotation $\theta = 360^\circ - $ candidate, so the peak appears at $\theta = 225^\circ$ for all three datasets and the correction is simply a rotation by $-\theta$. In the upright setting, the peak occurs at $0^\circ$, where no rotation (and hence no padding) is applied, so one could argue the peak is simply caused by the absence of padding. Here, leaving the image unrotated ($\phi = 0^\circ$) does not give the maximum; instead, the peak occurs at $\phi = 135^\circ$, which adds padding(because of the rotation) but restores the upright view. This shows that the variance peak is driven by the upright orientation of the image content, not by the padding.
+
+\begin{figure*}[!ht]
+    \centering
+    \includegraphics[width=0.325\textwidth]{supplementary_figures/variance_plots/all_scenes_variance_vs_angle_tnt_225.png}\hfill
+    \includegraphics[width=0.325\textwidth]{supplementary_figures/variance_plots/all_scenes_variance_vs_angle_nrgbd.png}\hfill
+    \includegraphics[width=0.325\textwidth]{supplementary_figures/variance_plots/all_scenes_variance_vs_angle_7scenes_225.png}
+\caption{ROVER recovers the true rotation angle. Input images are rotated by $225^\circ$ from their upright orientation. We plot the normalized patch-embedding variance (mean $\pm 1$ std) against the estimated rotation $\theta = 360^\circ - \phi$, where $\phi$ is the candidate correction. The peak (red dashed line) falls at $\theta = 225^\circ$ for all three datasets, so rotating by $-\theta$ restores the upright view.}
+    \label{fig:variance_vs_angle_225_deg}
+\end{figure*}
+
+% ------------------------------------------------------------
+\section{Sensitivity to Limited Pitch Rotations}  % TODO: rename
+\label{sec:pose_pitch}
+% ------------------------------------------------------------
+We additionally evaluate sensitivity to camera rotations about the pitch axis on NRGB-D, 7-Scenes, and Tanks\&Temples in~\Cref{tab:pitch_metrics}. Following the evaluation protocol described in~\Cref{sec:experimental_setup}, we evaluate the four non-zero rotation levels ($25\%$, $50\%$, $75\%$, and $100\%$ rotated views). Selected views are independently assigned a pitch perturbation from $[-5^\circ, +5^\circ]$; the corresponding camera pose is then perturbed and a new view is rendered using~\Cref{sec:rendering_based_rotation}. Large perturbation leads to change in viewpoint of the scene as the camera will point to a different region in the scene unlike roll perturbation thus we restrict the perturbation to limited range. Across this limited range, performance remains close to the upright setting for most models and datasets. For instance, VGGT changes from $0.798$ to $0.796$ N.C. and from $98.36$ to $98.17$ AUC$_{30}$ on NRGB-D, while on Tanks\&Temples the corresponding values change from $0.678$ to $0.671$ and from $91.62$ to $91.20$. Larger variation is observed in some cases, such as $\pi^3$ on Tanks\&Temples, where N.C. decreases from $0.701$ to $0.666$, although pose accuracy remains comparatively stable. Overall, these results indicate sensitivity to small pitch perturbations over the evaluated range.
+
+\input{tables/extra/pitch_pose}
+
+\section{Examples of Point Cloud Degradation}
+
+% \Badri{Add additinoal results where we show degradation when all images are rotated with same angle}
+We qualitatively illustrate the effect of in-plane roll on point-cloud reconstruction in Figures \Cref{fig:pc_tanks_and_temples}, \Cref{fig:pc_tnt_barn}
+\Cref{fig:pc_7scenes_kitchen} 
+across VGGT, VGGT-$\Omega$, $\pi^3$, and DepthAnything3 (DA3). Under rotated inputs,
+the baseline reconstructions exhibit substantial geometric artifacts, including distorted
+structures, misaligned surfaces, and, most prominently, duplicated scene elements, as
+highlighted in the zoomed regions. Applying ROVER consistently reduces these artifacts
+across the different backbones and produces substantially cleaner and more coherent
+point-cloud reconstructions despite the input images being arbitrarily rotated in-plane.
+
+We additionally evaluate the setting where all input images are rotated by the same angle in ~\Cref{fig:uniform_rotation_office}, preserving their relative orientations. Surprisingly, models still fail to reconstruct the scene, demonstrating that the degradation is not caused by relative pose ambiguity between views but by a learned prior on absolute image orientation the model simply does not expect to see images that deviate from upright.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=========================================================================
+% PAGE 1: Tanks & Temples (Truck, Church) + 7-Scenes (Office)
+% =========================================================================
+\begin{figure*}[p]
+\centering
+
+% --- Dataset 1: Tanks & Temples ---
+\includegraphics[width=\textwidth]{supplementary_figures/pointcloud_comparisons/supplementary_fig_1.pdf}
+\caption{\textbf{Qualitative comparison on the Tanks \& Temples dataset} (Truck and Church scenes). Point cloud reconstructions across VGGT, VGGT-$\Omega$, $\pi^3$, and DA3 comparing baseline and ROVER.}
+\label{fig:pc_tanks_and_temples}
+
+\vspace{4mm}
+
+% --- Dataset 2 (Part 1): 7-Scenes (Office) ---
+\includegraphics[width=\textwidth]{supplementary_figures/pointcloud_comparisons/supplementary_fig_2.1.pdf}
+\caption{\textbf{Qualitative comparison on the Barn scene} from Tanks \& Temples dataset . Reconstruction comparisons across baseline and ROVER settings.}
+\label{fig:pc_tnt_barn}
+
+\end{figure*}
+
+
+% \clearpage % Pushes the next figure onto its own new page
+
+% =========================================================================
+% PAGE 2: 7-Scenes (Kitchen)
+% =========================================================================
+\begin{figure*}[!t]
+\centering
+
+% --- Dataset 2 (Part 2): 7-Scenes (Kitchen) ---
+\includegraphics[width=0.97\textwidth]{supplementary_figures/pointcloud_comparisons/supplementary_fig_2.2.pdf}
+\caption{\textbf{Qualitative comparison on the 7-Scenes dataset (Red Kitchen scene)}. Close-up comparisons showing geometric alignment and wall boundary recovery under ROVER.}
+\label{fig:pc_7scenes_kitchen}
+
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{figure*}[h]
+% \centering
+% \includegraphics[width=0.86\textwidth]{Figures/pc_comparison.pdf}
+% \caption{\textbf{Comparison between upright inputs (left) and inputs rotated by 195$^\circ$ (right).} The reconstructed point cloud degrades even when the same rotation is applied consistently to all input images.}
+% \label{fig:all_rot}
+% \end{figure*}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{supplementary_figures/rotation_pc_comparison.pdf}
+\caption{\textbf{Degradation under uniform roll on ETH3D (\emph{office}).} Point cloud reconstructions comparing clean upright views ($0^\circ$, top row) with sequences where every input view is rotated identically by $195^\circ$ (bottom row). Numbers denote Accuracy (Acc $\downarrow$) / Completeness (Comp $\downarrow$) in meters relative to ground truth . Degradation occurs despite identical relative poses between views, confirming reliance on an absolute upright prior.}
+\label{fig:uniform_rotation_office}
+\end{figure}
+
+\section{Sensitivity to Yaw Rotations}
+\label{sec:pose_yaw}
+We additionally evaluate sensitivity to camera rotations about the yaw axis on NRGB-D, 7-Scenes, and Tanks\&Temples in~\Cref{tab:yaw_metrics}. Following the evaluation protocol described in~\Cref{sec:experimental_setup}, we evaluate the four non-zero rotation levels, with selected views independently assigned yaw perturbations from $[-20^\circ,+20^\circ]$. Large perturbation across yaw will lead to change in viewpoint of the scene which is not a manisfestation of UprightBias thus we restrict the evaluation to limited perturbation.  The corresponding camera poses are perturbed and new views are rendered using~\Cref{sec:rendering_based_rotation}. Overall, yaw perturbations introduce moderate degradation, particularly on Tanks\&Temples. For example, $\pi^3$ decreases from $0.721$ to $0.667$ N.C., while MapAnything decreases from $0.627$ to $0.592$ N.C. and from $94.53$ to $92.57$ AUC$_{30}$. 
+\input{tables/extra/yaw_pose}
+
+\section{The RotMV Dataset}
+  \label{sec:rotmv_dataset}
+  
+  As discussed in \cref{sec:method}, existing multi-view datasets consist predominantly of clean, upright images. Consequently, evaluations on these datasets are
+  performed by introducing synthetic camera roll using the controlled rotation synthesis described in \cref{sec:rendering_based_rotation}
+  (\cref{alg:rotation_generation}). We present a novel benchmark consisting of seven real-world scenes (\textit{chairs}, \textit{foosball-table}, \textit{building},
+  \textit{rooftop}, \textit{room}, \textit{statue}, and \textit{table-tennis}). We capture each scene using a camera ($4.84\,\text{mm}$, $f/1.8$, $12\,\text{MP}$,
+  $4096\times3072$ resolution). Each scene is imaged from $16$ fixed viewpoints, and at each viewpoint, the camera is rolled in-plane through $12$ orientations
+  spanning a full $360^\circ$ (in $30^\circ$ increments), resulting in $192$ images per scene.
+ 
+  For each viewpoint, we estimate the base camera pose from the upright ($0^\circ$) image using VGGT~\citep{wang2025vggt}. The poses corresponding to the remaining $11$
+  roll angles are then derived from this base pose by applying the corresponding in-plane rotation to the camera orientation, while keeping the camera center and viewing
+  direction unchanged. Thus, pose estimation is performed only for the upright image at each viewpoint, and the poses for the other roll angles are constructed
+  analytically. This enables a robust evaluation of each method under realistic in-plane camera roll, while keeping the underlying scene geometry and viewpoint fixed.
+
+  We show example images from our dataset in Figures \Cref{fig:grid_foosball} and \Cref{fig:grids_chairs_rooftop}.
+
+
+% =========================================================================
+% PAGE 1: Foosball Table (Bottom of Page G-5)
+% =========================================================================
+\begin{figure}[!htb]
+\centering
+\includegraphics[
+    height=0.55\textheight,
+    keepaspectratio
+]{Figures/captured_supplementary/foosball_compressed.pdf}
+\vspace{1mm}
+\caption{\textbf{RotMV dataset roll sweeps: Foosball Table (Indoor).}
+Sampled views (rows) across in-plane roll angles
+($\theta \in [0^\circ, 300^\circ]$, columns).}
+\label{fig:grid_foosball}
+\end{figure}
+
+% \clearpage
+
+% =========================================================================
+% PAGE 2: Chairs & Rooftop
+% =========================================================================
+\begin{figure}[tbp]
+\centering
+\vspace*{-6mm}
+
+\begin{subfigure}[tbp]{\textwidth}
+    \centering
+    \includegraphics[
+        height=0.45\textheight,
+        keepaspectratio
+    ]{Figures/captured_supplementary/chairs_compressed.pdf}
+    \caption{Chairs (Indoor)}
+    \label{fig:grid_chairs}
+\end{subfigure}
+
+\vspace{2mm}
+
+\begin{subfigure}[tbp]{\textwidth}
+    \centering
+    \includegraphics[
+        height=0.45\textheight,
+        keepaspectratio
+    ]{Figures/captured_supplementary/rooftop_compressed.pdf}
+    \caption{Rooftop (Outdoor)}
+    \label{fig:grid_rooftop}
+\end{subfigure}
+
+\vspace{1mm}
+\caption{\textbf{RotMV dataset roll sweeps: Chairs and Rooftop.}
+Sampled views (rows) across in-plane roll angles
+($\theta \in [0^\circ, 300^\circ]$, columns).}
+\label{fig:grids_chairs_rooftop}
+\end{figure}
+
+% \clearpage
+% \clearpage
+% % =========================================================================
+% % PAGE 1: Indoor Scenes (Foosball Table & Chairs)
+% % =========================================================================
+% \begin{figure*}[p]
+% \centering
+% \vspace*{-6mm} % Offsets float centering to utilize top margin
+
+% % --- Top Grid: Foosball Table ---
+% \begin{subfigure}[b]{\textwidth}
+%   \centering
+%   \includegraphics[height=0.47\textheight,keepaspectratio]{Figures/captured_supplementary/foosball_compressed.pdf}
+%   \caption{Foosball Table}
+%   \label{fig:grid_foosball}
+% \end{subfigure}
+
+% \vspace{2mm}
+
+% % --- Bottom Grid: Chairs ---
+% \begin{subfigure}[b]{\textwidth}
+%   \centering
+%   \includegraphics[height=0.48\textheight,keepaspectratio]{Figures/captured_supplementary/chairs_compressed.pdf}
+%   \caption{Chairs}
+%   \label{fig:grid_chairs}
+% \end{subfigure}
+
+% \vspace{1mm}
+% \caption{\textbf{ROTMV dataset roll sweeps (Indoor).} Sampled views (rows) across in-plane roll angles ($0^\circ$- $300^\circ$, columns).}
+% \label{fig:grids_indoor}
+% \end{figure*}
+
+
+% \clearpage
+% % =========================================================================
+% % PAGE 2: Outdoor Scenes (Building & Rooftop)
+% % =========================================================================
+% \begin{figure*}[p]
+% \centering
+% \vspace*{-6mm} % Offsets float centering to utilize top margin
+
+% % --- Top Grid: Building ---
+% % \begin{subfigure}[b]{\textwidth}
+% %   \centering
+% %   \includegraphics[height=0.47\textheight,keepaspectratio]{Figures/captured_supplementary/building_compressed.pdf}
+% %   \caption{Building}
+% %   \label{fig:grid_building}
+% % \end{subfigure}
+
+% \vspace{-4mm}
+
+% % --- Bottom Grid: Rooftop ---
+% \begin{subfigure}[b]{\textwidth}
+%   \centering
+%   \includegraphics[height=0.47\textheight,keepaspectratio]{Figures/captured_supplementary/rooftop_compressed.pdf}
+%   \caption{Rooftop}
+%   \label{fig:grid_rooftop}
+% \end{subfigure}
+
+% \vspace{1mm}
+% \caption{\textbf{ROTMV dataset roll sweeps (Outdoor).} Sampled views (rows) across in-plane roll angles ($0^\circ$- $300^\circ$, columns).}
+% \label{fig:grids_outdoor}
+% \end{figure*}
+
+
+
+
+\section{Visual Quality Assessment and Rejection Statistics}
+\label{sec:image_statistics}
+% We render rotated images as described in the algorithm in ~\cref{alg:rotation_generation}. We compare the artifacts produced without and with Difix3D denoising step in ~\Cref{fig:denoise-examples-1} and \Cref{fig:denoise-examples-2}. We observe reconstruction through 3DGS with dense set of images (for ex.: DTU, Mip-NeRF 360) results in good reconstruction, where VisualQuality-R1\citep{wu2026visualquality} outputs a score of $\geq 4.0$ on a scale of $[0-5]$. Therefore, we run Difix3D Denoising only for images generated from the other sparse datasets. After this step, we filter images with artifacts using VisualQuality-R1 pipeline where we pass the rotated image and it's 0° counterpart along with a prompt to provide a quality score in the range $[0-5]$. Thereafter, we manually filter the images to filter out reconstruction with obvious artifacts. We provide the statistics for the generated and filtered images in ~\cref{tab:img_stats}. Additionally, we provide example images from the quality filtering pipeline in ~\cref{fig:quality-filtering}
+
+  We render rotated images as described in \cref{alg:rotation_generation}. To reduce rendering artifacts, we use only the single-step diffusion denoiser (Difix)
+  from Difix3D+~\citep{wu2025difix3d}, applied independently to each rendered view as a post-processing step. We compare renders without and with
+  this denoising step in \Cref{fig:denoise-examples-1} and \ref{fig:denoise-examples-2}. We observe that 3DGS reconstructions from dense image sets (e.g., DTU and
+  Mip-NeRF 360) already yield high-quality renders, for which VisualQuality-R1~\citep{wu2026visualquality} outputs a score of $\geq 4.0$ on a scale of $[0, 5]$.
+  Therefore, we apply the Difix denoiser only to images rendered from the remaining, sparser datasets. We then filter images with artifacts using VisualQuality-R1,
+  passing each rotated image together with its $0^\circ$ counterpart and a prompt asking for a quality score in the range $[0, 5]$. Finally, we manually remove any
+  remaining renders with obvious artifacts. Statistics for the generated and filtered images are given in \cref{tab:img_stats}, and example images from the quality
+  filtering pipeline are shown in \cref{fig:quality-filtering}.
+
+  
+\input{tables/image_selection_stats}
+\input{supplementary_figures/supplementary_figures}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{supplementary_figures/Section_H/SectionH.pdf}
+    \caption{Qualitative examples of the quality filtering pipeline across reference ($0^\circ$), raw 3DGS, and Difix-denoised views, showing automated rejections (top), manual rejections (middle), and accepted views (bottom).}
+    \label{fig:quality-filtering}
+\end{figure}
+
+\section{Failure Case}
+\Cref{tab:office_pose} reports pose and point-cloud metrics on ETH3D on the scene \emph{office}. Across other scenes, variance-based roll correction recovers the upright prior and improves the reconstruction, but the \emph{office} scene is a consistent failure case: correction degrades \emph{every} metric for \emph{every} model relative to the baseline. ATE increases uniformly (e.g., $0.040$ to $0.095$ for VGGT-$\Omega$), and both Tacc@30 and Racc@30 fall sharply (e.g., $98.39$ to $63.72$ and $100.00$ to $81.57$ for DA3).
+
+We attribute this failure to rotation to symmetry failure and primarily rotation in pitch and yaw.\Cref{fig:office_failure_qualitative} qualitatively compares the original upright ($0^\circ$) views with the ROVER-corrected views obtained from the corresponding rotated inputs.
+
+\input{tables/extra/office_pose}
+\raggedbottom
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{supplementary_figures/eth3d_failcases.pdf}
+    \caption{Qualitative failure on the ETH3D \emph{office} scene. Steep upward pitch and ceiling symmetries cause ROVER to introduce spurious corrective rotations to already-upright ($0^\circ$) views.}
+    \label{fig:office_failure_qualitative}
+\end{figure}
+
+\section{Evaluation Criteria}
+\flushbottom
+\label{sec:eval_criteria}
+
+Following the protocol described in ~\Cref{sec:algorithm} to generate multi-view scenes with random rotation across frames. We follow the evaluation protocol from \cite{wang2025pi} and evaluate camera pose and point cloud for each rotation configuration set.
+
+\paragraph{Ground-truth pose under roll.}
+Let $R$ and $t$ be the $SO(3)$ ground truth rotation matrix and translation vector respectively for a frame. For a roll of $\theta$ about the optical axis, let $\mathbf{R}_z(\theta)$ be the $SO(3)$ rotation matrix about the $z-$axis. Then, under a roll of $\theta$, the world-to-camera pose $[\mathbf{R} \mid \mathbf{t}]$ becomes
+$\hat{\mathbf{R}} = \mathbf{R}_z(\theta)\mathbf{R}$ and
+$\hat{\mathbf{t}} = \mathbf{R}_z(\theta)\mathbf{t}$. The camera centre
+is unchanged,
+%
+\begin{equation}
+-\hat{\mathbf{R}}^{\top}\hat{\mathbf{t}}
+= -\mathbf{R}^{\top}\mathbf{R}_z(\theta)^{\top}
+   \mathbf{R}_z(\theta)\,\mathbf{t}
+= -\mathbf{R}^{\top}\mathbf{t} ,
+\label{eq:centre-invariance}
+\end{equation}
+%
+so the ground-truth trajectory is identical to the upright one for
+every rotation budget $k$ and angle assignment; the reported ATE
+degradation reflects the predicted trajectory alone. Relative
+rotations, by contrast, are genuinely re-oriented, so rotation related metrics
+are evaluated against altered targets.
+
+\paragraph{Ground-truth geometry under roll.}
+Some datasets like ETH3D and DTU provide ground-truth geometry only for the upright
+($0^{\circ}$) configuration. Since the scene itself is unchanged by
+the roll, we adjust the \emph{support} of the ground truth rather than
+its content: the ground-truth depth map $\mathbf{D}$ is rotated in the
+image plane, $\hat{\mathbf{D}} = \mathbf{R}_z(\theta)\mathbf{D}$,
+regions falling outside the frame after rotation are masked out, and
+the remaining pixels are unprojected to 3D using the rotated camera
+$[\hat{\mathbf{R}} \mid \hat{\mathbf{t}}]$. This yields the ground-truth
+point cloud restricted to the region actually visible in the rotated
+view, so that predictions are never penalised for geometry outside the
+rolled frustum.
+
+For datasets without ground-truth geometry (Mip-NeRF 360,
+RotMV) we take the model's own upright
+reconstruction $\hat{\mathbf{P}}_0$ as reference and report the
+post-alignment discrepancy of each rotated reconstruction
+$\hat{\mathbf{P}}_k$ against it. For our hand-captured dataset no
+ground-truth poses are available; we run VGGT on the upright capture
+to obtain reference poses and derive the ground truth for each rotated
+configuration by composing these with the known roll matrices as in
+\eqref{eq:centre-invariance}. These two protocols measure degradation
+relative to the model's own upright output rather than absolute
+accuracy; our absolute-ground-truth results on 7-Scenes, NRGB-D, ETH3D
+and DTU establish the corresponding absolute claims.
+
+\paragraph{Alignment.}
+Feed-forward predictions are defined only up to a global similarity
+transform. For pose metrics we align the predicted camera centres to
+the ground-truth centres with Umeyama. For point
+cloud metrics we apply Umeyama followed by ICP to align the predicted
+point cloud to the ground truth, following the protocol of
+$\pi^3$. All metrics are computed after
+alignment.
+
+
+\paragraph{Pose metrics.}
+Let $\mathbf{T}_i, \hat{\mathbf{T}}_i \in SE(3)$ denote the
+ground-truth and predicted extrinsics of view $i$, with camera
+centres $\mathbf{C}_i, \hat{\mathbf{C}}_i$. After a $\mathrm{Sim}(3)$
+trajectory alignment the absolute
+trajectory error is
+%
+\begin{equation}
+\mathrm{ATE} = \Big(\tfrac{1}{N}\textstyle\sum_{i=1}^{N}
+\big\|\mathbf{C}_i - \hat{\mathbf{C}}_i\big\|_2^2\Big)^{1/2}.
+\end{equation}
+%
+For each of the $\binom{N}{2}$ image pairs $(i,j)$ we form the
+relative pose $\Delta\mathbf{T}_{ij} = \mathbf{T}_j\mathbf{T}_i^{-1}$
+(and $\Delta\hat{\mathbf{T}}_{ij}$ analogously from
+$\hat{\mathbf{T}}_i,\hat{\mathbf{T}}_j$), decomposed into rotation
+$\Delta\mathbf{R}_{ij}$ and translation $\mathbf{t}_{ij}$. The
+relative rotation error is the geodesic distance
+%
+\begin{equation}
+e^{R}_{ij} = \arccos\!\left(\frac{\mathrm{Tr}\big(\Delta\mathbf{R}_{ij}^{\top}\Delta\hat{\mathbf{R}}_{ij}\big) - 1}{2}\right),
+\end{equation}
+%
+and the relative translation error is the undirected angle between
+translation directions (antipodal directions are equivalent, since
+scale and sign are unobservable per pair),
+%
+\begin{equation}
+e^{T}_{ij} = \arccos\!\left(\frac{\big|\mathbf{t}_{ij}^{\top}\hat{\mathbf{t}}_{ij}\big|}{\|\mathbf{t}_{ij}\|\,\|\hat{\mathbf{t}}_{ij}\|}\right).
+\end{equation}
+%
+
+The reported percentages are obtained by thresholding these per-pair errors: $\mathrm{RAcc}_{\tau}$ and $\mathrm{TAcc}_{\tau}$ (Relative Rotation/Translation Accuracy) are the fraction of pairs whose error falls below an angular tolerance $\tau$,
+$$\mathrm{RAcc}_{\tau} = \frac{100}{\binom{N}{2}}\sum_{i<j} \mathbbm{1}\left[e^{R}_{ij} < \tau\right], \qquad \mathrm{TAcc}_{\tau} = \frac{100}{\binom{N}{2}}\sum_{i<j} \mathbbm{1}\left[e^{T}_{ij} < \tau\right],$$
+reported as percentages; we use $\tau=30^{\circ}$ in the  tables.
+The reported AUC uses the \emph{joint} per-pair error
+$e^{RT}_{ij} = \max\!\left(e^{R}_{ij}, e^{T}_{ij}\right)$, thresholded
+exactly as $\mathrm{RAcc}_\tau$/$\mathrm{TAcc}_\tau$ above,
+%
+\begin{equation}
+\mathrm{Acc}^{\mathrm{joint}}_\tau = \frac{100}{\binom{N}{2}}\sum_{i<j}
+\mathbbm{1}\left[e^{RT}_{ij} < \tau\right].
+\end{equation}
+%
+$\mathrm{AUC@}\tau_{\max}$ is the mean of this joint accuracy over
+every integer-degree threshold up to $\tau_{\max}$ — a discrete
+Riemann-sum approximation, at $1^{\circ}$ resolution, of the area
+under the accuracy-vs-threshold curve on $[0^{\circ}, \tau_{\max}]$,
+normalised so a perfect predictor scores $100$:
+%
+\begin{equation}
+\mathrm{AUC@}\tau_{\max} = \frac{1}{\tau_{\max}}
+\sum_{\tau=1}^{\tau_{\max}} \mathrm{Acc}^{\mathrm{joint}}_\tau .
+\end{equation}
+%
+We report $\mathrm{AUC@30}$ (i.e. $\tau_{\max}=30^{\circ}$) in the
+main tables.
+
+\paragraph{Point cloud metrics.}
+Following evaluation protocol of $\pi^3$\citep{wang2025pi}, predicted point
+maps are aligned to the ground truth with a closed-form
+$\mathrm{Sim}(3)$ transform (Umeyama), computed directly from the
+pixel-wise correspondence between predicted and ground-truth point
+maps, then refined with point-to-point ICP (correspondence threshold
+$0.1$--$1.0\,\mathrm{m}$, scaled to each dataset's depth range). Let
+$\mathcal{P}$ denote the resulting aligned predicted point cloud and
+$\mathcal{Q}$ the ground truth. Accuracy and completeness are the
+mean one-sided nearest-neighbour distances,
+%
+\begin{align}
+\mathrm{Acc} &= \tfrac{1}{|\mathcal{P}|}\textstyle\sum_{\mathbf{p}\in\mathcal{P}}
+\min_{\mathbf{q}\in\mathcal{Q}}\|\mathbf{p}-\mathbf{q}\|_2 ,
+\\[2pt]
+\mathrm{Comp} &= \tfrac{1}{|\mathcal{Q}|}\textstyle\sum_{\mathbf{q}\in\mathcal{Q}}
+\min_{\mathbf{p}\in\mathcal{P}}\|\mathbf{p}-\mathbf{q}\|_2 ,
+\end{align}
+%
+and their average is the well known Chamfer distance.
+Normal consistency (N.C.) is likewise two-sided, averaging the mean absolute
+alignment of surface normals at nearest-neighbour correspondences in
+each direction,
+%
+\begin{align}
+\mathrm{NC}_1 &= \tfrac{1}{|\mathcal{P}|}\textstyle\sum_{\mathbf{p}\in\mathcal{P}}
+\big|\mathbf{n}_{\mathbf{p}} \cdot \mathbf{n}_{\mathrm{nn}_{\mathcal{Q}}(\mathbf{p})}\big| ,
+\\[2pt]
+\mathrm{NC}_2 &= \tfrac{1}{|\mathcal{Q}|}\textstyle\sum_{\mathbf{q}\in\mathcal{Q}}
+\big|\mathbf{n}_{\mathbf{q}} \cdot \mathbf{n}_{\mathrm{nn}_{\mathcal{P}}(\mathbf{q})}\big| ,
+\end{align}
+%
+where $\mathrm{nn}_{\mathcal{X}}(\mathbf{v}) = \arg\min_{\mathbf{x}\in\mathcal{X}}\|\mathbf{v}-\mathbf{x}\|_2$
+denotes the nearest neighbour of $\mathbf{v}$ in point set $\mathcal{X}$ (reusing the
+correspondences already computed for Acc/Comp above), and $\mathbf{n}_{(\cdot)}$
+denotes the surface normal estimated at each point from its local neighbourhood.
+We report
+\begin{equation}
+\mathrm{NC} = \tfrac{1}{2}(\mathrm{NC}_1 + \mathrm{NC}_2) \in [0,1],
+\end{equation}
+with $\mathrm{NC}=1$ indicating perfectly consistent surface orientation between
+prediction and ground truth, and $\mathrm{NC}=0$ indicating orthogonal (maximally
+inconsistent) surfaces.
+
+
+
+\section{Training Data re-balancing}
+\label{sec:training_data_rebalancing}
+
+\Cref{tab:training_data} presents a comprehensive audit of 
+the training corpora of all evaluated models. Datasets used by these models are CO3D\citep{co3dv1,reizenstein21co3dv2}, ScanNet/ScanNet++\citep{dai2017scannet, yeshwanthliu2023scannetpp}, MegaDepth\citep{MegaDepthLi18}, DL3DV-10K\citep{ling2024dl3dv}, ARKitScenes\citep{baruch2021arkitscenes}, Mapillary\citep{MapillaryPlanetScaleDepth}, HyperSim\citep{roberts:2021Hypersim}, Habitat/Replica\citep{ramakrishnan2021hm3dhabitat}, Virtual KITTI\citep{gaidon2016virtualkitti2}, BlendedMVS\citep{yao2020blendedmvs}, WildRGB-D\citep{xia2024wildrgbd}, PointOdyssey\citep{zheng2023pointoddessey}, Taskonomy\citep{taskonomy2018}, Waymo Open\cite{Sun_2020_CVPRwaymoopen}, MegaSynth\cite{jiang2024megasynth}, MVS-Synth\citep{DeepMVSSynth}, UnrealStereo4K\citep{zhang2018unrealstereo}, MatrixCity\citep{li2023matrixcity}, Aria Series\citep{pan2023ariadigitaltwin, banerjee2024ariaHOT3D, ma2024arianymeriadataset, lv2024ariaeverydayactivities}, Dynamic Replica\citep{karaev2023dynamicreplicastereo}, Spring\citep{mehl2023springdataset}, Structured3D\citep{Structured3Ddataset}, Cityscapes\cite{cordts2016cityscapes}, GTA-SfM\citep{cao2020longgtasfm}, Kubric\citep{greff2021kubricdataset}, TartanAir\citep{tartanair2020iros} and Mid-Air \citep{Fonder2019MidAir} datasets. Across \textbf{27} datasets spanning indoor RGB-D scans, outdoor photo collections, driving sequences, and synthetic renderings, the overwhelming majority are upright by construction with each model trained on between 10 and 19 fully upright datasets and at most 2 partially aligned ones. This confirms that UprightBias is a data-driven phenomenon: feed-forward models inadvertently absorb a strong canonical orientation prior simply by virtue of what their training data looks like.
+\input{tables/trainingdata_models}
+To investigate if re-balancing the training data and finetuning the model recovers the performance we fine-tune $\pi^3$ on a re-balanced version of the DTU training set 
+augmented with randomly rotated multi-view sequences, and evaluate 
+on the DTU test set under the same rotated-input protocol used 
+throughout the paper. Tables~\Cref{tab:pointmap_pi3_variants_dtu} 
+and~\Cref{tab:pose_pi3_variants_dtu} report point-map and camera 
+pose metrics respectively for the pretrained and fine-tuned models 
+across four test scenes. The results do not support the re-balancing hypothesis. 
+Fine-tuning yields inconsistent changes, consistent with the feature-distortion risk discussed in \Cref{sec:ROVER_detail}\citep{kumar2022finetuningchallenges, tang2020longchallenges, kang2019decouplingtrainingdata3}. More specifically fine-tuning on rotated data disrupts the DINOv2-derived visual representations that $\pi^3$ relies on, as the rotated fine-tuning distribution diverges from the DINOv2 pretraining distribution. 
+
+\input{tables/pi3_finetune/point_cloud}
+\input{tables/pi3_finetune/pose}
+
+
+\section{Outlier Detection using RobustVGGT}
+\label{sec:outlier_detection_robustvggt}
+
+% \section{Relational Feature and Attention-Based Rotation Identification}
+% \label{sec:attentionbased_rotation_detection}
+
+% In-plane frame rotations disrupt spatial feature correlations in feed-forward models, degrading camera pose estimation.
+% Inspired by RobustVGGT~\citep{robustvggt}, we identify rotated frames in a zero-shot manner directly from internal network features. Specifically, we extract spatial patch tokens $\mathbf{X}_i \in \mathbb{R}^{P \times D}$ and multi-head query-key projections $\mathbf{Q}_i, \mathbf{K}_i \in \mathbb{R}^{H \times P \times d_k}$ from the first global self-attention layer across an $N$-frame sequence during a single forward pass.
+
+% \subsection{Relational Representation Matrix}
+% For each frame pair $(i, j)$, we evaluate inter-frame consistency through token similarity and global attention:
+% \begin{equation}
+% C_{i,j} = \frac{1}{P^2} \sum_{p,q=1}^{P} \frac{\langle \mathbf{X}_{i,p}, \mathbf{X}_{j,q} \rangle}{\|\mathbf{X}_{i,p}\|_2 \|\mathbf{X}_{j,q}\|_2}, \qquad
+% A_{i,j} = \frac{1}{H P} \sum_{h=1}^{H} \sum_{p=1}^{P} \operatorname{Softmax}\left( \frac{\mathbf{Q}_{i,p}^{(h)} (\mathbf{K}_j^{(h)})^\top}{\sqrt{d_k}} \right).
+% \end{equation}
+% Both matrices are min-max normalized to $[0, 1]$ across all frame pairs using a small constant $\epsilon = 10^{-6}$ for numerical stability, yielding normalized matrices $\mathbf{C}'$ and $\mathbf{A}'$. We construct the joint symmetric affinity matrix as $\mathbf{M} = \frac{1}{2}(\mathbf{C}' + \mathbf{A}') \in \mathbb{R}^{N \times N}$.
+
+% \subsection{Sequence-Level Rotation Detection}
+% To detect orientation anomalies, we define a sequence reference profile $\mathbf{T} \in \mathbb{R}^N$ by taking the column-wise median across frames, $T_j = \operatorname{median}_{i}(M_{i,j})$, and compute each frame's mean absolute deviation:
+% \begin{equation}
+% d_i = \frac{1}{N} \sum_{j=1}^{N} |M_{i,j} - T_j|.
+% \end{equation}
+% Frames are sorted in descending order of deviation: $\mathbf{d}_{\text{sorted}} = [d_{\pi(1)}, \dots, d_{\pi(N)}]$. We partition the sequence under two orientation priors:
+% \begin{itemize}
+%     \item \textbf{Minority Rotation (Gap-Based):} Assuming rotated frames form an anomalous minority ($k \le \lfloor N/2 \rfloor$), the decision boundary is placed at the largest consecutive deviation drop:
+%     \begin{equation}
+%     k^* = \arg\max_{1 \le k \le \lfloor N/2 \rfloor} (d_{\pi(k)} - d_{\pi(k+1)}).
+%     \end{equation}
+%     The top $k^*$ frames $\{\pi(1), \dots, \pi(k^*)\}$ are classified as \textbf{rotated}, while the remaining $N - k^*$ frames are labeled as \textbf{upright}.
+
+%     \item \textbf{Majority Rotation (Variance Minimization):} When rotated frames dominate, the reference profile $\mathbf{T}$ reflects the rotated orientation, making upright frames appear as high-deviation outliers. We partition the sequence into candidate upright frames $G_{\text{up}} = \{d_{\pi(1)}, \dots, d_{\pi(k)}\}$ and rotated frames $G_{\text{rot}} = \{d_{\pi(k+1)}, \dots, d_{\pi(N)}\}$. Sweeping $k \in [1, \min(8, N-1)]$, the optimal split $k^*$ minimizes the within-class variance:
+%     \begin{equation}
+%     \sigma^2_w(k) = \frac{k}{N} \sigma^2(G_{\text{up}}) + \frac{N - k}{N} \sigma^2(G_{\text{rot}}).
+%     \end{equation}
+%     The top $k^*$ frames are isolated as \textbf{upright}, and the remaining $N - k^*$ frames are classified as \textbf{rotated}.
+% \end{itemize}
+
+% \subsection{Sensitivity to the Rotation Prior}
+% As shown in Table~\Cref{tab:rotation-prior}, detection is substantially more reliable when rotated frames form the minority (average Global F1 of $0.811$ vs.\ $0.543$ under the majority setting). Precision and recall both degrade when canonical reference frames become scarce, demonstrating the necessity of an upright reference anchor for unsupervised relational profiling.
+A natural alternative to correcting rotated views is to detect and discard them. As noted in \cref{sec:ablation}, we evaluate this strategy using RobustVGGT~\citep{robustvggt}, which flags views that are inconsistent with the rest of the sequence and excludes them before reconstruction. Unlike ROVER, which estimates the orientation of each view independently, this approach relies on relations between views. Following  RobustVGGT , we identify rotated frames in a zero-shot manner directly from the model's internal feature representations. Specifically, we extract spatial patch tokens $\mathbf{X}_i \in \mathbb{R}^{N_p \times D_{\text{feat}}}$ and multi-head query-key projections $\mathbf{Q}_i, \mathbf{K}_i \in \mathbb{R}^{H \times N_p \times d_k}$ from the first global self-attention layer across an $N$-frame sequence during a single forward pass.
+
+\subsection{Relational Representation Matrix}
+For each frame pair $(i, j)$, we evaluate inter-frame consistency through token similarity and global attention:
+\begin{equation}
+S_{i,j} = \frac{1}{N_p^2} \sum_{u,v=1}^{N_p} \frac{\langle \mathbf{X}_{i,u}, \mathbf{X}_{j,v} \rangle}{\|\mathbf{X}_{i,u}\|_2 \|\mathbf{X}_{j,v}\|_2}, \qquad
+A_{i,j} = \frac{1}{H N_p} \sum_{h=1}^{H} \sum_{u=1}^{N_p} \operatorname{Softmax}\left( \frac{\mathbf{Q}_{i,u}^{(h)} (\mathbf{K}_j^{(h)})^\top}{\sqrt{d_k}} \right).
+\end{equation}
+Both matrices are min-max normalized to $[0, 1]$ across all frame pairs using a small constant $\epsilon = 10^{-6}$ for numerical stability, yielding normalized matrices $\mathbf{S}'$ and $\mathbf{A}'$. We construct the joint symmetric affinity matrix as $\mathbf{W} = \frac{1}{2}(\mathbf{S}' + \mathbf{A}') \in \mathbb{R}^{N \times N}$.
+
+\subsection{Sequence-Level Rotation Detection}
+To detect orientation anomalies, we define a sequence reference profile $\mathbf{r} \in \mathbb{R}^N$ by taking the column-wise median across frames, $r_j = \operatorname{median}_{i}(W_{i,j})$, and compute each frame's mean absolute deviation:
+\begin{equation}
+d_i = \frac{1}{N} \sum_{j=1}^{N} |W_{i,j} - r_j|.
+\end{equation}
+Frames are sorted in descending order of deviation: $\mathbf{d}_{\text{sorted}} = [d_{\rho(1)}, \dots, d_{\rho(N)}]$. We partition the sequence under two orientation priors:
+
+$\bullet$ \textbf{Minority Rotation (Gap-Based):} Assuming rotated frames form an anomalous minority ($s \le \lfloor N/2 \rfloor$), the decision boundary is placed at the largest consecutive deviation drop:
+    \begin{equation}
+    s^* = \arg\max_{1 \le s \le \lfloor N/2 \rfloor} (d_{\rho(s)} - d_{\rho(s+1)}).
+    \end{equation}
+    The top $s^*$ frames $\{\rho(1), \dots, \rho(s^*)\}$ are classified as \textbf{rotated}, while the remaining $N - s^*$ frames are labeled as \textbf{upright}.
+
+$\bullet$ \textbf{Majority Rotation (Variance Minimization):} When rotated frames dominate, the reference profile $\mathbf{r}$ reflects the rotated orientation, making upright frames appear as high-deviation outliers. We partition the sequence into candidate upright frames $G_{\text{up}} = \{d_{\rho(1)}, \dots, d_{\rho(s)}\}$ and rotated frames $G_{\text{rot}} = \{d_{\rho(s+1)}, \dots, d_{\rho(N)}\}$. Sweeping $s \in [1, \min(8, N-1)]$, the optimal split $s^*$ minimizes the within-class variance:
+    \begin{equation}
+    \sigma^2_w(s) = \frac{s}{N} \sigma^2(G_{\text{up}}) + \frac{N - s}{N} \sigma^2(G_{\text{rot}}).
+    \end{equation}
+    The top $s^*$ frames are isolated as \textbf{upright}, and the remaining $N - s^*$ frames are classified as \textbf{rotated}.
+
+
+\subsection{Sensitivity to the Rotation Prior}
+As shown in Table~\Cref{tab:rotation-prior}, detection is substantially more reliable when rotated frames form the minority (average Global F1 of $0.811$ vs.\ $0.543$ under the majority setting). Precision and recall both degrade when canonical reference frames become scarce, demonstrating the necessity of an upright reference anchor for unsupervised image identification
+
+\subsection{Limitations of RobustVGGT}
+The approach described in RobustVGGT drops the anomalous frames and predicts a sparse point cloud. Further, it would predict cameras only for the chosen frames. The results in \Cref{tab:rotation-prior} highlight two limitations of rejection based approach in RobustVGGT for handling rotated frames. First, detection depends on upright frames serving as a reference, and becomes unreliable when such frames are scarce. Second, even perfect detection discards the rotated views, reducing coverage of the scene. ROVER avoids both: it estimates the orientation of each view from its own DINOv2 features, independent of the fraction of rotated views, and retains all views after canonicalization. This allows our approach to recover reconstruction quality.
+
+% --- Table placed with [!b] so it anchors to the bottom of the page after Section N.3 ---
+\begin{table}[h]
+\centering
+\caption{Rotation detection performance under minority and majority rotated settings.}
+\label{tab:rotation-prior}
+
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{0.95}
+
+{\scriptsize
+\begin{tabular}{c l ccc ccc}
+\toprule
+& & \multicolumn{3}{c}{\textbf{Minority Rotated}} & \multicolumn{3}{c}{\textbf{Majority Rotated}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+\textbf{Dataset} & \textbf{Model} & \textbf{Prec.} $\uparrow$ & \textbf{Rec.} $\uparrow$ & \textbf{F1} $\uparrow$ & \textbf{Prec.} $\uparrow$ & \textbf{Rec.} $\uparrow$ & \textbf{F1} $\uparrow$ \\
+\midrule
+\multirow{3}{*}{DTU}
+& VGGT          & 0.9180 & 0.8127 & 0.8621 & 0.3676 & 0.3452 & 0.3560 \\
+& VGGT-$\Omega$ & 0.9144 & 0.8012 & 0.8541 & 0.5239 & 0.4179 & 0.4649 \\
+& $\pi^3$           & 0.9067 & 0.8024 & 0.8514 & 0.4168 & 0.3726 & 0.3935 \\
+\midrule
+\multirow{3}{*}{ETH3D}
+& VGGT          & 0.7673 & 0.6183 & 0.6848 & 0.3699 & 0.2847 & 0.3217 \\
+& VGGT-$\Omega$ & 0.7604 & 0.6135 & 0.6791 & 0.3608 & 0.3017 & 0.3286 \\
+& $\pi^3$           & 0.7545 & 0.6413 & 0.6933 & 0.4014 & 0.6423 & 0.4941 \\
+\midrule
+\multirow{3}{*}{Mip-NeRF 360}
+& VGGT          & 0.9442 & 0.8844 & 0.9133 & 0.8756 & 0.8368 & 0.8558 \\
+& VGGT-$\Omega$ & 0.9075 & 0.8394 & 0.8721 & 0.8895 & 0.7655 & 0.8228 \\
+& $\pi^3$           & 0.9121 & 0.8594 & 0.8849 & 0.8906 & 0.8130 & 0.8500 \\
+\midrule
+\textbf{Average} & & \textbf{0.865} & \textbf{0.764} & \textbf{0.811} & \textbf{0.566} & \textbf{0.531} & \textbf{0.543} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+% \subsection{Overview \& Motivation}
+% When feed forward models encounter mixed-orientation frames (where in-plane rotations are introduced to individual frames), the out-of-distribution rotation disrupts spatial feature correlation, causing severe pose estimation errors and trajectory drifts.
+
+% To resolve this, we test a self-supervised method to identify rotated frames directly from the network's internal features inspired by RobustVGGT\citep{robustvggt}. By extracting intermediate tokens and query-key attention maps from the global aggregator blocks during a single forward pass, we construct an $N \times N$ relational representation matrix to profile sequence-level orientation patterns. We analyze two clustering algorithms corresponding to two distinct priors:
+% \begin{enumerate}
+%     \item \textbf{Minority Rotation Detection:} Assumes that upright frames dominate the sequence and rotated frames represent the minority anomaly.
+%     \item \textbf{Majority Rotation Detection:} Assumes that rotated frames form the majority of the sequence and upright frames represent the minority anomaly.
+% \end{enumerate}
+
+% \subsection{Relational Representation Matrix Construction}
+% For a sequence of $N$ image frames, the algorithm extracts intermediate representations from the initial global self-attention layer to capture:
+% \begin{itemize}
+%     \item \textbf{Token Representations ($\mathbf{X}$):} Let $\mathbf{X}_i \in \mathbb{R}^{P \times D}$ be the spatial patch tokens for frame $i$, where $P$ is the number of tokens per image and $D$ is the feature dimension.
+%     \item \textbf{Attention Query ($\mathbf{Q}$) and Key ($\mathbf{K}$) Projections:} Let $\mathbf{Q}_i \in \mathbb{R}^{H \times P \times d_k}$ and $\mathbf{K}_i \in \mathbb{R}^{H \times P \times d_k}$ represent the query and key maps, where $H$ is the number of attention heads.
+% \end{itemize}
+
+% For each frame $i$ acting as an ``anchor,'' we compute its relationship to all other frames $j \in [1, N]$ using two normalized metrics:
+
+% \subsubsection{Spatial Token Cosine Similarity Matrix ($C$)}
+% For an anchor frame $i$, the spatial similarity vector relative to frame $j$ is computed by taking the average pairwise cosine similarity between their spatial patch features:
+% \begin{equation}
+% C_{i,j} = \frac{1}{P^2} \sum_{p=1}^{P} \sum_{q=1}^{P} \frac{\langle \mathbf{X}_{i,p}, \mathbf{X}_{j,q} \rangle}{\|\mathbf{X}_{i,p}\|_2 \|\mathbf{X}_{j,q}\|_2}
+% \end{equation}
+% The raw similarities are then min-max normalized across all frames to establish a range of $[0, 1]$:
+% \begin{equation}
+% C'_{i,j} = \frac{C_{i,j} - \min_{k} C_{i,k}}{\max_{k} C_{i,k} - \min_{k} C_{i,k} + \epsilon}
+% \end{equation}
+
+% \subsubsection{Cross-Image Attention Matrix ($A$)}
+% The attention weight assigned by anchor frame $i$ to target frame $j$ is computed from the softmax probabilities of the dot-product attention queries:
+% \begin{equation}
+% A_{i,j} = \frac{1}{H \cdot P} \sum_{h=1}^{H} \sum_{p=1}^{P} \operatorname{Softmax}\left( \frac{\mathbf{Q}_{i,p}^{(h)} (\mathbf{K}_j^{(h)})^T}{\sqrt{d_k}} \right)
+% \end{equation}
+% Similarly, the attention scores are min-max normalized:
+% \begin{equation}
+% A'_{i,j} = \frac{A_{i,j} - \min_{k} A_{i,k}}{\max_{k} A_{i,k} - \min_{k} A_{i,k} + \epsilon}
+% \end{equation}
+
+% \subsubsection{Combined Relational Matrix ($M$)}
+% To capture both semantic feature similarity and receptive-field attention, we build the final symmetric relational matrix $M \in \mathbb{R}^{N \times N}$:
+% \begin{equation}
+% M_{i,j} = 0.5 \cdot C'_{i,j} + 0.5 \cdot A'_{i,j}
+% \end{equation}
+
+
+% \subsection{Detection Algorithms}
+% Both algorithms convert the relational matrix $M$ into a 1D sequence deviation score. First, they construct a sequence-level ``median template profile'' representing the typical relational behavior of the sequence:
+% \begin{equation}
+% \mathbf{T} = \operatorname{median}(M, \text{axis}=0)
+% \end{equation}
+% The absolute deviation of each frame $i$ from the template is computed as:
+% \begin{equation}
+% d_i = \frac{1}{N} \sum_{j=1}^{N} |M_{i,j} - \mathbf{T}_j|
+% \end{equation}
+% Frames are then sorted by descending deviation score: $\mathbf{d}_{\text{sorted}} = [d_{\pi(1)}, d_{\pi(2)}, \dots, d_{\pi(N)}]$ where $d_{\pi(1)} \ge d_{\pi(2)} \dots \ge d_{\pi(N)}$.
+
+% \subsubsection{Method A: Gap-Based Minority Clustering}
+% This method assumes that \textbf{rotated frames are the minority anomaly}, exhibiting unusually high deviations ($d_i$) relative to the upright template profile.
+% \begin{enumerate}
+%     \item The differences (gaps) between consecutive sorted deviations are calculated:
+%     \begin{equation}
+%     g_k = d_{\pi(k)} - d_{\pi(k+1)}, \quad \text{for } k \in [1, N-1]
+%     \end{equation}
+%     \item Under the minority constraint, no more than half of the frames can be rotated. The search window is restricted to:
+%     \begin{equation}
+%     k \in \left[1, \left\lfloor \frac{N-1}{2} \right\rfloor\right]
+%     \end{equation}
+%     \item The cluster boundary is defined at the rank index that maximizes the gap:
+%     \begin{equation}
+%     k^* = \arg\max_{k} g_k
+%     \end{equation}
+%     \item The frames corresponding to indices $\{\pi(1), \dots, \pi(k^*)\}$ are classified as \textbf{rotated}.
+% \end{enumerate}
+
+% \subsubsection{Method B: Otsu-Style Variance Minimization}
+% This method assumes that \textbf{rotated frames are the majority}, and upright frames are the anomalous minority. In this scenario, the template profile $\mathbf{T}$ represents rotated frames, making the upright frames appear as high-deviation anomalies.
+% \begin{enumerate}
+%     \item A threshold index $k$ is swept from $1$ to $\min(8, N-1)$ to partition the sorted deviations into two groups: an upright group $G_{\text{up}} = \{d_{\pi(1)}, \dots, d_{\pi(k)}\}$ and a rotated group $G_{\text{rot}} = \{d_{\pi(k+1)}, \dots, d_{\pi(N)}\}$.
+%     \item For each split, we calculate the within-class variance:
+%     \begin{equation}
+%     \sigma^2_w(k) = \frac{k}{N} \sigma^2(G_{\text{up}}) + \frac{N - k}{N} \sigma^2(G_{\text{rot}})
+%     \end{equation}
+%     \item The optimal partition index is chosen to minimize this within-class variance:
+%     \begin{equation}
+%     k^* =z \arg\min_{k} \sigma^2_w(k)
+%     \end{equation}
+%     \item The frames $\{\pi(1), \dots, \pi(k^*)\}$ are isolated as \textbf{upright}, and the remaining $N - k^*$ frames are classified as \textbf{rotated}.
+% \end{enumerate}
+% \subsection{Sensitivity to the Rotation Prior}
+
+% Table~\Cref{tab:rotation-prior} compares rotation detection performance
+% when rotated frames constitute the minority versus the majority of the
+% sequence. The method performs substantially better in the
+% minority-rotated setting, with average Global F1 decreasing from
+% $0.811$ to $0.543$ when rotated frames become the majority. Both
+% precision and recall also degrade, indicating reduced reliability in
+% identifying the minority orientation.
+
+
+
+% \begin{table}[t]
+% \centering
+% \caption{Rotation detection performance under minority- and
+% majority-rotated settings.}
+% \label{tab:rotation-prior}
+
+% \setlength{\tabcolsep}{2.5pt}
+% \renewcommand{\arraystretch}{0.9}
+
+% {\scriptsize
+% \begin{tabular}{c l ccc ccc}
+% \toprule
+
+% & &
+% \multicolumn{3}{c}{\textbf{Minority Rotated}} &
+% \multicolumn{3}{c}{\textbf{Majority Rotated}} \\
+
+% \cmidrule(lr){3-5}
+% \cmidrule(lr){6-8}
+
+% \textbf{Dataset}
+% & \textbf{Model}
+% & \textbf{Prec.} $\uparrow$
+% & \textbf{Rec.} $\uparrow$
+% & \textbf{F1} $\uparrow$
+% & \textbf{Prec.} $\uparrow$
+% & \textbf{Rec.} $\uparrow$
+% & \textbf{F1} $\uparrow$ \\
+
+% \midrule
+
+% \multirow{3}{*}{DTU}
+% & VGGT
+% & 0.9180 & 0.8127 & 0.8621
+% & 0.3676 & 0.3452 & 0.3560 \\
+
+% & VGGT-$\Omega$
+% & 0.9144 & 0.8012 & 0.8541
+% & 0.5239 & 0.4179 & 0.4649 \\
+
+% & PI3
+% & 0.9067 & 0.8024 & 0.8514
+% & 0.4168 & 0.3726 & 0.3935 \\
+
+% \midrule
+
+% \multirow{3}{*}{ETH3D}
+% & VGGT
+% & 0.7673 & 0.6183 & 0.6848
+% & 0.3699 & 0.2847 & 0.3217 \\
+
+% & VGGT-$\Omega$
+% & 0.7604 & 0.6135 & 0.6791
+% & 0.3608 & 0.3017 & 0.3286 \\
+% 

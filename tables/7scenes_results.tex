@@ -1,0 +1,65 @@
+\begin{table}[]
+\centering
+\scriptsize
+\caption{Comparison of the original foundation models (Base) and the corresponding models enhanced with our method (Ours) on 7Scenes dataset.}
+\label{tab:7scenes_results}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{lcc|cc|cc|cc|cc}
+\toprule
+& \multicolumn{2}{c|}{\textbf{ATE} $\downarrow$}
+& \multicolumn{2}{c|}{\textbf{RPE$_{\text{rot}}$} $\downarrow$}
+& \multicolumn{2}{c|}{\textbf{AUC$_{30}$} $\uparrow$}
+& \multicolumn{2}{c|}{\textbf{Acc} $\downarrow$}
+& \multicolumn{2}{c}{\textbf{NC} $\uparrow$} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+\cmidrule(lr){8-9}
+\cmidrule(lr){10-11}
+\textbf{Model}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours}
+& \textbf{Base} & \textbf{Ours} \\
+\midrule
+VGGT
+& 0.291 & \textbf{0.088}
+& 36.22$^\circ$ & \textbf{4.99$^\circ$}
+& 54.0 & \textbf{78.5}
+& 0.063 & \textbf{0.032}
+& 0.614 & \textbf{0.654} \\
+
+VGGT-$\Omega$
+& 0.069 & \textbf{0.049}
+& 3.82$^\circ$ & \textbf{1.60$^\circ$}
+& 78.1 & \textbf{83.6}
+& 0.028 & \textbf{0.023}
+& 0.667 & \textbf{0.668} \\
+
+$\pi^3$
+& 0.270 & \textbf{0.072}
+& 36.11$^\circ$ & \textbf{6.94$^\circ$}
+& 57.1 & \textbf{80.7}
+& 0.066 & \textbf{0.030}
+& 0.625 & \textbf{0.671} \\
+
+DA3
+& 0.218 & \textbf{0.082}
+& 27.39$^\circ$ & \textbf{4.91$^\circ$}
+& 58.7 & \textbf{80.5}
+& 0.065 & \textbf{0.037}
+& 0.636 & \textbf{0.667} \\
+
+MapAnything
+& 0.353 & \textbf{0.149}
+& 33.25$^\circ$ & \textbf{8.12$^\circ$}
+& 36.4 & \textbf{62.8}
+& 0.099 & \textbf{0.078}
+& 0.594 & \textbf{0.627} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+

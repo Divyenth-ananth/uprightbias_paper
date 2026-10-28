@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Pose estimation on ETH3D}
+\label{tab:pose_eth3d}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{Racc@30 $\uparrow$} & \multicolumn{2}{c}{Tacc@30 $\uparrow$} & \multicolumn{2}{c}{ATE $\downarrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+  & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+\midrule
+VGGT & \textbf{93.19} & 91.50 & \textbf{89.12} & 86.57 & \textbf{0.8941} & 0.9595 \\
+VGGT-$\Omega$ & \textbf{100.00} & 99.97 & \textbf{99.81} & 99.76 & 0.1219 & \textbf{0.1005} \\
+$\pi^3$ & \textbf{96.52} & 95.55 & \textbf{96.06} & 95.06 & \textbf{0.7610} & 0.8272 \\
+MapA & \textbf{89.74} & 89.06 & \textbf{81.04} & 80.06 & 1.05 & \textbf{1.07} \\
+DA3 & 88.27 & \textbf{88.39} & \textbf{88.87} & 88.46 & 0.9091 & \textbf{0.8170} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

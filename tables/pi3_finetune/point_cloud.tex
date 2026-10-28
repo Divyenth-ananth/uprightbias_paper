@@ -1,0 +1,165 @@
+% \newcommand{\result}[2]{%
+%   \makecell{#1\\[-2pt]{\scriptsize $\pm$#2}}%
+% }
+
+% \newcommand{\bestresult}[2]{%
+%   \makecell{\bfseries #1\\[-2pt]{\scriptsize $\mathbf{\pm #2}$}}%
+% }
+
+% \begin{table}[H]
+% \centering
+% \caption{
+% DTU test-scene point-cloud metrics for the $\pi^3$ backbone.
+% Results are reported as mean $\pm$ standard deviation over 50 rotation
+% sets per scene. PT denotes pretrained, PT+VC applies DINOv2 variance
+% correction, and FT denotes finetuning (v2). Best results are bold.
+% }
+% \label{tab:pointmap_pi3_variants_dtu}
+
+% \setlength{\tabcolsep}{4.2pt}
+% \renewcommand{\arraystretch}{1.12}
+% \small
+
+% \begin{tabular}{l ccc ccc ccc}
+% \toprule
+% \multirow{2}{*}{Scene}
+% & \multicolumn{3}{c}{Accuracy $\downarrow$}
+% & \multicolumn{3}{c}{Completeness $\downarrow$}
+% & \multicolumn{3}{c}{Normal Consistency $\uparrow$} \\
+% \cmidrule(lr){2-4}
+% \cmidrule(lr){5-7}
+% \cmidrule(lr){8-10}
+% & PT & PT+VC(Ours) & FT
+% & PT & PT+VC(Ours) & FT
+% & PT & PT+VC(Ours) & FT \\
+% \midrule    
+
+% scan1
+% & \result{0.923}{0.311}
+% & \bestresult{0.797}{0.269}
+% & \result{2.251}{0.279}
+% & \result{0.902}{0.281}
+% & \bestresult{0.828}{0.238}
+% & \result{1.347}{0.161}
+% & \result{0.646}{0.009}
+% & \result{0.643}{0.007}
+% & \bestresult{0.652}{0.006}
+% \\
+
+% scan10
+% & \result{5.701}{6.254}
+% & \result{5.044}{5.790}
+% & \bestresult{4.340}{1.000}
+% & \result{4.463}{9.323}
+% & \bestresult{3.511}{6.707}
+% & \result{4.057}{0.704}
+% & \result{0.655}{0.020}
+% & \result{0.652}{0.022}
+% & \bestresult{0.681}{0.013}
+% \\
+
+% scan118
+% & \result{3.384}{2.605}
+% & \result{1.841}{1.423}
+% & \bestresult{1.467}{0.272}
+% & \result{5.969}{9.243}
+% & \result{3.183}{7.865}
+% & \bestresult{1.493}{0.286}
+% & \result{0.593}{0.039}
+% & \bestresult{0.610}{0.028}
+% & \result{0.608}{0.004}
+% \\
+
+% scan77
+% & \bestresult{5.962}{1.011}
+% & \result{6.149}{1.069}
+% & \result{7.931}{1.186}
+% & \bestresult{6.658}{1.894}
+% & \result{6.938}{1.831}
+% & \result{12.447}{2.721}
+% & \result{0.622}{0.010}
+% & \bestresult{0.628}{0.012}
+% & \result{0.607}{0.007}
+% \\
+
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\result}[2]{%
+  \makecell{#1\\[-2pt]{\scriptsize $\pm$#2}}%
+}
+
+\newcommand{\bestresult}[2]{%
+  \makecell{\bfseries #1\\[-2pt]{\scriptsize $\mathbf{\pm #2}$}}%
+}
+
+\begin{table}[H]
+\centering
+\caption{
+DTU test-scene point-cloud metrics for the $\pi^3$ backbone finetuning with rebalanced dataset.
+Results are reported as mean $\pm$ standard deviation over 50 rotation
+sets per scene. We compare the pretrained model with the finetuned
+model.
+}
+\label{tab:pointmap_pi3_variants_dtu}
+
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.12}
+\small
+
+\begin{tabular}{l cc cc cc}
+\toprule
+\multirow{2}{*}{Scene}
+& \multicolumn{2}{c}{Accuracy $\downarrow$}
+& \multicolumn{2}{c}{Completeness $\downarrow$}
+& \multicolumn{2}{c}{Normal Consistency $\uparrow$} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+& Pretrained & Finetuned
+& Pretrained & Finetuned
+& Pretrained & Finetuned \\
+\midrule    
+
+scan1
+& \bestresult{0.923}{0.311}
+& \result{2.251}{0.279}
+& \bestresult{0.902}{0.281}
+& \result{1.347}{0.161}
+& \result{0.646}{0.009}
+& \bestresult{0.652}{0.006}
+\\
+
+scan10
+& \result{5.701}{6.254}
+& \bestresult{4.340}{1.000}
+& \result{4.463}{9.323}
+& \bestresult{4.057}{0.704}
+& \result{0.655}{0.020}
+& \bestresult{0.681}{0.013}
+\\
+
+scan118
+& \result{3.384}{2.605}
+& \bestresult{1.467}{0.272}
+& \result{5.969}{9.243}
+& \bestresult{1.493}{0.286}
+& \result{0.593}{0.039}
+& \bestresult{0.608}{0.004}
+\\
+
+scan77
+& \bestresult{5.962}{1.011}
+& \result{7.931}{1.186}
+& \bestresult{6.658}{1.894}
+& \result{12.447}{2.721}
+& \bestresult{0.622}{0.010}
+& \result{0.607}{0.007}
+\\
+
+\bottomrule
+\end{tabular}
+\end{table}

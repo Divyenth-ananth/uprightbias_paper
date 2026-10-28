@@ -1,0 +1,38 @@
+\begin{table}[h]
+\centering
+\caption{Camera pose estimation on ETH3D and DTU datasets. We observe ROVER helps recover performance of feed forward models}
+\label{tab:pose_eth3d_dtu_suppl}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l *{3}{cc} *{3}{cc}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{ETH3D}} & \multicolumn{6}{c}{\textbf{DTU}} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+ & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+\textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT & \dd{93.03}{13.02} & \dd{\textbf{94.02}}{13.86} & \dd{87.57}{14.92} & \dd{\textbf{89.80}}{14.96} & \dd{70.54}{22.51} & \dd{\textbf{72.81}}{22.81} & \dd{94.376}{13.945} & \dd{\textbf{97.275}}{9.516} & \dd{94.969}{11.294} & \dd{\textbf{97.631}}{7.825} & \dd{86.101}{18.090} & \dd{\textbf{91.598}}{12.317} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ & \dd{99.98}{0.08} & \dd{\textbf{100.00}}{0.00} & \dd{99.79}{0.26} & \dd{\textbf{99.82}}{0.52} & \dd{95.07}{2.80} & \dd{\textbf{95.26}}{2.58} & \dd{94.376}{13.945} & \dd{\textbf{99.790}}{3.404} & \dd{94.969}{11.294} & \dd{\textbf{99.791}}{3.197} & \dd{86.101}{18.090} & \dd{\textbf{95.274}}{5.058} \\
+\addlinespace[3pt]
+
+$\pi^3$ & \dd{96.35}{5.99} & \dd{\textbf{96.75}}{7.70} & \dd{95.51}{5.83} & \dd{\textbf{96.23}}{6.34} & \dd{81.89}{12.70} & \dd{\textbf{83.80}}{12.70} & \dd{98.968}{5.622} & \dd{\textbf{99.463}}{3.242} & \dd{98.770}{5.083} & \dd{\textbf{99.404}}{2.926} & \dd{88.982}{9.397} & \dd{\textbf{91.402}}{6.224} \\
+\addlinespace[3pt]
+
+MapA. & \dd{89.93}{12.44} & \dd{\textbf{90.24}}{13.34} & \dd{81.10}{16.54} & \dd{\textbf{81.87}}{16.98} & \dd{57.25}{16.32} & \dd{\textbf{57.72}}{17.40} & \dd{84.536}{21.317} & \dd{\textbf{90.301}}{15.862} & \dd{76.994}{21.675} & \dd{\textbf{81.775}}{17.298} & \dd{46.868}{22.298} & \dd{\textbf{50.393}}{19.157} \\
+\addlinespace[3pt]
+
+DA3 & \dd{87.74}{12.92} & \dd{\textbf{88.38}}{16.78} & \dd{88.16}{15.58} & \dd{\textbf{88.90}}{18.02} & \dd{79.62}{17.07} & \dd{\textbf{79.73}}{20.59} & \dd{89.745}{17.853} & \dd{\textbf{92.648}}{15.361} & \dd{89.612}{16.658} & \dd{\textbf{92.150}}{14.054} & \dd{73.804}{23.601} & \dd{\textbf{77.048}}{22.030} \\
+\addlinespace[3pt]
+
+\bottomrule
+\end{tabular}
+}
+\end{table}

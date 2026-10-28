@@ -1,0 +1,41 @@
+\begin{table}[H]
+\centering
+\caption{Point map estimation on Tanks\&Temples and Mip-NeRF 360 datasets. ROVER consistently improves performance of feed forward models by canocalizing input images.}
+\label{tab:pointmap_rover_format_suppl}
+\small
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{4pt}
+\providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l *{3}{cc} *{3}{cc}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Tanks\&Temples}} & \multicolumn{6}{c}{\textbf{Mip-NeRF 360}} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+ & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+\textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT & \dd{0.322}{0.098} & \dd{\textbf{0.247}}{0.045} & \dd{0.594}{0.336} & \dd{\textbf{0.539}}{0.214} & \dd{0.629}{0.055} & \dd{\textbf{0.648}}{0.046} & \dd{0.021}{0.006} & \dd{\textbf{0.014}}{0.003} & \dd{0.040}{0.023} & \dd{\textbf{0.019}}{0.004} & \dd{0.678}{0.034} & \dd{\textbf{0.726}}{0.025} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ & \dd{0.190}{0.048} & \dd{\textbf{0.157}}{0.025} & \dd{0.143}{0.058} & \dd{\textbf{0.126}}{0.032} & \dd{0.707}{0.028} & \dd{\textbf{0.719}}{0.021} & \dd{0.017}{0.004} & \dd{\textbf{0.014}}{0.002} & \dd{0.017}{0.005} & \dd{\textbf{0.013}}{0.002} & \dd{0.684}{0.028} & \dd{\textbf{0.714}}{0.020} \\
+\addlinespace[3pt]
+
+$\pi^3$ & \dd{0.291}{0.100} & \dd{\textbf{0.199}}{0.041} & \dd{0.415}{0.173} & \dd{\textbf{0.347}}{0.081} & \dd{0.652}{0.049} & \dd{\textbf{0.689}}{0.032} & \dd{0.042}{0.015} & \dd{\textbf{0.026}}{0.005} & \dd{0.062}{0.035} & \dd{\textbf{0.034}}{0.009} & \dd{0.665}{0.037} & \dd{\textbf{0.711}}{0.023} \\
+\addlinespace[3pt]
+
+MapA. & \dd{0.340}{0.107} & \dd{\textbf{0.297}}{0.051} & \dd{0.808}{0.398} & \dd{\textbf{0.776}}{0.253} & \dd{0.595}{0.049} & \dd{\textbf{0.622}}{0.033} & \dd{0.351}{0.144} & \dd{\textbf{0.260}}{0.079} & \dd{0.568}{0.288} & \dd{\textbf{0.407}}{0.196} & \dd{0.628}{0.068} & \dd{\textbf{0.665}}{0.070} \\
+\addlinespace[3pt]
+
+DA3 & \dd{0.407}{0.155} & \dd{\textbf{0.275}}{0.063} & \dd{0.534}{0.335} & \dd{\textbf{0.335}}{0.117} & \dd{0.641}{0.049} & \dd{\textbf{0.674}}{0.033} & \dd{0.319}{0.169} & \dd{\textbf{0.162}}{0.069} & \dd{0.396}{0.381} & \dd{\textbf{0.156}}{0.067} & \dd{0.646}{0.035} & \dd{\textbf{0.683}}{0.026} \\
+\addlinespace[3pt]
+
+\bottomrule
+\end{tabular}
+
+% 2 Outliers Excluded: scan13 and scan29 [has some variations in pitch/yaw].
+% scan11 Excluded: angle renders were poor and were excluded.
+}
+\end{table}

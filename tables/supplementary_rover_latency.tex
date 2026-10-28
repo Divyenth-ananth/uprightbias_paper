@@ -1,0 +1,51 @@
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\caption{Latency and computational overhead of ROVER across VGGT, VGGT-$\Omega$, $\pi^3$, MapAnything and DepthAnything3}
+\label{tab:rover_latency}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} &
+\textbf{Base Latency} &
+\textbf{ROVER Correction} &
+\textbf{Total Latency} &
+\textbf{Added Overhead} \\
+& \textbf{(seconds)} &
+\textbf{(seconds)} &
+\textbf{(seconds)} &
+\textbf{(\%)} \\
+\midrule
+VGGT
+& \valrow{1.769}{0.017}
+& \valrow{0.433}{0.004}
+& \valrow{2.169}{0.027}
+& $+24.5\%$ \\
+
+VGGT-$\Omega$
+& \valrow{1.400}{0.006}
+& \valrow{0.424}{0.003}
+& \valrow{1.786}{0.009}
+& $+30.3\%$ \\
+
+$\pi^3$
+& \valrow{1.296}{0.004}
+& \valrow{0.428}{0.001}
+& \valrow{1.701}{0.034}
+& $+33.0\%$ \\
+
+MapA
+& \valrow{5.789}{0.038}
+& \valrow{0.430}{0.004}
+& \valrow{6.203}{0.033}
+& $+7.4\%$ \\
+
+DA3
+& \valrow{2.003}{0.010}
+& \valrow{0.431}{0.003}
+& \valrow{2.444}{0.016}
+& $+21.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}

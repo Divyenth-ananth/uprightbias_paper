@@ -1,0 +1,38 @@
+\begin{table}[h]
+\centering
+\caption{Camera pose estimation on Tanks\&Temples and Mip-NeRF 360 datasets. We observe ROVER helps recover performance of feed forward models}
+\label{tab:pose_rover_format_suppl}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{2pt}
+\providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l *{3}{cc} *{3}{cc}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Tanks\&Temples}} & \multicolumn{6}{c}{\textbf{Mip-NeRF 360}} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+ & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+\textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT & \dd{70.419}{16.405} & \dd{\textbf{86.028}}{6.329} & \dd{73.793}{11.929} & \dd{\textbf{84.134}}{4.598} & \dd{54.563}{14.883} & \dd{\textbf{72.567}}{4.997} & \dd{95.961}{5.195} & \dd{\textbf{100.000}}{0.000} & \dd{96.069}{4.732} & \dd{\textbf{99.872}}{0.278} & \dd{84.226}{9.689} & \dd{\textbf{93.703}}{2.519} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ & \dd{98.780}{3.576} & \dd{\textbf{99.610}}{1.424} & \dd{93.049}{4.217} & \dd{\textbf{93.870}}{2.607} & \dd{81.307}{7.807} & \dd{\textbf{87.009}}{4.083} & \dd{99.956}{0.279} & \dd{\textbf{100.000}}{0.000} & \dd{99.541}{0.772} & \dd{\textbf{99.948}}{0.145} & \dd{91.373}{3.887} & \dd{\textbf{96.458}}{1.191} \\
+\addlinespace[3pt]
+
+$\pi^3$ & \dd{70.350}{11.942} & \dd{\textbf{87.248}}{2.603} & \dd{72.386}{9.104} & \dd{\textbf{83.846}}{1.889} & \dd{53.893}{13.126} & \dd{\textbf{74.584}}{4.079} & \dd{96.141}{5.166} & \dd{\textbf{100.000}}{0.000} & \dd{96.828}{4.049} & \dd{\textbf{99.768}}{0.338} & \dd{82.922}{8.558} & \dd{\textbf{92.765}}{2.403} \\
+\addlinespace[3pt]
+
+MapA. & \dd{59.961}{18.558} & \dd{\textbf{83.504}}{7.109} & \dd{63.738}{13.405} & \dd{\textbf{80.606}}{6.166} & \dd{36.130}{18.636} & \dd{\textbf{62.529}}{10.936} & \dd{87.015}{12.013} & \dd{\textbf{95.967}}{5.741} & \dd{86.318}{10.531} & \dd{\textbf{95.656}}{5.312} & \dd{56.776}{16.878} & \dd{\textbf{75.265}}{9.465} \\
+\addlinespace[3pt]
+
+DA3 & \dd{63.829}{19.325} & \dd{\textbf{87.285}}{8.889} & \dd{68.695}{15.722} & \dd{\textbf{86.463}}{8.416} & \dd{45.356}{21.409} & \dd{\textbf{75.814}}{11.952} & \dd{86.272}{11.855} & \dd{\textbf{98.685}}{2.499} & \dd{90.395}{9.753} & \dd{\textbf{99.036}}{1.549} & \dd{71.490}{15.075} & \dd{\textbf{91.869}}{6.288} \\
+\addlinespace[3pt]
+
+\bottomrule
+\end{tabular}
+}
+\end{table}

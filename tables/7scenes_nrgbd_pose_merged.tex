@@ -1,0 +1,127 @@
+% \begin{table*}[ht]
+% \centering
+% \caption{Camera pose estimation on 7-Scenes, NRGBD, and the Captured dataset (mean values $\pm$ std-dev).}
+% \label{tab:pose_combined}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc}
+% \toprule
+% \multirow{3}{*}{Method} & \multicolumn{6}{c}{7-Scenes} & \multicolumn{6}{c}{NRGBD} & \multicolumn{6}{c}{Captured} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+%  & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+%  & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+% \midrule
+% VGGT & \textbf{98.630 $\pm$ 2.376} & 77.488 $\pm$ 19.176 & \textbf{94.501 $\pm$ 5.762} & 74.916 $\pm$ 17.259 & \textbf{78.508 $\pm$ 6.636} & 53.970 $\pm$ 20.867 & \textbf{100.000 $\pm$ 0.000} & 90.495 $\pm$ 12.946 & \textbf{99.887 $\pm$ 0.159} & 90.901 $\pm$ 10.154 & \textbf{97.132 $\pm$ 0.953} & 78.216 $\pm$ 17.154 & \textbf{96.850 $\pm$ 3.306} & 88.461 $\pm$ 15.139 & \textbf{97.994 $\pm$ 2.304} & 90.944 $\pm$ 12.585 & \textbf{84.147 $\pm$ 8.342} & 72.173 $\pm$ 19.150 \\
+% VGGT-$\Omega$ & \textbf{99.913 $\pm$ 0.389} & 99.204 $\pm$ 2.584 & \textbf{98.269 $\pm$ 1.237} & 96.170 $\pm$ 4.342 & \textbf{83.628 $\pm$ 3.186} & 78.127 $\pm$ 7.774 & \textbf{100.000 $\pm$ 0.000} & \textbf{100.000 $\pm$ 0.000} & \textbf{99.964 $\pm$ 0.050} & 99.388 $\pm$ 0.761 & \textbf{98.023 $\pm$ 0.905} & 93.006 $\pm$ 3.945 & \textbf{98.862 $\pm$ 1.595} & 98.679 $\pm$ 2.189 & \textbf{99.832 $\pm$ 0.232} & 99.573 $\pm$ 0.788 & \textbf{85.597 $\pm$ 6.619} & 83.572 $\pm$ 7.659 \\
+% $\pi^3$ & \textbf{98.066 $\pm$ 3.004} & 78.600 $\pm$ 13.680 & \textbf{96.748 $\pm$ 3.067} & 76.681 $\pm$ 14.052 & \textbf{80.712 $\pm$ 5.414} & 57.050 $\pm$ 15.497 & \textbf{99.898 $\pm$ 0.366} & 91.276 $\pm$ 9.308 & \textbf{99.817 $\pm$ 0.443} & 90.490 $\pm$ 7.706 & \textbf{95.212 $\pm$ 1.344} & 79.091 $\pm$ 10.716 & \textbf{98.943 $\pm$ 1.481} & 92.915 $\pm$ 10.416 & \textbf{99.817 $\pm$ 0.293} & 93.946 $\pm$ 8.614 & \textbf{85.252 $\pm$ 6.599} & 74.622 $\pm$ 13.220 \\
+% MapA & \textbf{98.095 $\pm$ 2.670} & 74.286 $\pm$ 16.485 & \textbf{86.998 $\pm$ 5.975} & 63.906 $\pm$ 14.728 & \textbf{62.773 $\pm$ 7.719} & 36.844 $\pm$ 16.901 & \textbf{99.898 $\pm$ 0.651} & 75.811 $\pm$ 21.306 & \textbf{98.494 $\pm$ 1.199} & 71.123 $\pm$ 19.261 & \textbf{87.221 $\pm$ 3.777} & 46.798 $\pm$ 22.840 & \textbf{98.426 $\pm$ 2.300} & 68.551 $\pm$ 24.052 & \textbf{97.999 $\pm$ 1.640} & 73.569 $\pm$ 18.964 & \textbf{80.733 $\pm$ 7.921} & 44.558 $\pm$ 25.058 \\
+% DA3 & \textbf{98.220 $\pm$ 2.682} & 82.471 $\pm$ 14.365 & \textbf{93.438 $\pm$ 5.671} & 79.138 $\pm$ 12.353 & \textbf{80.515 $\pm$ 5.989} & 58.667 $\pm$ 16.122 & \textbf{99.864 $\pm$ 0.417} & 89.510 $\pm$ 14.871 & \textbf{99.794 $\pm$ 0.597} & 88.561 $\pm$ 12.506 & \textbf{98.509 $\pm$ 1.615} & 73.373 $\pm$ 18.485 & \textbf{97.314 $\pm$ 4.809} & 80.479 $\pm$ 20.777 & \textbf{97.938 $\pm$ 3.533} & 85.232 $\pm$ 15.352 & \textbf{82.930 $\pm$ 9.692} & 60.886 $\pm$ 22.568 \\
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table*}
+
+% \begin{table*}[ht]
+% \centering
+% \caption{Camera pose estimation on 7-Scenes, NRGBD, and the Captured dataset (mean values $\pm$ std-dev).}
+% \label{tab:pose_combined}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{\begin{tabular}{l cc cc cc cc cc cc cc cc cc}
+% \toprule
+% \multirow{3}{*}{Method} & \multicolumn{6}{c}{7-Scenes} & \multicolumn{6}{c}{NRGBD} & \multicolumn{6}{c}{Captured} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+%  & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+%  & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline & Ours & Baseline \\
+% \midrule
+% VGGT & \textbf{98.63 $\pm$ 2.38} & 77.49 $\pm$ 19.18 & \textbf{94.50 $\pm$ 5.76} & 74.92 $\pm$ 17.26 & \textbf{78.51 $\pm$ 6.64} & 53.97 $\pm$ 20.87 & \textbf{100.00 $\pm$ 0.00} & 90.49 $\pm$ 12.95 & \textbf{99.89 $\pm$ 0.16} & 90.90 $\pm$ 10.15 & \textbf{97.13 $\pm$ 0.95} & 78.22 $\pm$ 17.15 & \textbf{96.85 $\pm$ 3.31} & 88.46 $\pm$ 15.14 & \textbf{97.99 $\pm$ 2.30} & 90.94 $\pm$ 12.58 & \textbf{84.15 $\pm$ 8.34} & 72.17 $\pm$ 19.15 \\
+% VGGT-$\Omega$ & \textbf{99.91 $\pm$ 0.39} & 99.20 $\pm$ 2.58 & \textbf{98.27 $\pm$ 1.24} & 96.17 $\pm$ 4.34 & \textbf{83.63 $\pm$ 3.19} & 78.13 $\pm$ 7.77 & \textbf{100.00 $\pm$ 0.00} & \textbf{100.00 $\pm$ 0.00} & \textbf{99.96 $\pm$ 0.05} & 99.39 $\pm$ 0.76 & \textbf{98.02 $\pm$ 0.90} & 93.01 $\pm$ 3.94 & \textbf{98.86 $\pm$ 1.60} & 98.68 $\pm$ 2.19 & \textbf{99.83 $\pm$ 0.23} & 99.57 $\pm$ 0.79 & \textbf{85.60 $\pm$ 6.62} & 83.57 $\pm$ 7.66 \\
+% $\pi^3$ & \textbf{98.07 $\pm$ 3.00} & 78.60 $\pm$ 13.68 & \textbf{96.75 $\pm$ 3.07} & 76.68 $\pm$ 14.05 & \textbf{80.71 $\pm$ 5.41} & 57.05 $\pm$ 15.50 & \textbf{99.90 $\pm$ 0.37} & 91.28 $\pm$ 9.31 & \textbf{99.82 $\pm$ 0.44} & 90.49 $\pm$ 7.71 & \textbf{95.21 $\pm$ 1.34} & 79.09 $\pm$ 10.72 & \textbf{98.94 $\pm$ 1.48} & 92.92 $\pm$ 10.42 & \textbf{99.82 $\pm$ 0.29} & 93.95 $\pm$ 8.61 & \textbf{85.25 $\pm$ 6.60} & 74.62 $\pm$ 13.22 \\
+% MapAnything & \textbf{98.10 $\pm$ 2.67} & 74.29 $\pm$ 16.49 & \textbf{87.00 $\pm$ 5.98} & 63.91 $\pm$ 14.73 & \textbf{62.77 $\pm$ 7.72} & 36.84 $\pm$ 16.90 & \textbf{99.90 $\pm$ 0.65} & 75.81 $\pm$ 21.31 & \textbf{98.49 $\pm$ 1.20} & 71.12 $\pm$ 19.26 & \textbf{87.22 $\pm$ 3.78} & 46.80 $\pm$ 22.84 & \textbf{98.43 $\pm$ 2.30} & 68.55 $\pm$ 24.05 & \textbf{98.00 $\pm$ 1.64} & 73.57 $\pm$ 18.96 & \textbf{80.73 $\pm$ 7.92} & 44.56 $\pm$ 25.06 \\
+% DepthAnything3 & \textbf{98.22 $\pm$ 2.68} & 82.47 $\pm$ 14.36 & \textbf{93.44 $\pm$ 5.67} & 79.14 $\pm$ 12.35 & \textbf{80.52 $\pm$ 5.99} & 58.67 $\pm$ 16.12 & \textbf{99.86 $\pm$ 0.42} & 89.51 $\pm$ 14.87 & \textbf{99.79 $\pm$ 0.60} & 88.56 $\pm$ 12.51 & \textbf{98.51 $\pm$ 1.62} & 73.37 $\pm$ 18.49 & \textbf{97.31 $\pm$ 4.81} & 80.48 $\pm$ 20.78 & \textbf{97.94 $\pm$ 3.53} & 85.23 $\pm$ 15.35 & \textbf{82.93 $\pm$ 9.69} & 60.89 $\pm$ 22.57 \\
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table*}[ht]
+\centering
+\caption{Camera pose estimation on 7-Scenes, NRGBD, and Tanks \& Temples (mean values $\pm$ std-dev).}
+\label{tab:pose_combined}
+\small
+\renewcommand{\arraystretch}{1}
+\setlength{\tabcolsep}{3pt}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l ccc ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{7-Scenes}} & \multicolumn{3}{c}{\textbf{NRGBD}} & \multicolumn{3}{c}{\textbf{Tanks \& Temples}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+\textbf{Method} 
+& RAcc$_{30}$ $\uparrow$ & TAcc$_{30}$ $\uparrow$ & AUC$_{30}$ $\uparrow$
+& RAcc$_{30}$ $\uparrow$ & TAcc$_{30}$ $\uparrow$ & AUC$_{30}$ $\uparrow$
+& RAcc$_{30}$ $\uparrow$ & TAcc$_{30}$ $\uparrow$ & AUC$_{30}$ $\uparrow$ \\
+\midrule
+
+VGGT
+& 77.49 {\tiny $\pm$ 19.18} & 74.92 {\tiny $\pm$ 17.26} & 53.97 {\tiny $\pm$ 20.87}
+& 90.49 {\tiny $\pm$ 12.95} & 90.90 {\tiny $\pm$ 10.15} & 78.22 {\tiny $\pm$ 17.15}
+& 88.42 {\tiny $\pm$ 13.06} & 85.73 {\tiny $\pm$ 14.91} & 71.84 {\tiny $\pm$ 15.72} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \textbf{98.63 {\tiny $\pm$ 2.38}} & \textbf{94.50 {\tiny $\pm$ 5.76}} & \textbf{78.51 {\tiny $\pm$ 6.64}}
+& \textbf{100.00 {\tiny $\pm$ 0.00}} & \textbf{99.89 {\tiny $\pm$ 0.16}} & \textbf{97.13 {\tiny $\pm$ 0.95}}
+& \textbf{98.74 {\tiny $\pm$ 2.11}} & \textbf{97.31 {\tiny $\pm$ 3.42}} & \textbf{84.26 {\tiny $\pm$ 7.18}} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$
+& 99.20 {\tiny $\pm$ 2.58} & 96.17 {\tiny $\pm$ 4.34} & 78.13 {\tiny $\pm$ 7.77}
+& 100.00 {\tiny $\pm$ 0.00} & 99.39 {\tiny $\pm$ 0.76} & 93.01 {\tiny $\pm$ 3.94}
+& 99.14 {\tiny $\pm$ 1.82} & 98.21 {\tiny $\pm$ 2.31} & 83.67 {\tiny $\pm$ 6.94} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \textbf{99.91 {\tiny $\pm$ 0.39}} & \textbf{98.27 {\tiny $\pm$ 1.24}} & \textbf{83.63 {\tiny $\pm$ 3.19}}
+& \textbf{100.00 {\tiny $\pm$ 0.00}} & \textbf{99.96 {\tiny $\pm$ 0.05}} & \textbf{98.02 {\tiny $\pm$ 0.90}}
+& \textbf{99.72 {\tiny $\pm$ 0.48}} & \textbf{99.31 {\tiny $\pm$ 0.64}} & \textbf{86.24 {\tiny $\pm$ 5.73}} \\
+\addlinespace[3pt]
+
+$\pi^3$
+& 78.60 {\tiny $\pm$ 13.68} & 76.68 {\tiny $\pm$ 14.05} & 57.05 {\tiny $\pm$ 15.50}
+& 91.28 {\tiny $\pm$ 9.31} & 90.49 {\tiny $\pm$ 7.71} & 79.09 {\tiny $\pm$ 10.72}
+& 90.17 {\tiny $\pm$ 10.24} & 87.45 {\tiny $\pm$ 11.06} & 73.62 {\tiny $\pm$ 12.31} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \textbf{98.07 {\tiny $\pm$ 3.00}} & \textbf{96.75 {\tiny $\pm$ 3.07}} & \textbf{80.71 {\tiny $\pm$ 5.41}}
+& \textbf{99.90 {\tiny $\pm$ 0.37}} & \textbf{99.82 {\tiny $\pm$ 0.44}} & \textbf{95.21 {\tiny $\pm$ 1.34}}
+& \textbf{99.03 {\tiny $\pm$ 1.12}} & \textbf{98.47 {\tiny $\pm$ 1.84}} & \textbf{85.76 {\tiny $\pm$ 5.21}} \\
+\addlinespace[3pt]
+
+MapAny.
+& 74.29 {\tiny $\pm$ 16.49} & 63.91 {\tiny $\pm$ 14.73} & 36.84 {\tiny $\pm$ 16.90}
+& 75.81 {\tiny $\pm$ 21.31} & 71.12 {\tiny $\pm$ 19.26} & 46.80 {\tiny $\pm$ 22.84}
+& 76.94 {\tiny $\pm$ 18.72} & 70.83 {\tiny $\pm$ 20.15} & 44.91 {\tiny $\pm$ 21.37} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \textbf{98.10 {\tiny $\pm$ 2.67}} & \textbf{87.00 {\tiny $\pm$ 5.98}} & \textbf{62.77 {\tiny $\pm$ 7.72}}
+& \textbf{99.90 {\tiny $\pm$ 0.65}} & \textbf{98.49 {\tiny $\pm$ 1.20}} & \textbf{87.22 {\tiny $\pm$ 3.78}}
+& \textbf{97.84 {\tiny $\pm$ 3.61}} & \textbf{92.13 {\tiny $\pm$ 5.74}} & \textbf{78.42 {\tiny $\pm$ 6.17}} \\
+\addlinespace[3pt]
+
+DA3
+& 82.47 {\tiny $\pm$ 14.36} & 79.14 {\tiny $\pm$ 12.35} & 58.67 {\tiny $\pm$ 16.12}
+& 89.51 {\tiny $\pm$ 14.87} & 88.56 {\tiny $\pm$ 12.51} & 73.37 {\tiny $\pm$ 18.49}
+& 86.73 {\tiny $\pm$ 15.48} & 82.91 {\tiny $\pm$ 17.23} & 69.42 {\tiny $\pm$ 16.84} \\
+\rowcolor{highlight}
+\quad + ROVER
+& \textbf{98.22 {\tiny $\pm$ 2.68}} & \textbf{93.44 {\tiny $\pm$ 5.67}} & \textbf{80.52 {\tiny $\pm$ 5.99}}
+& \textbf{99.86 {\tiny $\pm$ 0.42}} & \textbf{99.79 {\tiny $\pm$ 0.60}} & \textbf{98.51 {\tiny $\pm$ 1.62}}
+& \textbf{98.17 {\tiny $\pm$ 2.53}} & \textbf{96.42 {\tiny $\pm$ 3.71}} & \textbf{83.26 {\tiny $\pm$ 6.02}} \\
+
+\bottomrule
+\end{tabular}
+}
+\end{table*}

@@ -1,0 +1,91 @@
+\definecolor{datasetbg}{gray}{0.94}
+
+% Helper command to shift std dev right using left-alignment and offset spacing
+\begin{table}[h]
+    \centering
+    \caption{Point-map and camera-pose estimation performance under increasing fractions of rotated input views. Feed Forward models suffers consistent degradation as fraction of rotated frames increases}
+    \label{tab:supplementary_rotation_degradation}
+    \small
+    \setlength{\tabcolsep}{4.5pt}
+
+\begin{tabular}{@{}ll ccccc ccccc@{}}
+        \toprule
+        & & \multicolumn{5}{c}{\textbf{Point-map Estimation (N.C.)}}
+        & \multicolumn{5}{c}{\textbf{Camera Pose Estimation (AUC$_{30}$)}} \\
+        \cmidrule(lr){3-7} \cmidrule(lr){8-12}
+        & \textbf{Rot.}
+        & VGGT & VGGT-$\Omega$ & $\pi^3$ & MapA. & DA3
+        & VGGT & VGGT-$\Omega$ & $\pi^3$ & MapA. & DA3 \\
+        \midrule
+
+        % Tanks\&Temples (White / Default background)
+        & 0\%   & \valstd{0.665}{0.076} & \valstd{0.724}{0.067} & \valstd{0.707}{0.118} & \valstd{0.628}{0.152} & \valstd{0.707}{0.064}
+                & \valstd{76.4}{35.5} & \valstd{91.1}{16.1} & \valstd{79.6}{28.4} & \valstd{78.3}{22.7} & \valstd{94.2}{8.2} \\
+        & 25\%  & \valstd{0.641}{0.030} & \valstd{0.725}{0.017} & \valstd{0.684}{0.032} & \valstd{0.613}{0.029} & \valstd{0.664}{0.039}
+                & \valstd{66.6}{8.6} & \valstd{87.9}{3.2} & \valstd{67.7}{5.5} & \valstd{56.5}{8.9} & \valstd{62.6}{17.0} \\
+        & 50\%  & \valstd{0.641}{0.050} & \valstd{0.712}{0.018} & \valstd{0.656}{0.038} & \valstd{0.598}{0.038} & \valstd{0.650}{0.046}
+                & \valstd{57.2}{11.7} & \valstd{83.0}{4.2} & \valstd{56.1}{7.9} & \valstd{37.6}{12.5} & \valstd{47.8}{15.8} \\
+        & 75\%  & \valstd{0.625}{0.046} & \valstd{0.703}{0.017} & \valstd{0.646}{0.031} & \valstd{0.595}{0.052} & \valstd{0.626}{0.036}
+                & \valstd{49.5}{11.7} & \valstd{79.0}{7.1} & \valstd{48.5}{8.6} & \valstd{27.2}{9.8} & \valstd{34.5}{15.4} \\
+        \multirow{-7}{*}{\rotatebox[origin=c]{90}{\textbf{Tanks\&Temples}}}
+        & 100\% & \valstd{0.604}{0.043} & \valstd{0.685}{0.023} & \valstd{0.618}{0.040} & \valstd{0.572}{0.044} & \valstd{0.618}{0.042}
+                & \valstd{42.7}{9.6} & \valstd{74.4}{7.2} & \valstd{40.7}{6.9} & \valstd{18.8}{6.1} & \valstd{31.6}{10.0} \\
+        \addlinespace[3pt]
+
+        % MipNeRF (Shaded background)
+        % \rowcolor{datasetbg}
+        % & 0\%   & \valstd{0.748}{0.101} & \valstd{0.742}{0.078} & \valstd{0.734}{0.088} & \valstd{0.725}{0.119} & \valstd{0.717}{0.055}
+        %         & \valstd{96.1}{2.8} & \valstd{97.8}{1.4} & \valstd{96.7}{2.2} & \valstd{90.7}{7.0} & \valstd{98.5}{0.8} \\
+        \rowcolor{datasetbg}
+        & 25\%  & \valstd{0.712}{0.025} & \valstd{0.711}{0.016} & \valstd{0.704}{0.013} & \valstd{0.660}{0.070} & \valstd{0.671}{0.028}
+                & \valstd{90.1}{8.3} & \valstd{95.0}{1.7} & \valstd{90.8}{2.5} & \valstd{72.4}{10.1} & \valstd{82.4}{11.6} \\
+        \rowcolor{datasetbg}
+        & 50\%  & \valstd{0.685}{0.020} & \valstd{0.690}{0.013} & \valstd{0.676}{0.015} & \valstd{0.638}{0.059} & \valstd{0.656}{0.024}
+                & \valstd{87.2}{5.9} & \valstd{92.6}{2.8} & \valstd{85.3}{3.6} & \valstd{59.2}{12.4} & \valstd{72.4}{11.2} \\
+        \rowcolor{datasetbg}
+        & 75\%  & \valstd{0.664}{0.018} & \valstd{0.673}{0.013} & \valstd{0.649}{0.013} & \valstd{0.614}{0.050} & \valstd{0.633}{0.022}
+                & \valstd{83.5}{7.0} & \valstd{89.9}{2.5} & \valstd{80.0}{7.5} & \valstd{49.4}{10.5} & \valstd{65.4}{11.0} \\
+        \rowcolor{datasetbg}
+        \multirow{-7}{*}[0pt]{\rotatebox[origin=c]{90}{\footnotesize\textbf{Mip-NeRF 360}$^{*}$}}
+        & 100\% & \valstd{0.643}{0.011} & \valstd{0.654}{0.014} & \valstd{0.623}{0.011} & \valstd{0.591}{0.051} & \valstd{0.615}{0.020}
+                & \valstd{74.9}{7.8} & \valstd{87.4}{2.4} & \valstd{73.8}{4.7} & \valstd{42.7}{9.9} & \valstd{63.1}{9.7} \\
+        \addlinespace[3pt]
+
+        % DTU (White / Default background)
+        & 0\%   & \valstd{0.611}{0.048} & \valstd{0.634}{0.020} & \valstd{0.621}{0.032} & \valstd{0.577}{0.062} & \valstd{0.585}{0.054}
+                & \valstd{77.5}{18.7} & \valstd{93.2}{6.9} & \valstd{85.6}{11.6} & \valstd{33.0}{23.0} & \valstd{59.8}{25.5} \\
+        & 25\%  & \valstd{0.630}{0.027} & \valstd{0.629}{0.025} & \valstd{0.625}{0.025} & \valstd{0.625}{0.047} & \valstd{0.619}{0.035}
+                & \valstd{88.6}{14.1} & \valstd{95.1}{2.2} & \valstd{90.1}{7.6} & \valstd{36.5}{15.0} & \valstd{83.1}{12.9} \\
+        & 50\%  & \valstd{0.625}{0.030} & \valstd{0.632}{0.012} & \valstd{0.632}{0.015} & \valstd{0.598}{0.039} & \valstd{0.590}{0.043}
+                & \valstd{83.9}{16.8} & \valstd{94.6}{3.2} & \valstd{89.9}{5.5} & \valstd{41.8}{18.7} & \valstd{68.1}{22.3} \\
+        & 75\%  & \valstd{0.631}{0.023} & \valstd{0.632}{0.017} & \valstd{0.634}{0.011} & \valstd{0.620}{0.034} & \valstd{0.621}{0.038}
+                & \valstd{91.8}{9.1} & \valstd{94.5}{2.6} & \valstd{90.8}{5.2} & \valstd{57.7}{17.2} & \valstd{74.5}{18.8} \\
+        \multirow{-7}{*}{\rotatebox[origin=c]{90}{\textbf{DTU}}}
+        & 100\% & \valstd{0.619}{0.017} & \valstd{0.621}{0.011} & \valstd{0.615}{0.011} & \valstd{0.568}{0.029} & \valstd{0.587}{0.028}
+                & \valstd{79.6}{21.9} & \valstd{93.7}{3.4} & \valstd{84.7}{10.4} & \valstd{39.6}{17.7} & \valstd{63.4}{32.8} \\
+        \addlinespace[3pt]
+
+        % RotMV (Shaded background)
+        % \rowcolor{datasetbg}
+        % & 0\%   & \valstd{1.000}{0.000} & \valstd{1.000}{0.000} & \valstd{1.000}{0.000} & \valstd{0.914}{0.059} & \valstd{0.966}{0.064}
+        %         & \valstd{100.0}{0.0} & \valstd{98.8}{1.0} & \valstd{98.4}{1.0} & \valstd{96.4}{1.6} & \valstd{98.8}{0.9} \\
+        \rowcolor{datasetbg}
+        & 25\%  & \valstd{0.735}{0.048} & \valstd{0.755}{0.028} & \valstd{0.738}{0.054} & \valstd{0.749}{0.090} & \valstd{0.749}{0.038}
+                & \valstd{88.5}{7.2} & \valstd{91.7}{3.6} & \valstd{86.1}{6.2} & \valstd{68.9}{16.4} & \valstd{80.3}{10.0} \\
+        \rowcolor{datasetbg}
+        & 50\%  & \valstd{0.673}{0.050} & \valstd{0.707}{0.028} & \valstd{0.696}{0.047} & \valstd{0.676}{0.083} & \valstd{0.689}{0.061}
+                & \valstd{74.4}{13.2} & \valstd{85.1}{4.4} & \valstd{77.1}{8.2} & \valstd{46.3}{18.6} & \valstd{58.7}{21.2} \\
+        \rowcolor{datasetbg}
+        & 75\%  & \valstd{0.644}{0.056} & \valstd{0.687}{0.014} & \valstd{0.668}{0.045} & \valstd{0.639}{0.079} & \valstd{0.651}{0.063}
+                & \valstd{66.4}{16.1} & \valstd{80.5}{3.9} & \valstd{69.0}{11.4} & \valstd{36.4}{14.5} & \valstd{48.4}{19.8} \\
+        \rowcolor{datasetbg}
+        \multirow{-6}{*}{\rotatebox[origin=c]{90}{\textbf{RotMV$^{*}$}}}
+        & 100\% & \valstd{0.626}{0.049} & \valstd{0.670}{0.015} & \valstd{0.654}{0.039} & \valstd{0.603}{0.052} & \valstd{0.659}{0.045}
+                & \valstd{56.6}{17.6} & \valstd{75.5}{5.0} & \valstd{63.9}{10.7} & \valstd{21.4}{11.8} & \valstd{52.3}{14.4} \\
+        \bottomrule
+
+\end{tabular}
+\par\vspace{3pt}
+{\footnotesize\raggedright
+$^{*}$Mip-NeRF 360 and RotMV provide no ground-truth point clouds. For these datasets, both point-map and pose metrics are computed relative to each model's prediction on all upright (0\%) input (see ~\Cref{sec:eval_criteria}) beacuse of its SOTA performance on upright images. We measure degradation from all upright prediction. The 0\% setting would compare a prediction with itself and is hence omitted.\par}
+\end{table}

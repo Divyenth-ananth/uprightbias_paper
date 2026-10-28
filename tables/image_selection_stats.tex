@@ -1,0 +1,32 @@
+\begin{table}[tbp]
+\centering
+\small
+\caption{Statistics of VLM (VisualQuality-R1) based and manual rejection during dataset curation using controlled rotation synthesis.}
+\label{tab:img_stats}
+
+\resizebox{0.9\linewidth}{!}{%
+% \begin{tabular}{lccccc}
+% \toprule
+% Dataset & Initial images & Rejected by VQ-R1 & Manually reviewed & Manually rejected & Final \\
+% \midrule
+% Tanks\&Temples & 1{,}802 & 1{,}552 & 250 & 45 & 205 \\
+% 7-Scenes       & 4{,}300 & 3{,}950 & 350 & 28 & 322 \\
+% NRGBD          & 1{,}101 & 661   & 440 & 67 & 373 \\
+% \bottomrule
+% \end{tabular}%
+% }
+\begin{tabular}{lcccc}
+\toprule
+Dataset & Initial images & Rejected by VQ-R1 & Manually rejected & Final \\
+\midrule
+Tanks\&Temples & 43{,}248 & 37{,}248 & 1{,}080 & 4{,}920 \\
+% 7\text{-}Scenes & 103{,}200 & 94{,}800 & 672 & 7{,}728 \\
+NRGBD & 26{,}424 & 15{,}864 & 1{,}608 & 8{,}952 \\
+ETH3D          & 10{,}896 & 9550    & 534 & 812 \\
+% ETH3d after removing office dataset
+\bottomrule
+\end{tabular}%
+}
+
+
+\end{table}

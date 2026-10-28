@@ -1,0 +1,175 @@
+% \begin{table*}[t]
+% \centering
+% \caption{Camera pose estimation on 7-Scenes, NRGBD, and ETH3D before and after ROVER. Results are averaged across the full rotation-fraction sweep. Results are averaged over all $m$}
+% \label{tab:pose_combined_restructured}
+% \small
+% \renewcommand{\arraystretch}{1.2}
+% \setlength{\tabcolsep}{2pt}
+
+% \resizebox{\linewidth}{!}{
+% \begin{tabular}{l *{3}{cc} *{3}{cc} *{3}{cc}}
+% \toprule
+% & \multicolumn{6}{c}{\textbf{7-Scenes}} & \multicolumn{6}{c}{\textbf{NRGBD}} & \multicolumn{6}{c}{\textbf{ETH3D}} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+% & \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$}
+% & \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$}
+% & \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+% \textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+% \midrule
+
+% VGGT 
+% & \makecell{77.49 \\ {\tiny $\pm$ 19.18}} & \makecell{\textbf{98.63} \\ {\tiny $\pm$ 2.38}} 
+% & \makecell{74.92 \\ {\tiny $\pm$ 17.26}} & \makecell{\textbf{94.50} \\ {\tiny $\pm$ 5.76}} 
+% & \makecell{53.97 \\ {\tiny $\pm$ 20.87}} & \makecell{\textbf{78.51} \\ {\tiny $\pm$ 6.64}} 
+% & \makecell{90.49 \\ {\tiny $\pm$ 12.95}} & \makecell{\textbf{100.00} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{90.90 \\ {\tiny $\pm$ 10.15}} & \makecell{\textbf{99.89} \\ {\tiny $\pm$ 0.16}} 
+% & \makecell{78.22 \\ {\tiny $\pm$ 17.15}} & \makecell{\textbf{97.13} \\ {\tiny $\pm$ 0.95}} 
+% & \makecell{93.03 \\ {\tiny $\pm$ 13.02}} & \makecell{\textbf{94.02} \\ {\tiny $\pm$ 13.86}} 
+% & \makecell{87.57 \\ {\tiny $\pm$ 14.92}} & \makecell{\textbf{89.80} \\ {\tiny $\pm$ 14.96}} 
+% & \makecell{70.54 \\ {\tiny $\pm$ 22.51}} & \makecell{\textbf{72.81} \\ {\tiny $\pm$ 22.81}} \\
+% \addlinespace[3pt]
+
+% VGGT-$\Omega$ 
+% & \makecell{99.20 \\ {\tiny $\pm$ 2.58}} & \makecell{\textbf{99.91} \\ {\tiny $\pm$ 0.39}} 
+% & \makecell{96.17 \\ {\tiny $\pm$ 4.34}} & \makecell{\textbf{98.27} \\ {\tiny $\pm$ 1.24}} 
+% & \makecell{78.13 \\ {\tiny $\pm$ 7.77}} & \makecell{\textbf{83.63} \\ {\tiny $\pm$ 3.19}} 
+% & \makecell{100.00 \\ {\tiny $\pm$ 0.00}} & \makecell{\textbf{100.00} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{99.39 \\ {\tiny $\pm$ 0.76}} & \makecell{\textbf{99.96} \\ {\tiny $\pm$ 0.05}} 
+% & \makecell{93.01 \\ {\tiny $\pm$ 3.94}} & \makecell{\textbf{98.02} \\ {\tiny $\pm$ 0.90}} 
+% & \makecell{99.98 \\ {\tiny $\pm$ 0.08}} & \makecell{\textbf{100.00} \\ {\tiny $\pm$ 0.00}} 
+% & \makecell{99.79 \\ {\tiny $\pm$ 0.26}} & \makecell{\textbf{99.82} \\ {\tiny $\pm$ 0.52}} 
+% & \makecell{95.07 \\ {\tiny $\pm$ 2.80}} & \makecell{\textbf{95.26} \\ {\tiny $\pm$ 2.58}} \\
+% \addlinespace[3pt]
+
+% $\pi^3$ 
+% & \makecell{78.60 \\ {\tiny $\pm$ 13.68}} & \makecell{\textbf{98.07} \\ {\tiny $\pm$ 3.00}} 
+% & \makecell{76.68 \\ {\tiny $\pm$ 14.05}} & \makecell{\textbf{96.75} \\ {\tiny $\pm$ 3.07}} 
+% & \makecell{57.05 \\ {\tiny $\pm$ 15.50}} & \makecell{\textbf{80.71} \\ {\tiny $\pm$ 5.41}} 
+% & \makecell{91.28 \\ {\tiny $\pm$ 9.31}} & \makecell{\textbf{99.90} \\ {\tiny $\pm$ 0.37}} 
+% & \makecell{90.49 \\ {\tiny $\pm$ 7.71}} & \makecell{\textbf{99.82} \\ {\tiny $\pm$ 0.44}} 
+% & \makecell{79.09 \\ {\tiny $\pm$ 10.72}} & \makecell{\textbf{95.21} \\ {\tiny $\pm$ 1.34}} 
+% & \makecell{96.35 \\ {\tiny $\pm$ 5.99}} & \makecell{\textbf{96.75} \\ {\tiny $\pm$ 7.70}} 
+% & \makecell{95.51 \\ {\tiny $\pm$ 5.83}} & \makecell{\textbf{96.23} \\ {\tiny $\pm$ 6.34}} 
+% & \makecell{81.89 \\ {\tiny $\pm$ 12.70}} & \makecell{\textbf{83.80} \\ {\tiny $\pm$ 12.70}} \\
+% \addlinespace[3pt]
+
+% MapA. 
+% & \makecell{74.29 \\ {\tiny $\pm$ 16.49}} & \makecell{\textbf{98.10} \\ {\tiny $\pm$ 2.67}} 
+% & \makecell{63.91 \\ {\tiny $\pm$ 14.73}} & \makecell{\textbf{87.00} \\ {\tiny $\pm$ 5.98}} 
+% & \makecell{36.84 \\ {\tiny $\pm$ 16.90}} & \makecell{\textbf{62.77} \\ {\tiny $\pm$ 7.72}} 
+% & \makecell{75.81 \\ {\tiny $\pm$ 21.31}} & \makecell{\textbf{99.90} \\ {\tiny $\pm$ 0.65}} 
+% & \makecell{71.12 \\ {\tiny $\pm$ 19.26}} & \makecell{\textbf{98.49} \\ {\tiny $\pm$ 1.20}} 
+% & \makecell{46.80 \\ {\tiny $\pm$ 22.84}} & \makecell{\textbf{87.22} \\ {\tiny $\pm$ 3.78}} 
+% & \makecell{89.93 \\ {\tiny $\pm$ 12.44}} & \makecell{\textbf{90.24} \\ {\tiny $\pm$ 13.34}} 
+% & \makecell{81.10 \\ {\tiny $\pm$ 16.54}} & \makecell{\textbf{81.87} \\ {\tiny $\pm$ 16.98}} 
+% & \makecell{57.25 \\ {\tiny $\pm$ 16.32}} & \makecell{\textbf{57.72} \\ {\tiny $\pm$ 17.40}} \\
+% \addlinespace[3pt]
+
+% DA3 
+% & \makecell{82.47 \\ {\tiny $\pm$ 14.36}} & \makecell{\textbf{98.22} \\ {\tiny $\pm$ 2.68}} 
+% & \makecell{79.14 \\ {\tiny $\pm$ 12.35}} & \makecell{\textbf{93.44} \\ {\tiny $\pm$ 5.67}} 
+% & \makecell{58.67 \\ {\tiny $\pm$ 16.12}} & \makecell{\textbf{80.52} \\ {\tiny $\pm$ 5.99}} 
+% & \makecell{89.51 \\ {\tiny $\pm$ 14.87}} & \makecell{\textbf{99.86} \\ {\tiny $\pm$ 0.42}} 
+% & \makecell{88.56 \\ {\tiny $\pm$ 12.51}} & \makecell{\textbf{99.79} \\ {\tiny $\pm$ 0.60}} 
+% & \makecell{73.37 \\ {\tiny $\pm$ 18.49}} & \makecell{\textbf{98.51} \\ {\tiny $\pm$ 1.62}} 
+% & \makecell{87.74 \\ {\tiny $\pm$ 12.92}} & \makecell{\textbf{88.38} \\ {\tiny $\pm$ 16.78}} 
+% & \makecell{88.16 \\ {\tiny $\pm$ 15.58}} & \makecell{\textbf{88.90} \\ {\tiny $\pm$ 18.02}} 
+% & \makecell{79.62 \\ {\tiny $\pm$ 17.07}} & \makecell{\textbf{79.73} \\ {\tiny $\pm$ 20.59}} \\
+
+% \bottomrule
+% \end{tabular}
+
+
+
+% }
+% \vspace{-3mm}
+% \end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{\textbf{Camera pose estimation} on 7-Scenes, NRGB-D, and RotMV before and after ROVER. Results are averaged across the full rotation-fraction sweep.}
+\label{tab:pose_combined_restructured}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{2pt}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l *{3}{cc} *{3}{cc} *{3}{cc}}
+\toprule
+& \multicolumn{6}{c}{\textbf{7-Scenes}} & \multicolumn{6}{c}{\textbf{NRGB-D}} & \multicolumn{6}{c}{\textbf{RotMV}} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+& \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$}
+& \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$}
+& \multicolumn{2}{c}{RAcc$_{30} \uparrow$} & \multicolumn{2}{c}{TAcc$_{30} \uparrow$} & \multicolumn{2}{c}{AUC$_{30} \uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13} \cmidrule(lr){14-15} \cmidrule(lr){16-17} \cmidrule(lr){18-19}
+\textbf{Method} & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT 
+& \makecell{77.49 \\ {\tiny $\pm$ 19.18}} & \makecell{\textbf{98.63} \\ {\tiny $\pm$ 2.38}} 
+& \makecell{74.92 \\ {\tiny $\pm$ 17.26}} & \makecell{\textbf{94.50} \\ {\tiny $\pm$ 5.76}} 
+& \makecell{53.97 \\ {\tiny $\pm$ 20.87}} & \makecell{\textbf{78.51} \\ {\tiny $\pm$ 6.64}} 
+& \makecell{90.49 \\ {\tiny $\pm$ 12.95}} & \makecell{\textbf{100.00} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{90.90 \\ {\tiny $\pm$ 10.15}} & \makecell{\textbf{99.89} \\ {\tiny $\pm$ 0.16}} 
+& \makecell{78.22 \\ {\tiny $\pm$ 17.15}} & \makecell{\textbf{97.13} \\ {\tiny $\pm$ 0.95}} 
+& \makecell{88.46 \\ {\tiny $\pm$ 15.14}} & \makecell{\textbf{96.85} \\ {\tiny $\pm$ 3.31}} 
+& \makecell{90.94 \\ {\tiny $\pm$ 12.59}} & \makecell{\textbf{97.99} \\ {\tiny $\pm$ 2.30}} 
+& \makecell{72.17 \\ {\tiny $\pm$ 19.15}} & \makecell{\textbf{84.15} \\ {\tiny $\pm$ 8.34}} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ 
+& \makecell{99.20 \\ {\tiny $\pm$ 2.58}} & \makecell{\textbf{99.91} \\ {\tiny $\pm$ 0.39}} 
+& \makecell{96.17 \\ {\tiny $\pm$ 4.34}} & \makecell{\textbf{98.27} \\ {\tiny $\pm$ 1.24}} 
+& \makecell{78.13 \\ {\tiny $\pm$ 7.77}} & \makecell{\textbf{83.63} \\ {\tiny $\pm$ 3.19}} 
+& \makecell{100.00 \\ {\tiny $\pm$ 0.00}} & \makecell{\textbf{100.00} \\ {\tiny $\pm$ 0.00}} 
+& \makecell{99.39 \\ {\tiny $\pm$ 0.76}} & \makecell{\textbf{99.96} \\ {\tiny $\pm$ 0.05}} 
+& \makecell{93.01 \\ {\tiny $\pm$ 3.94}} & \makecell{\textbf{98.02} \\ {\tiny $\pm$ 0.90}} 
+& \makecell{98.68 \\ {\tiny $\pm$ 2.19}} & \makecell{\textbf{98.86} \\ {\tiny $\pm$ 1.60}} 
+& \makecell{99.57 \\ {\tiny $\pm$ 0.79}} & \makecell{\textbf{99.83} \\ {\tiny $\pm$ 0.23}} 
+& \makecell{83.57 \\ {\tiny $\pm$ 7.66}} & \makecell{\textbf{85.60} \\ {\tiny $\pm$ 6.62}} \\
+\addlinespace[3pt]
+
+$\pi^3$ 
+& \makecell{78.60 \\ {\tiny $\pm$ 13.68}} & \makecell{\textbf{98.07} \\ {\tiny $\pm$ 3.00}} 
+& \makecell{76.68 \\ {\tiny $\pm$ 14.05}} & \makecell{\textbf{96.75} \\ {\tiny $\pm$ 3.07}} 
+& \makecell{57.05 \\ {\tiny $\pm$ 15.50}} & \makecell{\textbf{80.71} \\ {\tiny $\pm$ 5.41}} 
+& \makecell{91.28 \\ {\tiny $\pm$ 9.31}} & \makecell{\textbf{99.90} \\ {\tiny $\pm$ 0.37}} 
+& \makecell{90.49 \\ {\tiny $\pm$ 7.71}} & \makecell{\textbf{99.82} \\ {\tiny $\pm$ 0.44}} 
+& \makecell{79.09 \\ {\tiny $\pm$ 10.72}} & \makecell{\textbf{95.21} \\ {\tiny $\pm$ 1.34}} 
+& \makecell{92.92 \\ {\tiny $\pm$ 10.42}} & \makecell{\textbf{98.94} \\ {\tiny $\pm$ 1.48}} 
+& \makecell{93.95 \\ {\tiny $\pm$ 8.61}} & \makecell{\textbf{99.82} \\ {\tiny $\pm$ 0.29}} 
+& \makecell{74.62 \\ {\tiny $\pm$ 13.22}} & \makecell{\textbf{85.25} \\ {\tiny $\pm$ 6.60}} \\
+\addlinespace[3pt]
+
+MapA. 
+& \makecell{74.29 \\ {\tiny $\pm$ 16.49}} & \makecell{\textbf{98.10} \\ {\tiny $\pm$ 2.67}} 
+& \makecell{63.91 \\ {\tiny $\pm$ 14.73}} & \makecell{\textbf{87.00} \\ {\tiny $\pm$ 5.98}} 
+& \makecell{36.84 \\ {\tiny $\pm$ 16.90}} & \makecell{\textbf{62.77} \\ {\tiny $\pm$ 7.72}} 
+& \makecell{75.81 \\ {\tiny $\pm$ 21.31}} & \makecell{\textbf{99.90} \\ {\tiny $\pm$ 0.65}} 
+& \makecell{71.12 \\ {\tiny $\pm$ 19.26}} & \makecell{\textbf{98.49} \\ {\tiny $\pm$ 1.20}} 
+& \makecell{46.80 \\ {\tiny $\pm$ 22.84}} & \makecell{\textbf{87.22} \\ {\tiny $\pm$ 3.78}} 
+& \makecell{68.55 \\ {\tiny $\pm$ 24.05}} & \makecell{\textbf{98.43} \\ {\tiny $\pm$ 2.30}} 
+& \makecell{73.57 \\ {\tiny $\pm$ 18.96}} & \makecell{\textbf{98.00} \\ {\tiny $\pm$ 1.64}} 
+& \makecell{44.56 \\ {\tiny $\pm$ 25.06}} & \makecell{\textbf{80.73} \\ {\tiny $\pm$ 7.92}} \\
+\addlinespace[3pt]
+
+DA3 
+& \makecell{82.47 \\ {\tiny $\pm$ 14.36}} & \makecell{\textbf{98.22} \\ {\tiny $\pm$ 2.68}} 
+& \makecell{79.14 \\ {\tiny $\pm$ 12.35}} & \makecell{\textbf{93.44} \\ {\tiny $\pm$ 5.67}} 
+& \makecell{58.67 \\ {\tiny $\pm$ 16.12}} & \makecell{\textbf{80.52} \\ {\tiny $\pm$ 5.99}} 
+& \makecell{89.51 \\ {\tiny $\pm$ 14.87}} & \makecell{\textbf{99.86} \\ {\tiny $\pm$ 0.42}} 
+& \makecell{88.56 \\ {\tiny $\pm$ 12.51}} & \makecell{\textbf{99.79} \\ {\tiny $\pm$ 0.60}} 
+& \makecell{73.37 \\ {\tiny $\pm$ 18.49}} & \makecell{\textbf{98.51} \\ {\tiny $\pm$ 1.62}} 
+& \makecell{80.48 \\ {\tiny $\pm$ 20.78}} & \makecell{\textbf{97.31} \\ {\tiny $\pm$ 4.81}} 
+& \makecell{85.23 \\ {\tiny $\pm$ 15.35}} & \makecell{\textbf{97.94} \\ {\tiny $\pm$ 3.53}} 
+& \makecell{60.89 \\ {\tiny $\pm$ 22.57}} & \makecell{\textbf{82.93} \\ {\tiny $\pm$ 9.69}} \\
+
+\bottomrule
+\end{tabular}
+
+
+
+}
+\vspace{-3mm}
+\end{table*}

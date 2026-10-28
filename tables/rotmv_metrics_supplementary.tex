@@ -1,0 +1,72 @@
+% \begin{table}[h]
+% \centering
+% \caption{Point map and camera pose estimation on the RotMV dataset. ROVER improves feed forward models reconstruction in real dataset}
+% \label{tab:captured_combined}
+% \small
+% \renewcommand{\arraystretch}{1.2}
+% \setlength{\tabcolsep}{4pt}
+% \providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+% \resizebox{\linewidth}{!}{
+% \begin{tabular}{l cc cc cc cc cc cc}
+% \toprule
+% \textbf{Method} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+% & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+% \midrule
+
+% VGGT & \dd{0.022}{0.013} & \textbf{\dd{0.010}{0.004}} & \dd{0.039}{0.043} & \textbf{\dd{0.020}{0.016}} & \dd{0.677}{0.087} & \textbf{\dd{0.740}{0.051}} & \dd{88.461}{15.139} & \textbf{\dd{96.850}{3.306}} & \dd{90.944}{12.585} & \textbf{\dd{97.994}{2.304}} & \dd{72.173}{19.150} & \textbf{\dd{84.147}{8.342}} \\
+% \addlinespace[3pt]
+
+% VGGT-$\Omega$ & \dd{0.009}{0.004} & \textbf{\dd{0.008}{0.003}} & \dd{0.017}{0.012} & \textbf{\dd{0.016}{0.010}} & \dd{0.712}{0.062} & \textbf{\dd{0.722}{0.044}} & \dd{98.679}{2.189} & \textbf{\dd{98.862}{1.595}} & \dd{99.573}{0.788} & \textbf{\dd{99.832}{0.232}} & \dd{83.572}{7.659} & \textbf{\dd{85.597}{6.619}} \\
+% \addlinespace[3pt]
+
+% $\pi^3$ & \dd{0.035}{0.027} & \textbf{\dd{0.014}{0.005}} & \dd{0.049}{0.046} & \textbf{\dd{0.022}{0.013}} & \dd{0.697}{0.077} & \textbf{\dd{0.756}{0.048}} & \dd{92.915}{10.416} & \textbf{\dd{98.943}{1.481}} & \dd{93.946}{8.614} & \textbf{\dd{99.817}{0.293}} & \dd{74.622}{13.220} & \textbf{\dd{85.252}{6.599}} \\
+% \addlinespace[3pt]
+
+% MapA & \dd{0.611}{0.253} & \textbf{\dd{0.463}{0.170}} & \dd{1.332}{0.885} & \textbf{\dd{0.945}{0.506}} & \dd{0.673}{0.106} & \textbf{\dd{0.752}{0.088}} & \dd{68.551}{24.052} & \textbf{\dd{98.426}{2.300}} & \dd{73.569}{18.964} & \textbf{\dd{97.999}{1.640}} & \dd{44.558}{25.058} & \textbf{\dd{80.733}{7.921}} \\
+% \addlinespace[3pt]
+
+% DA3 & \dd{0.614}{0.311} & \textbf{\dd{0.251}{0.182}} & \dd{0.827}{0.813} & \textbf{\dd{0.338}{0.396}} & \dd{0.694}{0.082} & \textbf{\dd{0.762}{0.043}} & \dd{80.479}{20.777} & \textbf{\dd{97.314}{4.809}} & \dd{85.232}{15.352} & \textbf{\dd{97.938}{3.533}} & \dd{60.886}{22.568} & \textbf{\dd{82.930}{9.692}} \\
+% \addlinespace[3pt]
+
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table}
+\begin{table}[h]
+\centering
+\caption{Point map and camera pose estimation on the ETH3D dataset. ROVER improves feed forward models reconstruction in real dataset}
+\label{tab:captured_combined}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\providecommand{\dd}[2]{\makecell{#1 \\ {\tiny $\pm$ #2}}}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l cc cc cc cc cc cc}
+\toprule
+\textbf{Method} & \multicolumn{2}{c}{Acc. $\downarrow$} & \multicolumn{2}{c}{Comp. $\downarrow$} & \multicolumn{2}{c}{N.C. $\uparrow$} & \multicolumn{2}{c}{RAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{TAcc$_{30}$ $\uparrow$} & \multicolumn{2}{c}{AUC$_{30}$ $\uparrow$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+& Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours & Base & Ours \\
+\midrule
+
+VGGT & \dd{0.20}{0.07} & \textbf{\dd{0.18}{0.06}} & \dd{0.11}{0.04} & \textbf{\dd{0.08}{0.02}} & \dd{0.77}{0.04} & \textbf{\dd{0.79}{0.03}} & \dd{93.03}{13.02} & \textbf{\dd{94.02}{13.86}} & \dd{87.57}{14.92} & \textbf{\dd{89.80}{14.96}} & \dd{70.54}{22.51} & \textbf{\dd{72.81}{22.81}} \\
+\addlinespace[3pt]
+
+VGGT-$\Omega$ & \dd{0.07}{0.03} & \textbf{\dd{0.06}{0.02}} & \textbf{\dd{0.05}{0.02}} & \textbf{\dd{0.05}{0.02}} & \textbf{\dd{0.85}{0.03}} & \textbf{\dd{0.85}{0.03}} & \dd{99.98}{0.08} & \textbf{\dd{100.00}{0.00}} & \dd{99.79}{0.26} & \textbf{\dd{99.82}{0.52}} & \dd{95.07}{2.80} & \textbf{\dd{95.26}{2.58}} \\
+\addlinespace[3pt]
+
+$\pi^3$ & \dd{0.09}{0.03} & \textbf{\dd{0.08}{0.02}} & \dd{0.07}{0.02} & \textbf{\dd{0.06}{0.02}} & \dd{0.84}{0.02} & \textbf{\dd{0.85}{0.02}} & \dd{96.35}{5.99} & \textbf{\dd{96.75}{7.70}} & \dd{95.51}{5.83} & \textbf{\dd{96.23}{6.34}} & \dd{81.89}{12.70} & \textbf{\dd{83.80}{12.70}} \\
+\addlinespace[3pt]
+
+MapA & \dd{0.16}{0.03} & \textbf{\dd{0.15}{0.03}} & \dd{0.39}{0.36} & \textbf{\dd{0.36}{0.29}} & \dd{0.75}{0.03} & \textbf{\dd{0.76}{0.02}} & \dd{89.93}{12.44} & \textbf{\dd{90.24}{13.34}} & \dd{81.10}{16.54} & \textbf{\dd{81.87}{16.98}} & \dd{57.25}{16.32} & \textbf{\dd{57.72}{17.40}} \\
+\addlinespace[3pt]
+
+DA3 & \textbf{\dd{0.11}{0.02}} & \textbf{\dd{0.11}{0.00}} & \dd{0.12}{0.01} & \textbf{\dd{0.10}{0.01}} & \textbf{\dd{0.82}{0.01}} & \textbf{\dd{0.82}{0.01}} & \dd{87.74}{12.92} & \textbf{\dd{88.38}{16.78}} & \dd{88.16}{15.58} & \textbf{\dd{88.90}{18.02}} & \dd{79.62}{17.07} & \textbf{\dd{79.73}{20.59}} \\
+\addlinespace[3pt]
+
+\bottomrule
+\end{tabular}
+}
+\end{table}

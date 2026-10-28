@@ -1,0 +1,28 @@
+{
+  "version": "7.0.4",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "mark",
+      "points": [
+        [
+          2.561912894961571,
+          241.4812126387703
+        ],
+        [
+          213.20808425846852,
+          317.1999715343011
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "eth3d_courtyard_345_0_raw.jpg",
+  "imageData": null,
+  "imageHeight": 319,
+  "imageWidth": 480
+}

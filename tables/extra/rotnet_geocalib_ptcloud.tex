@@ -1,0 +1,76 @@
+% \begin{table*}[t]
+% \centering
+% \caption{Point Cloud estimation on Tanks\&Temples (R: RotNet, G: GeoCalib, H: Homography).}
+% \label{tab:pointmap_tnt_rotnet_geocalib}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{\begin{tabular}{l c c c c c c c c c c c c c c c}
+% \toprule
+% \multirow{2}{*}{Method} & \multicolumn{5}{c}{Acc. $\downarrow$} & \multicolumn{5}{c}{Comp. $\downarrow$} & \multicolumn{5}{c}{N.C. $\uparrow$} \\
+% \cmidrule(lr){2-6} \cmidrule(lr){7-11} \cmidrule(lr){12-16}
+%  & Ours & Baseline & R & G & R+G & Ours & Baseline & R & G & R+G & Ours & Baseline & R & G & R+G \\
+% \midrule
+% VGGT & 0.2474 & 0.3216 & \textbf{0.2442} & 0.2532 & 0.2511 & \textbf{0.5388} & 0.5937 & 0.7488 & 1.2541 & 0.6156 & \textbf{0.6477} & 0.6287 & 0.6207 & 0.6010 & 0.6253 \\
+% VGGT-$\Omega$ & \textbf{0.1575} & 0.1896 & 0.2210 & 0.2364 & 0.1921 & \textbf{0.1262} & 0.1434 & 0.4875 & 0.8776 & 0.3048 & \textbf{0.7188} & 0.7067 & 0.6368 & 0.6272 & 0.6617 \\
+% $\pi^3$ & \textbf{0.1986} & 0.2906 & 0.2543 & 0.2690 & 0.2636 & \textbf{0.3473} & 0.4148 & 0.6582 & 1.0561 & 0.4924 & \textbf{0.6893} & 0.6520 & 0.6229 & 0.6149 & 0.6366 \\
+% MapA & 0.2971 & 0.3401 & 0.2575 & \textbf{0.2299} & 0.2852 & \textbf{0.7762} & 0.8081 & 1.0230 & 1.4494 & 1.0382 & \textbf{0.6219} & 0.5951 & 0.6007 & 0.5823 & 0.5941 \\
+% DA3 & \textbf{0.2755} & 0.4069 & 0.3054 & 0.3740 & 0.3118 & \textbf{0.3351} & 0.5344 & 0.6712 & 1.0118 & 0.5457 & \textbf{0.6744} & 0.6410 & 0.6233 & 0.6132 & 0.6146 \\
+% \bottomrule
+% \end{tabular}
+% }
+% \end{table*}
+% \begin{table*}[ht]
+% \centering
+% \caption{Point map estimation on Tanks\&Temples (R: RotNet, G: GeoCalib, H: Homography).}
+% \label{tab:pointmap_tnt_merged}
+% \scriptsize
+% \setlength{\tabcolsep}{3pt}
+% \resizebox{\linewidth}{!}{%
+% \begin{tabular}{l cccccc cccccc cccccc}
+% \toprule
+% \multirow{2}{*}{Method} & \multicolumn{6}{c}{Acc. $\downarrow$} & \multicolumn{6}{c}{Comp. $\downarrow$} & \multicolumn{6}{c}{N.C. $\uparrow$} \\
+% \cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+%  & Ours & Baseline & R & G & R+G & H & Ours & Baseline & R & G & R+G & H & Ours & Baseline & R & G & R+G & H \\
+% \midrule
+% VGGT & 0.2474 & 0.3216 & \textbf{0.2442} & 0.2532 & 0.2511 & 0.2528 & \textbf{0.5388} & 0.5937 & 0.7488 & 1.2541 & 0.6156 & 1.6534 & \textbf{0.6477} & 0.6287 & 0.6207 & 0.6010 & 0.6253 & 0.5749 \\
+% VGGT-$\Omega$ & \textbf{0.1575} & 0.1896 & 0.2210 & 0.2364 & 0.1921 & 0.2421 & \textbf{0.1262} & 0.1434 & 0.4875 & 0.8776 & 0.3048 & 1.2909 & \textbf{0.7188} & 0.7067 & 0.6368 & 0.6272 & 0.6617 & 0.5884 \\
+% $\pi^3$ & \textbf{0.1986} & 0.2906 & 0.2543 & 0.2690 & 0.2636 & 0.2632 & \textbf{0.3473} & 0.4148 & 0.6582 & 1.0561 & 0.4924 & 1.4227 & \textbf{0.6893} & 0.6520 & 0.6229 & 0.6149 & 0.6366 & 0.5968 \\
+% MapA & 0.2971 & 0.3401 & 0.2575 & 0.2299 & 0.2852 & \textbf{0.2002} & \textbf{0.7762} & 0.8081 & 1.0230 & 1.4494 & 1.0382 & 1.8840 & \textbf{0.6219} & 0.5951 & 0.6007 & 0.5823 & 0.5941 & 0.5814 \\
+% DA3 & \textbf{0.2755} & 0.4069 & 0.3054 & 0.3740 & 0.3118 & 0.3302 & \textbf{0.3351} & 0.5344 & 0.6712 & 1.0118 & 0.5457 & 1.4218 & \textbf{0.6744} & 0.6410 & 0.6233 & 0.6132 & 0.6146 & 0.5967 \\
+% \bottomrule
+% \end{tabular}%
+% }
+% \end{table*}
+
+\begin{table*}[ht]
+\centering
+\caption{Point map estimation on Tanks\&Temples (R: RotNet, G: GeoCalib, H: Homography).}
+\label{tab:pointmap_tnt_merged}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l cccccc cccccc cccccc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{6}{c}{Acc. $\downarrow$} & \multicolumn{6}{c}{Comp. $\downarrow$} & \multicolumn{6}{c}{N.C. $\uparrow$} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19}
+& Ours & Baseline & R & G & R+G & H & Ours & Baseline & R & G & R+G & H & Ours & Baseline & R & G & R+G & H \\
+\midrule
+% VGGT & 0.247 & 0.322 & \textbf{0.244} & 0.253 & 0.251 & 0.253 & \textbf{0.539} & 0.594 & 0.749 & 1.254 & 0.616 & 1.653 & \textbf{0.648} & 0.629 & 0.621 & 0.601 & 0.625 & 0.575 \\
+% VGGT-$\Omega$ & \textbf{0.158} & 0.190 & 0.221 & 0.236 & 0.192 & 0.242 & \textbf{0.126} & 0.143 & 0.488 & 0.878 & 0.305 & 1.291 & \textbf{0.719} & 0.707 & 0.637 & 0.627 & 0.662 & 0.588 \\
+% $\pi^3$ & \textbf{0.199} & 0.291 & 0.254 & 0.269 & 0.264 & 0.263 & \textbf{0.347} & 0.415 & 0.658 & 1.057 & 0.492 & 1.423 & \textbf{0.689} & 0.652 & 0.623 & 0.615 & 0.637 & 0.597 \\
+% MapA & 0.297 & 0.340 & 0.258 & 0.230 & 0.285 & \textbf{0.200} & \textbf{0.776} & 0.808 & 1.023 & 1.449 & 1.038 & 1.884 & \textbf{0.622} & 0.595 & 0.601 & 0.582 & 0.594 & 0.581 \\
+% DA3 & \textbf{0.276} & 0.407 & 0.305 & 0.374 & 0.312 & 0.330 & \textbf{0.335} & 0.534 & 0.671 & 1.012 & 0.546 & 1.422 & \textbf{0.674} & 0.641 & 0.623 & 0.613 & 0.615 & 0.597 \\
+
+VGGT & 0.25 & 0.32 & \textbf{0.24} & 0.25 & 0.25 & 0.25 & \textbf{0.54} & 0.59 & 0.75 & 1.25 & 0.62 & 1.65 & \textbf{0.65} & 0.63 & 0.62 & 0.60 & 0.63 & 0.58 \\
+
+VGGT-$\Omega$ & \textbf{0.16} & 0.19 & 0.22 & 0.24 & 0.19 & 0.24 & \textbf{0.13} & 0.14 & 0.49 & 0.88 & 0.31 & 1.29 & \textbf{0.72} & 0.71 & 0.64 & 0.63 & 0.66 & 0.59 \\
+
+$\pi^3$ & \textbf{0.20} & 0.29 & 0.25 & 0.27 & 0.26 & 0.26 & \textbf{0.35} & 0.42 & 0.66 & 1.06 & 0.49 & 1.42 & \textbf{0.69} & 0.65 & 0.62 & 0.62 & 0.64 & 0.60 \\
+
+MapA & 0.30 & 0.34 & 0.26 & 0.23 & 0.29 & \textbf{0.20} & \textbf{0.78} & 0.81 & 1.02 & 1.45 & 1.04 & 1.88 & \textbf{0.62} & 0.60 & 0.60 & 0.58 & 0.59 & 0.58 \\
+
+DA3 & \textbf{0.28} & 0.41 & 0.31 & 0.37 & 0.31 & 0.33 & \textbf{0.34} & 0.53 & 0.67 & 1.01 & 0.55 & 1.42 & \textbf{0.67} & 0.64 & 0.62 & 0.61 & 0.62 & 0.60 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

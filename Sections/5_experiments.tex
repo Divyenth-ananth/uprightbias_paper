@@ -1,0 +1,92 @@
+\section{Experiments \& Results}
+\subsection{Experimental Setup}
+\label{sec:experimental_setup}
+\textbf{Implementation \& Dataset Details:} 
+We evaluate models across six standard benchmarks: 7-Scenes~\citep{7scenes1, 7scenes2}, NRGB-D~\citep{nrgdb_dataset}, and RotMV, presented in the main paper, and DTU~\citep{jensen2014largeDTU}, ETH3D~\citep{Schops_2019_CVPRETH3D1, schoeps2017cvprETH3D2}, Mip-NeRF 360~\citep{barron2022mipnerf360}, and Tanks \& Temples~\citep{Knapitsch2017tanksandtemples}, detailed in the supplementary (\cref{sec:additional_results_suppl}). Similarly, we include results for in-plane rotation (roll) in the main paper, with pitch and yaw results included in the supplementary \cref{sec:additional_results_suppl}
+
+While our rendering-based rotation construction provides synthetically rotated sequences, it may not fully capture the characteristics of real-world rotated captures. 
+Thus, we present a novel benchmark RotMV, consisting of seven real-world scenes (\textit{chairs}, \textit{foosball-table}, \textit{building}, \textit{rooftop}, \textit{room}, \textit{statue}, and \textit{table-tennis}). 
+We capture each scene using a camera  in $4096\times3072$ resolution. 
+Each scene is imaged from $16$ fixed viewpoints, and at each viewpoint, the camera is rolled in-plane through $12$ orientations spanning a full $360^\circ$ (in $30^\circ$ increments), resulting in $192$ images per scene.
+For each viewpoint, we estimate the base camera pose from the upright ($0^\circ$) image using VGGT. 
+The remaining $11$ roll-angle poses are derived analytically by applying the corresponding in-plane rotation to the base camera orientation, keeping the camera center and viewing direction fixed. Additional details about the dataset included visual examples is included in supplementary \cref{sec:rotmv_dataset}.
+% We therefore introduce RotMV in \cref{sec:rotmv_dataset}, a curated benchmark of real paired upright and unconstrained rotated multi-view sequences, designed to facilitate evaluation of rotation robustness under authentic capture conditions. 
+% Full dataset details and statistics are provided in the supplementary along with the results.
+\\
+\textbf{Evaluation Metrics:} 
+Following the evaluation criteria of $\pi^3$ \citep{wang2025pi}, we use $16$-view input sequence and evaluate models on two tasks. For camera pose estimation, we report Rotation Accuracy ($\text{RAcc}_{30}$$\uparrow$), Translation Accuracy ($\text{TAcc}_{30}$$\uparrow$), and Area Under the Curve ($\text{AUC}_{30}$$\uparrow$) at a $30^\circ$ threshold \citep{wang2023posediffusion}, measuring the fraction of predictions within the threshold for rotation, translation, and both jointly. For point map estimation, we report Accuracy ($\text{Acc.}\downarrow$), Completeness ($\text{Comp.}\downarrow$), and Normal Consistency ($\text{N.C.}\uparrow$), the mean cosine similarity between predicted and ground-truth surface normals \citep{mast3r_eccv24}. 
+\\
+\textbf{Evaluation Protocol:} We vary the number of rotated views $m \in \{0, 4, 8, 12, 16\}$, corresponding to $\{0\%, 25\%, 50\%, 75\%, 100\%\}$ rotated view configurations. For each budget $m$, we select $m$ views uniformly at random and assign each an independent roll angles $\theta_i \sim \mathcal{U}(0^\circ, 360^\circ)$ (similarly for pitch and yaw), synthesizing rotated inputs via our controlled rotation synthesis. Ground-truth camera pose are updated to reflect the applied rotation angles and model predictions are aligned to ground truth using Umeyama \citep{umeyamaalgo}. We report the mean and standard deviation across $10$ independent random trials per $m$, unless noted otherwise. 
+
+\vspace{-2mm}
+\subsection{How Severe is Upright Bias?}
+\label{sec:how_severe_is_upright_bias}
+
+\input{tables/degradation_levels/rotpct_all}
+
+To evaluate whether arbitrary image rotations constitute a meaningful failure mode for feed-forward 3D reconstruction models, we measure performance across the rotation budgets. ~\Cref{tab:rotation_degradation_main} reveals consistent and severe degradation across all models and datasets as the fraction of rotated views increases. On 7-Scenes, camera pose estimation ($\mathrm{AUC}_{30}$) drops for all models, with absolute declines ranging from $17.1$ points (VGGT-$\Omega$: $87.5$ to $70.4$) to $57.2$ points (MapA.: $80.9$ to $23.7$) at $100\%$ rotation. Point-map quality (N.C.) follows the same trend across all models. On NRGB-D, degradation is similarly consistent and universal, with pose accuracy falling by $10.2-66.6$ points depending on the model. On ETH3D, all models exhibit substantial declines in both metrics, with $\mathrm{AUC}_{30}$ dropping by $8.5$--$22.3$ points at full rotation. Across all three datasets, these results confirm that UprightBias is a systematic and severe failure mode affecting all evaluated feed-forward reconstruction models. Results on the remaining dataset along with pitch and yaw are included in supplementary \cref{sec:additional_results_suppl}.
+
+
+% \textcolor{blue}{ Across all three datasets and evaluated models, both point-map and camera-pose estimation consistently deteriorate as the fraction of rotated input views increases, with the largest drops observed when $100\%$ views are rotated.
+% On 7-Scenes and NRGB-D, the degradation is largely monotonic across all models, with MapA. retaining the strongest performance at higher rotation fractions and $\pi^3$ generally exhibiting the largest drop.
+% On ETH3D, the models show substantially different sensitivities: VGGT-$\Omega$ remains comparatively robust to rotation, with N.C. decreasing from 0.908 to 0.771 and $\mathrm{AUC}_{30}$ from 93.4 to 84.9, while MapA. exhibits a larger relative decline, particularly in camera pose estimation (52.0 to 39.5).
+% VGGT similarly shows a pronounced reduction in pose accuracy on ETH3D, with $\mathrm{AUC}_{30}$ falling from 77.1 to 54.8 as all views become rotated.}
+
+
+
+\subsection{What Causes this Upright Bias?}
+\label{ssec:data_audit}
+% Having established that arbitrary image rotations consistently degrade reconstruction quality, we next investigate the origin of this behavior. 
+% We hypothesize that it reflects a statistical property shared by the training data used by current feed-forward reconstruction models.
+% To evaluate this hypothesis, we perform a comprehensive data audit across the training corpora of state-of-the-art feed-forward geometric models, including VGGT, VGGT-$\Omega$, DA3, MapA, and $\pi^3$.
+% As summarized in Table~\ref{tab:summary_training_data}, our audit reveals a striking trend, the overwhelming majority of training datasets used across all models are gravity-aligned by construction. \Badri{What is the meaning of gravity aligned is also needed. Also mention that detail audit is in supplementary}
+
+
+\vspace{-2mm}
+\input{tables/dataset_audit_wraptable}
+Having established that rotations consistently degrade reconstruction quality, we investigate the origin of this behavior. 
+% We define a dataset as \textbf{gravity-aligned} if its images are captured with the camera's vertical axis parallel to gravity as in handheld scans, street-level cameras etc leaving arbitrary in-plane rolls absent from the training distribution. 
+As summarized in Table~\ref{tab:summary_training_data}, a comprehensive audit of the training corpora of VGGT, VGGT-$\Omega$, DA3, MapA., and $\pi^3$ reveals that the overwhelming majority of training datasets are upright by construction, spanning indoor RGB-D benchmarks, outdoor photo collections, and synthetic datasets alike. Consequently, feed-forward models learn a strong implicit prior that the camera and world coordinate systems share an aligned gravity vector, which fails when rotated inputs are encountered at inference time. A detailed dataset-by-dataset breakdown is provided in the supplementary \cref{sec:training_data_rebalancing}.
+
+\subsection{Can ROVER Mitigate Upright Bias?} 
+Having established the existence and origin of UprightBias, we investigate whether its effects can be mitigated entirely at inference time specifically, whether canonicalizing input orientations before reconstruction is sufficient to recover performance without any architectural modification or retraining. We compare each model in two settings: \emph{Baseline}, where rotated inputs are provided directly to the original model, and \emph{Ours}, where inputs are first canonicalized using ROVER and then passed to the unchanged model. Both settings are averaged over the same rotation-fraction sweep used in \cref{sec:how_severe_is_upright_bias}. Analogous experiments with are included in the supplementary.
+\begin{figure*}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig4/fig4.pdf}
+    \caption{\textbf{Qualitative comparison.} Rotated input images to a feed-forward model produces a distorted point cloud (Baseline). Our method re-canonicalises the input images and then same model recovers geometrically faithful reconstruction. (ROVER)}
+    \label{fig:our_result_tnt}
+    \vspace{-4mm}
+\end{figure*}
+
+% \input{tables/7scenes_nrgbd_ptcloud_merged}
+\input{tables/7scenes_nrgbd_ptcloud_merged2}
+
+Table~\ref{tab:pointmap_combined} shows that ROVER consistently improves point-map estimation across all models and datasets.
+On 7-Scenes, our method provides gains across all models: Comp. errors drop by up to $3\times$ (VGGT: $0.13$ to $0.04$; $\pi^3$: $0.13$ to $0.04$), and N.C. improves consistently, with the largest gain for $\pi^3$ ($0.62$ to $0.67$). Variance is also reduced, indicating more stable predictions by ROVER. On NRGB-D, VGGT-$\Omega$ and DA3 achieve N.C. gains of $0.02$ and $0.08$ respectively, while Comp. errors fall for several models (e.g., VGGT: $0.09$ to $0.01$). On RotMV, ROVER improves point-map quality across all models: N.C.\ gains are observed for VGGT-$\Omega$ ($0.71$ to $0.72$), VGGT ($0.68$ to $0.74$), and DA3 ($0.69$ to $0.76$), while Accuracy improves for $\pi^3$ ($0.04$ to $0.01$) and 
+MapA. ($0.61$ to $0.46$).
+ 
+% \input{tables/7scenes_nrgbd_pose_merged}
+\input{tables/7scenes_nrgbd_pose_merged2}
+
+Table~\ref{tab:pose_combined_restructured} shows that ROVER yields improvements for camera pose estimation across all datasets 7-Scenes, NRGB-D and RotMV, with large gains in RAcc$_{30}$, TAcc$_{30}$, and AUC$_{30}$ for all models. 
+On 7-Scenes, AUC$_{30}$ improvements are observed for all models. MapAnything improved from $36.84$ to $62.77$ whereas VGGT improved from $53.97$ to $78.51$, and $\pi^3$ improved from $57.05$ to $80.71$, while variance is dramatically reduced across all models. 
+On NRGB-D VGGT-$\Omega$ improves from $93.01$ to $98.02$ in AUC$_{30}$, and VGGT from $78.22$ to $97.13$, $\pi^3$ from $79.09$ to $95.21$, and DA3 from $73.37$ to $98.51$ after canonicalization. In RotMV AUC$_{30}$ improves for DA3 
+($60.89$ to $82.93$), $\pi^3$ ($74.62$ to $85.25$), and VGGT-$\Omega$ ($83.57$ to $85.60$), while RAcc$_{30}$ gains for MapA. ($68.55 \to 98.43$), VGGT ($88.46$ to $96.85$), and $\pi^3$ ($92.92$ to $98.94$). 
+
+~\Cref{fig:our_result_tnt} shows rotated images cause severe geometry degradation across all models, while our method re-canonicalize input orientations, enabling the same models to produce clean, geometrically faithful point clouds with better architectural details. Critically, this degradation is not a capacity limitation: it appears across architecturally diverse models including VGGT, $\pi^3$, DA3, and even VGGT-$\Omega$, a 10B parameter model trained on $15\times$ more data than VGGT, demonstrating that neither architectural choice nor scale resolves the underlying orientation prior. We include addition qualitative results for different datasets in supplementary.
+
+\subsection{Why Does ROVER Work?}
+\label{sec:ablation}
+
+Having established that ROVER mitigates UprightBias, we investigate why its orientation-estimation strategy is effective by comparing it against alternative orientation correction methods: Homography-based matching \footnote{Homography based matching needs reference upright image to determine relative rotation.} \citep{barath2019homography}, RotNet \citep{rotnet}, GeoCalib \citep{veicht2024geocalib}, and their combination. 
+Finally we additionally replace DINOv2 in ROVER with DINOv1 \citep{caron2021dinov1}, which was trained without KoLeo regularizer to validate that the variance signal originates from the KoLeo. 
+For each method, the estimated orientation is used to canonicalize inputs before reconstruction, and we evaluate orientation error $\Delta\theta$, point-map N.C., and camera-pose AUC$_{30}$ on NRGB-D using VGGT-$\Omega$ (results on other dataset in supplementary \cref{sec:additional_results_suppl}). 
+Table~\ref{tab:ablation_pose_pointmap} shows that ROVER achieves the lowest orientation error ($\Delta\theta=10.30^\circ$), highest N.C. ($0.81$) and AUC$_{30}$ ($98.03$), and lowest variance.
+RotNet reduces $\Delta\theta$ to $39.10^\circ$ but degrades N.C. from $0.79$ to $0.66$, while combining RotNet with GeoCalib reduces the error to $35.80^\circ$ but remains below ROVER in both N.C. ($0.68$ vs. $0.81$) and AUC$_{30}$ ($94.43$ vs. $98.03$). 
+DINOv1 also underperforms the uncorrected baseline (AUC$_{30}$: $77.52$; N.C.: $0.730$), supporting the role of the KoLeo regularizer in obtaining a reliable orientation signal.
+ROVER thus improves both orientation estimation and downstream reconstruction without requiring reference images, a trained rotation classifier, or geometric optimization.
+We additionally evaluate rotated-view rejection using RobustVGGT \citep{robustvggt} (\cref{sec:outlier_detection_robustvggt}): outlier rotated views are detected from internal features and excluded from reconstruction. We found that RobustVGGT fails to identify non-canonical images reliably when upright images are in minority.
+\input{tables/ablations}
+Lastly, we perform an experiment to examine whether ROVER affects reconstruction when all input images are already upright. 
+We pass the same upright images through the baseline model and ROVER and compare their reconstruction performance.
+~\Cref{tab:ablation_rotation_0} shows that ROVER introduces no meaningful performance penalty in this settingon already upright inputs, with N.C. is preserved exactly across all models, and AUC$_{30}$ varying changes at most within $0.02$ points, well within measurement variance. We include results for other datasets in \cref{sec:allupright_suppl}
